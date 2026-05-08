@@ -1,0 +1,29 @@
+aid: firebolt
+url: https://raw.githubusercontent.com/api-evangelist/firebolt/refs/heads/main/apis.yml
+name: Firebolt
+x-type: company
+description: >-
+  Firebolt is a cloud data warehouse offering low-latency analytics over large datasets with sub-second query response, decoupled storage and compute, and SQL access.
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+tags:
+  - Data
+  - Warehouse
+  - Analytics
+  - Cloud
+  - SQL
+created: '2026-05-08'
+modified: '2026-05-08'
+specificationVersion: '0.19'
+apis: []
+common:
+  - type: Website
+    url: https://www.firebolt.io/
+  - type: Plans
+    url: plans/firebolt-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/firebolt-rate-limits.yml
+  - type: FinOps
+    url: finops/firebolt-finops.yml
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
