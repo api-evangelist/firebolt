@@ -3,21 +3,48 @@ url: https://raw.githubusercontent.com/api-evangelist/firebolt/refs/heads/main/a
 name: Firebolt
 x-type: company
 description: >-
-  Firebolt is a cloud data warehouse offering low-latency analytics over large datasets with sub-second query response, decoupled storage and compute, and SQL access.
+  Firebolt is a cloud data warehouse with elastic engines and consumption-based pricing.
+  It exposes a REST API for issuing SQL queries and managing engines/databases, plus
+  language SDKs (Python, Node.js, Java, .NET) and an OAuth service-account flow.
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
-  - Data
-  - Warehouse
-  - Analytics
+  - Data Warehouse
   - Cloud
   - SQL
+  - Analytics
 created: '2026-05-08'
 modified: '2026-05-08'
 specificationVersion: '0.19'
-apis: []
+apis:
+  - aid: firebolt:firebolt-rest-api
+    name: Firebolt REST API
+    humanURL: https://docs.firebolt.io/guides/run-queries/using-the-api
+    baseURL: https://api.app.firebolt.io
+    tags:
+      - SQL
+      - Query
+      - Engine Management
+    description: >-
+      The Firebolt REST API issues SQL queries against running engines and manages
+      account, engine, and database resources. Authentication is OAuth 2.0
+      client_credentials against `https://id.app.firebolt.io/oauth/token` with audience
+      `https://api.firebolt.io`, using a service account ID and secret. Tokens are sent
+      as `Authorization: Bearer <access_token>`.
+    properties:
+      - type: Documentation
+        url: https://docs.firebolt.io/guides/run-queries/using-the-api
+      - type: Authentication
+        url: https://docs.firebolt.io/Guides/managing-your-organization/service-accounts.html
+      - type: SDK
+        title: Python SDK
+        url: https://python-sdk.docs.firebolt.io/
 common:
   - type: Website
     url: https://www.firebolt.io/
+  - type: Portal
+    url: https://docs.firebolt.io/
+  - type: Pricing
+    url: https://www.firebolt.io/pricing
   - type: Plans
     url: plans/firebolt-plans-pricing.yml
   - type: RateLimits
