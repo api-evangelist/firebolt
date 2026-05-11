@@ -51,6 +51,25 @@ common:
     url: rate-limits/firebolt-rate-limits.yml
   - type: FinOps
     url: finops/firebolt-finops.yml
+  - type: Integrations
+    url: https://www.firebolt.io/integrations
+integrations:
+  - name: Close Menu Button
+  - name: Dropdown menu
+  - name: Dropdown menu 2
+  - name: Firebolt.io Brand
+  - name: Menu Hamburger - Open
+  - name: Firebolt Brand
+  - name: Amazon AWS
+  - name: Amazon AWS - Technology Partner
+  - name: Follow us on Linkedin
+  - name: Follow us on Facebook
+  - name: Follow us on Youtube
+  - name: Follow us on Twitter
+  - name: The data engineering show
+  - name: Listen on Apple Podcasts
+  - name: Listen on Spotify
+  - name: Listen on Youtube
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
