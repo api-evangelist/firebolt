@@ -1,7 +1,7 @@
 aid: firebolt
 url: https://raw.githubusercontent.com/api-evangelist/firebolt/refs/heads/main/apis.yml
 name: Firebolt
-x-type: company
+kind: company
 description: >-
   Firebolt is a cloud data warehouse with elastic engines and consumption-based pricing.
   It exposes a REST API for issuing SQL queries and managing engines/databases, plus
