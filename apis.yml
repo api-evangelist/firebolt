@@ -39,6 +39,10 @@ apis:
         title: Python SDK
         url: https://python-sdk.docs.firebolt.io/
 common:
+  - type: GitHubOrganization
+    url: https://github.com/firebolt-db
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/firebolt
   - type: Website
     url: https://www.firebolt.io/
   - type: Portal
