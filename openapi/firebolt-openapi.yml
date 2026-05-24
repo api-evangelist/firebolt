@@ -1,0 +1,139 @@
+openapi: 3.1.0
+info:
+  title: Firebolt REST API
+  description: >-
+    Issue SQL queries against Firebolt engines and manage account/engine
+    resources. Authentication is OAuth 2.0 client_credentials against
+    https://id.app.firebolt.io/oauth/token (audience https://api.firebolt.io).
+    The returned bearer token is used on subsequent requests against
+    api.app.firebolt.io and individual engine URLs.
+  version: "1.0"
+  contact:
+    name: Firebolt
+    url: https://docs.firebolt.io/guides/run-queries/using-the-api
+servers:
+  - url: https://api.app.firebolt.io
+    description: Firebolt account / management API
+  - url: https://id.app.firebolt.io
+    description: Firebolt identity / OAuth API
+security:
+  - bearerAuth: []
+paths:
+  /oauth/token:
+    post:
+      summary: Obtain an access token (OAuth 2.0 client credentials)
+      operationId: getOAuthToken
+      security: []
+      servers:
+        - url: https://id.app.firebolt.io
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [grant_type, client_id, client_secret, audience]
+              properties:
+                grant_type:
+                  type: string
+                  enum: [client_credentials]
+                client_id:
+                  type: string
+                client_secret:
+                  type: string
+                audience:
+                  type: string
+                  example: https://api.firebolt.io
+      responses:
+        "200":
+          description: Token response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  access_token:
+                    type: string
+                  token_type:
+                    type: string
+                    example: Bearer
+                  expires_in:
+                    type: integer
+  /web/v3/account/{account_name}/engineUrl:
+    get:
+      summary: Get system engine URL for an account
+      operationId: getSystemEngineUrl
+      parameters:
+        - name: account_name
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: System engine URL payload
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  engineUrl:
+                    type: string
+  /:
+    post:
+      summary: Execute SQL on the system or user engine (plain-text body)
+      description: >-
+        Submit a SQL statement as plain text. Send this request to the engine
+        URL returned by /web/v3/account/{account_name}/engineUrl. Use the
+        `database` query parameter when targeting a user engine.
+      operationId: executeQuery
+      parameters:
+        - name: database
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: output_format
+          in: query
+          required: false
+          schema:
+            type: string
+            example: JSON_Compact
+      requestBody:
+        required: true
+        content:
+          text/plain:
+            schema:
+              type: string
+              example: SELECT 1
+      responses:
+        "200":
+          description: Query result
+          content:
+            application/json:
+              schema:
+                type: object
+  /query:
+    post:
+      summary: Query information_schema on the system engine
+      operationId: queryInformationSchema
+      requestBody:
+        required: true
+        content:
+          text/plain:
+            schema:
+              type: string
+              example: SELECT * FROM information_schema.engines
+      responses:
+        "200":
+          description: Query result
+          content:
+            application/json:
+              schema:
+                type: object
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
