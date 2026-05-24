@@ -57,6 +57,8 @@ common:
     url: finops/firebolt-finops.yml
   - type: Integrations
     url: https://www.firebolt.io/integrations
+  - type: LLMsTxt
+    url: https://docs.firebolt.io/llms.txt
 integrations:
   - name: Close Menu Button
   - name: Dropdown menu
