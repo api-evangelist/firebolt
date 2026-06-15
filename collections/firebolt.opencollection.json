@@ -1,0 +1,83 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Firebolt REST API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Obtain an access token (OAuth 2.0 client credentials)",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "https://api.app.firebolt.io/oauth/token",
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "Obtain an access token (OAuth 2.0 client credentials)"
+    },
+    {
+      "info": {
+        "name": "Get system engine URL for an account",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://api.app.firebolt.io/web/v3/account/:account_name/engineUrl",
+        "params": [
+          {
+            "name": "account_name",
+            "value": "",
+            "type": "path"
+          }
+        ]
+      },
+      "docs": "Get system engine URL for an account"
+    },
+    {
+      "info": {
+        "name": "Execute SQL on the system or user engine (plain-text body)",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "https://api.app.firebolt.io/",
+        "params": [
+          {
+            "name": "database",
+            "value": "",
+            "type": "query"
+          },
+          {
+            "name": "output_format",
+            "value": "",
+            "type": "query"
+          }
+        ]
+      },
+      "docs": "Submit a SQL statement as plain text. Send this request to the engine URL returned by /web/v3/account/{account_name}/engineUrl. Use the `database` query parameter when targeting a user engine."
+    },
+    {
+      "info": {
+        "name": "Query information_schema on the system engine",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "https://api.app.firebolt.io/query"
+      },
+      "docs": "Query information_schema on the system engine"
+    }
+  ],
+  "bundled": true
+}

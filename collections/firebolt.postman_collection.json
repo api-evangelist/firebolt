@@ -1,0 +1,430 @@
+{
+  "item": [
+    {
+      "id": "71ccedf1-7976-468b-8f8b-24f299a28e51",
+      "name": "Obtain an access token (OAuth 2.0 client credentials)",
+      "request": {
+        "name": "Obtain an access token (OAuth 2.0 client credentials)",
+        "description": {},
+        "url": {
+          "protocol": "https",
+          "path": [
+            "oauth",
+            "token"
+          ],
+          "host": [
+            "id",
+            "app",
+            "firebolt",
+            "io"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"grant_type\": \"<string>\",\n  \"client_id\": \"<string>\",\n  \"client_secret\": \"<string>\",\n  \"audience\": \"<string>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "979d746b-e1c8-4876-81e7-7411e48bd598",
+          "name": "Token response",
+          "originalRequest": {
+            "url": {
+              "protocol": "https",
+              "path": [
+                "oauth",
+                "token"
+              ],
+              "host": [
+                "id",
+                "app",
+                "firebolt",
+                "io"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: bearer",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Bearer <token>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"grant_type\": \"<string>\",\n  \"client_id\": \"<string>\",\n  \"client_secret\": \"<string>\",\n  \"audience\": \"https://api.firebolt.io\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"access_token\": \"string\",\n  \"token_type\": \"Bearer\",\n  \"expires_in\": 9821\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "b402450a-250f-414e-bd14-f9c7c90f9224",
+      "name": "Get system engine URL for an account",
+      "request": {
+        "name": "Get system engine URL for an account",
+        "description": {},
+        "url": {
+          "path": [
+            "web",
+            "v3",
+            "account",
+            ":account_name",
+            "engineUrl"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "account_name",
+              "description": "(Required) "
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "db3b4592-3d0b-45f0-9083-fc458cef073a",
+          "name": "System engine URL payload",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "web",
+                "v3",
+                "account",
+                ":account_name",
+                "engineUrl"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "account_name",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: bearer",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Bearer <token>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"engineUrl\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "590943e7-585b-43e5-9610-2a74a3de7a28",
+      "name": "Execute SQL on the system or user engine (plain-text body)",
+      "request": {
+        "name": "Execute SQL on the system or user engine (plain-text body)",
+        "description": {
+          "content": "Submit a SQL statement as plain text. Send this request to the engine URL returned by /web/v3/account/{account_name}/engineUrl. Use the `database` query parameter when targeting a user engine.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            ""
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "database",
+              "value": "<string>"
+            },
+            {
+              "disabled": false,
+              "key": "output_format",
+              "value": "<string>"
+            }
+          ],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "text/plain"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "<string>"
+        }
+      },
+      "response": [
+        {
+          "id": "0e5e83c0-59f7-4ba7-befd-d88c409d3c4c",
+          "name": "Query result",
+          "originalRequest": {
+            "url": {
+              "path": [
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "database",
+                  "value": "<string>"
+                },
+                {
+                  "key": "output_format",
+                  "value": "JSON_Compact"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: bearer",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Bearer <token>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "SELECT 1"
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "ee1bb2fb-3c2a-4f04-9d35-184f71e24b48",
+      "name": "Query information_schema on the system engine",
+      "request": {
+        "name": "Query information_schema on the system engine",
+        "description": {},
+        "url": {
+          "path": [
+            "query"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "text/plain"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "<string>"
+        }
+      },
+      "response": [
+        {
+          "id": "bde97ae3-0aac-45a2-bfbd-483d3754b3ca",
+          "name": "Query result",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "query"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: bearer",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Bearer <token>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "SELECT * FROM information_schema.engines"
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.app.firebolt.io",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "fc59b198-53b0-479d-a17d-a608241a2f98",
+    "name": "Firebolt REST API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Issue SQL queries against Firebolt engines and manage account/engine resources. Authentication is OAuth 2.0 client_credentials against https://id.app.firebolt.io/oauth/token (audience https://api.firebolt.io). The returned bearer token is used on subsequent requests against api.app.firebolt.io and individual engine URLs.\n\nContact Support:\n Name: Firebolt",
+      "type": "text/plain"
+    }
+  }
+}
