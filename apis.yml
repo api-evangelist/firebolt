@@ -35,7 +35,7 @@ apis:
         url: https://docs.firebolt.io/guides/run-queries/using-the-api
       - type: Authentication
         url: https://docs.firebolt.io/Guides/managing-your-organization/service-accounts.html
-      - type: SDK
+      - type: SDKs
         title: Python SDK
         url: https://python-sdk.docs.firebolt.io/
 common:
@@ -57,7 +57,7 @@ common:
     url: finops/firebolt-finops.yml
   - type: Integrations
     url: https://www.firebolt.io/integrations
-  - type: LLMsTxt
+  - type: LlmsText
     url: https://docs.firebolt.io/llms.txt
 integrations:
   - name: Close Menu Button
