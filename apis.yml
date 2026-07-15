@@ -39,6 +39,8 @@ apis:
         title: Python SDK
         url: https://python-sdk.docs.firebolt.io/
 common:
+  - type: AgenticAccess
+    url: agentic-access/firebolt-agentic-access.yml
   - type: TrustCenter
     url: security/firebolt-trust-center.yml
   - type: VulnerabilityDisclosure
