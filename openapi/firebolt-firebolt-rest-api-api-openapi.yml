@@ -1,0 +1,57 @@
+openapi: 3.1.0
+info:
+  title: Firebolt REST Firebolt REST API API
+  description: Issue SQL queries against Firebolt engines and manage account/engine resources. Authentication is OAuth 2.0 client_credentials against https://id.app.firebolt.io/oauth/token (audience https://api.firebolt.io). The returned bearer token is used on subsequent requests against api.app.firebolt.io and individual engine URLs.
+  version: '1.0'
+  contact:
+    name: Firebolt
+    url: https://docs.firebolt.io/guides/run-queries/using-the-api
+servers:
+- url: https://api.app.firebolt.io
+  description: Firebolt account / management API
+- url: https://id.app.firebolt.io
+  description: Firebolt identity / OAuth API
+security:
+- bearerAuth: []
+tags:
+- name: Firebolt REST API
+paths:
+  /:
+    post:
+      summary: Execute SQL on the system or user engine (plain-text body)
+      description: Submit a SQL statement as plain text. Send this request to the engine URL returned by /web/v3/account/{account_name}/engineUrl. Use the `database` query parameter when targeting a user engine.
+      operationId: executeQuery
+      parameters:
+      - name: database
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: output_format
+        in: query
+        required: false
+        schema:
+          type: string
+          example: JSON_Compact
+      requestBody:
+        required: true
+        content:
+          text/plain:
+            schema:
+              type: string
+              example: SELECT 1
+      responses:
+        '200':
+          description: Query result
+          content:
+            application/json:
+              schema:
+                type: object
+      tags:
+      - Firebolt REST API
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
