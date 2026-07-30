@@ -6,7 +6,20 @@ description: >-
   Firebolt is a cloud data warehouse with elastic engines and consumption-based pricing.
   It exposes a REST API for issuing SQL queries and managing engines/databases, plus
   language SDKs (Python, Node.js, Java, .NET) and an OAuth service-account flow.
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/firebolt.png
 tags:
   - Data Warehouse
   - Cloud
@@ -16,28 +29,67 @@ created: '2026-05-08'
 modified: '2026-05-08'
 specificationVersion: '0.19'
 apis:
-  - aid: firebolt:firebolt-rest-api
-    name: Firebolt REST API
-    humanURL: https://docs.firebolt.io/guides/run-queries/using-the-api
-    baseURL: https://api.app.firebolt.io
-    tags:
-      - SQL
-      - Query
-      - Engine Management
-    description: >-
-      The Firebolt REST API issues SQL queries against running engines and manages
-      account, engine, and database resources. Authentication is OAuth 2.0
-      client_credentials against `https://id.app.firebolt.io/oauth/token` with audience
-      `https://api.firebolt.io`, using a service account ID and secret. Tokens are sent
-      as `Authorization: Bearer <access_token>`.
-    properties:
-      - type: Documentation
-        url: https://docs.firebolt.io/guides/run-queries/using-the-api
-      - type: Authentication
-        url: https://docs.firebolt.io/Guides/managing-your-organization/service-accounts.html
-      - type: SDKs
-        title: Python SDK
-        url: https://python-sdk.docs.firebolt.io/
+- aid: firebolt:firebolt-rest-api
+  name: Firebolt REST API
+  humanURL: https://docs.firebolt.io/guides/run-queries/using-the-api
+  baseURL: https://api.app.firebolt.io
+  tags:
+  - SQL
+  - Query
+  - Engine Management
+  description: >-
+    The Firebolt REST API issues SQL queries against running engines and manages account, engine, and
+    database resources. Authentication is OAuth 2.0 client_credentials against `https://id.app.firebolt.io/oauth/token`
+    with audience `https://api.firebolt.io`, using a service account ID and secret. Tokens are sent as
+    `Authorization: Bearer <access_token>`.
+  properties:
+  - type: Documentation
+    url: https://docs.firebolt.io/guides/run-queries/using-the-api
+  - type: Authentication
+    url: https://docs.firebolt.io/Guides/managing-your-organization/service-accounts.html
+  - type: SDKs
+    title: Python SDK
+    url: https://python-sdk.docs.firebolt.io/
+- aid: firebolt:firebolt-firebolt-rest-api-api
+  name: Firebolt Firebolt REST API API
+  description: The Firebolt REST API API from Firebolt — 1 operation(s) for firebolt rest api.
+  humanURL: https://docs.firebolt.io/guides/run-queries/using-the-api
+  baseURL: https://api.app.firebolt.io
+  tags:
+  - Firebolt REST API
+  properties:
+  - type: OpenAPI
+    url: openapi/firebolt-firebolt-rest-api-api-openapi.yml
+- aid: firebolt:firebolt-oauth-api
+  name: Firebolt Oauth API
+  description: The Oauth API from Firebolt — 1 operation(s) for oauth.
+  humanURL: https://docs.firebolt.io/guides/run-queries/using-the-api
+  baseURL: https://api.app.firebolt.io
+  tags:
+  - Oauth
+  properties:
+  - type: OpenAPI
+    url: openapi/firebolt-oauth-api-openapi.yml
+- aid: firebolt:firebolt-query-api
+  name: Firebolt Query API
+  description: The Query API from Firebolt — 1 operation(s) for query.
+  humanURL: https://docs.firebolt.io/guides/run-queries/using-the-api
+  baseURL: https://api.app.firebolt.io
+  tags:
+  - Query
+  properties:
+  - type: OpenAPI
+    url: openapi/firebolt-query-api-openapi.yml
+- aid: firebolt:firebolt-web-api
+  name: Firebolt Web API
+  description: The Web API from Firebolt — 1 operation(s) for web.
+  humanURL: https://docs.firebolt.io/guides/run-queries/using-the-api
+  baseURL: https://api.app.firebolt.io
+  tags:
+  - Web
+  properties:
+  - type: OpenAPI
+    url: openapi/firebolt-web-api-openapi.yml
 common:
   - type: AgenticAccess
     url: agentic-access/firebolt-agentic-access.yml
