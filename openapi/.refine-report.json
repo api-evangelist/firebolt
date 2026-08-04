@@ -1,0 +1,20 @@
+{
+  "provider": "firebolt",
+  "sources": [
+    "firebolt-firebolt-rest-api-api-openapi.yml",
+    "firebolt-oauth-api-openapi.yml",
+    "firebolt-query-api-openapi.yml",
+    "firebolt-web-api-openapi.yml"
+  ],
+  "outputs": [
+    "firebolt-firebolt-rest-api-api-openapi.yml",
+    "firebolt-oauth-api-openapi.yml",
+    "firebolt-query-api-openapi.yml",
+    "firebolt-web-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
