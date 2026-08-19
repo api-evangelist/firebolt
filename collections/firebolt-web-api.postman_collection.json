@@ -1,0 +1,140 @@
+{
+  "item": [
+    {
+      "id": "9d90dc0a-979d-446f-b2a4-ccf341d1b4a1",
+      "name": "Web",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "285998c7-b00a-46fa-b8f2-df21c55bdd2c",
+          "name": "Get system engine URL for an account",
+          "request": {
+            "name": "Get system engine URL for an account",
+            "description": {},
+            "url": {
+              "path": [
+                "web",
+                "v3",
+                "account",
+                ":account_name",
+                "engineUrl"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "account_name",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "51232476-2848-40e0-bd3c-bf3b49ac50c3",
+              "name": "System engine URL payload",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "web",
+                    "v3",
+                    "account",
+                    ":account_name",
+                    "engineUrl"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_name",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"engineUrl\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.app.firebolt.io",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "65b2e6d8-d20c-41a5-8d5e-b2280369e991",
+    "name": "Firebolt REST Firebolt REST API Web API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Issue SQL queries against Firebolt engines and manage account/engine resources. Authentication is OAuth 2.0 client_credentials against https://id.app.firebolt.io/oauth/token (audience https://api.firebolt.io). The returned bearer token is used on subsequent requests against api.app.firebolt.io and individual engine URLs.\n\nContact Support:\n Name: Firebolt",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,613 @@
+# Firebolt Documentation
+
+> Firebolt is a high-performance cloud data warehouse optimized for sub-second analytics at scale. This documentation covers SQL references, architecture, integrations, security, and operational guides for developers and data engineers.
+
+## Docs
+
+- [What is Firebolt?](https://docs.firebolt.io/overview.md): Firebolt is a high-performance, open source analytical database. It runs as a single binary on a laptop and scales to hundreds of nodes and petabytes of data on object storage in your own cloud.
+- [Quickstart](https://docs.firebolt.io/overview/quickstart.md): Start querying with Firebolt fast. Run an engine, connect with an SDK, and load external data with table-valued functions and COPY.
+- [Architecture](https://docs.firebolt.io/overview/architecture-overview.md): How Firebolt runs as a single binary on a laptop and scales to multi-cluster, object-storage-backed deployments, with the same engine and the same behavior everywhere.
+- [Core concepts](https://docs.firebolt.io/overview/data-management.md): A technical tour of Firebolt's core data features. The object model, Iceberg for batch, managed tables for real time, external data with table-valued functions and COPY, indexing, ingest, and access control.
+- [Overview](https://docs.firebolt.io/performance-and-observability.md): Guides to optimizing performance in Firebolt.
+- [Query Planning](https://docs.firebolt.io/performance-and-observability/query-planning.md): Guides to understanding and tuning the query planning process.
+- [Inspecting query plans](https://docs.firebolt.io/performance-and-observability/query-planning/inspecting-query-plans.md): Learn on how to inspect the execution plans for your queries.
+- [Cardinality estimation](https://docs.firebolt.io/performance-and-observability/query-planning/cardinality-estimation.md): Understand and control how statistics affect the cost model used by Firebolt's cost-based optimization rules.
+- [Automated Column Statistics (ACS)](https://docs.firebolt.io/performance-and-observability/query-planning/automated-column-statistics.md): Learn how to use automated column statistics to improve query performance.
+- [Create tables with column statistics](https://docs.firebolt.io/performance-and-observability/query-planning/automated-column-statistics/table-with-statistics.md): How to create a table that automatically collects and updates column statistics.
+- [Infer from user created indexes](https://docs.firebolt.io/performance-and-observability/query-planning/automated-column-statistics/user-created-indexes.md): How to configure automated column statistics to read existing user created aggregating indexes.
+- [History-Based Statistics](https://docs.firebolt.io/performance-and-observability/query-planning/history-based-statistics.md): How to use statistics about past query executions to improve future query plans
+- [UNIQUE constraints as query hints](https://docs.firebolt.io/performance-and-observability/query-planning/unique-constraint.md): Understand how the UNIQUE constraint affects query performance.
+- [Query hints](https://docs.firebolt.io/performance-and-observability/query-planning/query-hints.md): Influence the planner behavior using hint comments.
+- [No partial aggregation](https://docs.firebolt.io/performance-and-observability/query-planning/query-hints/no-partial-aggregation.md): You can disable partial aggregation using a query hint comment.
+- [No join ordering](https://docs.firebolt.io/performance-and-observability/query-planning/query-hints/no-join-ordering.md): You can disable join order optimization using a query hint comment.
+- [Optimize for single row window partitions](https://docs.firebolt.io/performance-and-observability/query-planning/query-hints/optimize-for-single-row-window-partitions.md): Avoid expensive window operations for partitions with a single row
+- [Unique columns](https://docs.firebolt.io/performance-and-observability/query-planning/query-hints/unique-columns.md): You can mark a column as unique using a query hint comment.
+- [User-guided mode](https://docs.firebolt.io/performance-and-observability/query-planning/user-guided-mode.md): Learn how to take full control over the query planning process.
+- [Late materialization](https://docs.firebolt.io/performance-and-observability/query-planning/late-materialization.md): Speed up your top-k queries with late materialization.
+- [Join pruning](https://docs.firebolt.io/performance-and-observability/query-planning/join-pruning.md): Use one side of a join to prune the table scan of the other at run time.
+- [Subresult reuse and result caching](https://docs.firebolt.io/performance-and-observability/runtime/understand-query-performance-subresult.md): How to understand subresult reuse and result caching.
+- [Spilling](https://docs.firebolt.io/performance-and-observability/runtime/understand-spilling.md): How to understand spilling and reason about its effects.
+- [Iceberg performance](https://docs.firebolt.io/performance-and-observability/runtime/iceberg-performance.md): How Firebolt accelerates Apache Iceberg queries, and how to tune caching, pruning, co-located joins, and writers
+- [Storage and indexing](https://docs.firebolt.io/performance-and-observability/storage-and-indexing.md): How Firebolt stores managed tables on object storage and the exact order in which a scan prunes, reads, and filters data.
+- [Primary index](https://docs.firebolt.io/performance-and-observability/storage-and-indexing/primary-index.md): Primary index overview
+- [Data skipping index](https://docs.firebolt.io/performance-and-observability/storage-and-indexing/data-skipping-index.md): Skip granules that cannot match a predicate using min/max data skipping indexes.
+- [Inverted index](https://docs.firebolt.io/performance-and-observability/storage-and-indexing/inverted-index.md): Speed up point lookups with inverted indexes in Firebolt.
+- [Full-text search index](https://docs.firebolt.io/performance-and-observability/storage-and-indexing/full-text-search-index.md): Speed up substring and pattern matching with full-text search indexes in Firebolt.
+- [Aggregating index](https://docs.firebolt.io/performance-and-observability/storage-and-indexing/aggregating-index.md): Aggregating index overview
+- [Vector search index](https://docs.firebolt.io/performance-and-observability/storage-and-indexing/vector-search-index.md): Vector search index overview
+- [Table and Column Compression](https://docs.firebolt.io/performance-and-observability/storage-and-indexing/table-and-column-compression.md): Learn about custom compression for managed tables
+- [Security](https://docs.firebolt.io/security.md): Introduction to Firebolt security features and functionality
+- [Role-Based Access Control](https://docs.firebolt.io/security/rbac.md): Learn about role-based access control (RBAC) in Firebolt, including how to define and manage roles, assign permissions, and control access to database resources.
+- [Database permissions](https://docs.firebolt.io/security/rbac/database-permissions.md): Understand the permissions that can be assigned at the database level in Firebolt, including controlling access to database objects and managing database-level operations.
+- [Schema permissions](https://docs.firebolt.io/security/rbac/database-permissions/schema-permissions.md): Learn about the permissions that can be assigned to schemas in Firebolt, including the ability to manage schema-level objects and control access to underlying data.
+- [Table permissions](https://docs.firebolt.io/security/rbac/database-permissions/table-permissions.md): Learn about the permissions that can be assigned to tables in Firebolt, including controlling access to table data and managing table-level operations.
+- [View permissions](https://docs.firebolt.io/security/rbac/database-permissions/view-permissions.md): Learn about the permissions that can be assigned to views in Firebolt, including controlling access to view data and managing view-level operations.
+- [Location Permissions](https://docs.firebolt.io/security/rbac/location-permissions.md): Learn about location-related permissions in Firebolt.
+- [Role Permissions](https://docs.firebolt.io/security/rbac/role-permissions.md): Learn about role-level permissions in Firebolt.
+- [Account Permissions](https://docs.firebolt.io/security/rbac/account-permissions.md): Learn about account-level permissions in Firebolt.
+- [User Permissions](https://docs.firebolt.io/security/rbac/user-permissions.md): Learn about user-level permissions in Firebolt.
+- [Engine Permissions](https://docs.firebolt.io/security/rbac/engine-permissions.md): Learn about engine-level permissions in Firebolt.
+- [Ownership](https://docs.firebolt.io/security/rbac/ownership.md): Learn about ownership in Firebolt & how it impacts permissions and access control.
+- [Check Assigned Privileges](https://docs.firebolt.io/security/rbac/check-privileges.md): Learn how to view and verify assigned privileges for users and roles in Firebolt.
+- [Role Management](https://docs.firebolt.io/security/rbac/role-management.md): Learn about role management in Firebolt, including how to create, assign, and manage roles to control user access and permissions across your databases.
+- [Default System Roles](https://docs.firebolt.io/security/rbac/role-management/system-roles.md): Learn about the default system roles in Firebolt, their permissions, and how they help manage access control across different database objects and operations.
+- [Custom Roles](https://docs.firebolt.io/security/rbac/role-management/custom-roles.md): Learn how to create and manage custom roles in Firebolt, allowing you to define tailored access controls for users based on specific permissions.
+- [Role-based access control (RBAC)](https://docs.firebolt.io/security/guides/rbac.md): Learn about managing RBAC authorization for Firebolt users.
+- [Column-level security](https://docs.firebolt.io/security/guides/column-level-security.md): Learn how to use column-level security (CLS) in Firebolt to restrict which columns of a table a role can read using GRANT and REVOKE with column lists.
+- [Using secure views](https://docs.firebolt.io/security/guides/rbac-views-security.md): Learn how to use views with Firebolt's RBAC system to implement data masking and row-level security, using owner rights to control access to underlying data.
+- [LOCATION objects](https://docs.firebolt.io/security/guides/location.md): Learn about LOCATION objects in Firebolt for secure, centralized credential management.
+- [Ownership](https://docs.firebolt.io/security/guides/ownership.md): Learn about object Ownership in Firebolt.
+- [Self-Managed](https://docs.firebolt.io/self-managed.md): Documentation for running Firebolt components in your own environment.
+- [Installation](https://docs.firebolt.io/self-managed/firebolt-operator/installation.md): Install the Firebolt Operator and its CRDs with Helm.
+- [Quickstart](https://docs.firebolt.io/self-managed/firebolt-operator/quickstart.md): Create a Firebolt instance and engine with the Firebolt Operator.
+- [Architecture](https://docs.firebolt.io/self-managed/firebolt-operator/architecture.md): High-level architecture for FireboltInstance, FireboltEngine, and FireboltEngineClass.
+- [Instance overview](https://docs.firebolt.io/self-managed/firebolt-operator/instance/overview.md): Shared infrastructure the Firebolt Operator provisions per FireboltInstance.
+- [Instance reconciliation](https://docs.firebolt.io/self-managed/firebolt-operator/instance/instance-reconciliation.md): FireboltInstance reconciliation for PostgreSQL, metadata, and gateway infrastructure.
+- [Gateway overview](https://docs.firebolt.io/self-managed/firebolt-operator/instance/gateway/overview.md): Per-instance Envoy gateway for query routing and zero-downtime engine cutovers.
+- [Gateway query routing](https://docs.firebolt.io/self-managed/firebolt-operator/instance/gateway/gateway-query-routing.md): Envoy gateway routing, retry behavior, graceful pod shutdown, and EndpointSlice rationale.
+- [Gateway sizing](https://docs.firebolt.io/self-managed/firebolt-operator/instance/gateway/gateway-sizing.md): Size Envoy gateway replicas and memory for zero-downtime cutovers.
+- [Metadata overview](https://docs.firebolt.io/self-managed/firebolt-operator/instance/metadata/overview.md): Stores and services engine metadata.
+- [Engine overview](https://docs.firebolt.io/self-managed/firebolt-operator/engine/overview.md): A FireboltEngine is the compute resource that runs query engine nodes.
+- [Engine reconciliation](https://docs.firebolt.io/self-managed/firebolt-operator/engine/engine-reconciliation.md): FireboltEngine reconcile loop, phase machine, generation model, status behavior, and recovery guarantees.
+- [Engine rollouts](https://docs.firebolt.io/self-managed/firebolt-operator/engine/engine-rollouts.md): Rollout strategies and drain checks for Firebolt Engine.
+- [Auto-stop and wake-up](https://docs.firebolt.io/self-managed/firebolt-operator/engine/auto-stop-and-wake-up.md): Operator-driven FireboltEngine auto-stop and the gateway wake-up annotation protocol.
+- [Engine Scaling](https://docs.firebolt.io/self-managed/firebolt-operator/engine/engine-scaling.md): Scale up, scale down, and stop a Firebolt Engine.
+- [Amazon S3](https://docs.firebolt.io/self-managed/firebolt-operator/engine/object-storage/amazon-s3.md): Configure Amazon S3 as the backing object storage for Firebolt Operator engines.
+- [S3-compatible storage](https://docs.firebolt.io/self-managed/firebolt-operator/engine/object-storage/s3-compatible.md): Configure a non-AWS S3-compatible object store (Nebius, CoreWeave, MinIO, …) as the backing object storage for Firebolt Operator engines.
+- [Google Cloud Storage](https://docs.firebolt.io/self-managed/firebolt-operator/engine/object-storage/google-cloud-storage.md): Configure Google Cloud Storage as the backing object storage for Firebolt Operator engines.
+- [Azure Blob Storage](https://docs.firebolt.io/self-managed/firebolt-operator/engine/object-storage/azure-blob-storage.md): Configure Azure Blob Storage as the backing object storage for Firebolt Operator engines.
+- [FireboltEngineClass overview](https://docs.firebolt.io/self-managed/firebolt-operator/engineclass/overview.md): Optional namespaced classes of shared FireboltEngine settings, including pod template, storage, engine config, and rollout and auto-stop defaults.
+- [FireboltEngineClass design](https://docs.firebolt.io/self-managed/firebolt-operator/engineclass/fireboltengineclass-design.md): FireboltEngineClass namespacing, pod-template and engine-settings inheritance, and merge behavior.
+- [Monitoring](https://docs.firebolt.io/self-managed/firebolt-operator/monitoring.md): Prometheus metrics exposed by the Firebolt Operator and managed components.
+- [Security model](https://docs.firebolt.io/self-managed/firebolt-operator/security.md): Operator vs. platform responsibilities for pod hardening, network isolation, resource bounds, and secrets.
+- [Troubleshooting](https://docs.firebolt.io/self-managed/firebolt-operator/troubleshooting.md): Common Firebolt Operator failure modes and recovery steps.
+- [FireboltInstance CRD reference](https://docs.firebolt.io/self-managed/firebolt-operator/crd-reference/instance-crd-reference.md): Spec, status, and conditions for the FireboltInstance custom resource.
+- [FireboltEngine CRD reference](https://docs.firebolt.io/self-managed/firebolt-operator/crd-reference/engine-crd-reference.md): Spec, phases, and conditions for the FireboltEngine custom resource.
+- [FireboltEngineClass CRD reference](https://docs.firebolt.io/self-managed/firebolt-operator/crd-reference/fireboltengineclass-crd-reference.md): Spec, status, inherited engine settings, and operator-owned template fields for FireboltEngineClass.
+- [Firebolt instance Helm chart](https://docs.firebolt.io/self-managed/helm-chart/overview.md): Architecture, components, and scope of the firebolt-instance Helm chart, with pointers to usage patterns and the operator upgrade path.
+- [Prerequisites](https://docs.firebolt.io/self-managed/helm-chart/prerequisites.md): Kubernetes cluster, local tooling, and object-storage requirements for the firebolt-instance Helm chart.
+- [Quickstart](https://docs.firebolt.io/self-managed/helm-chart/quickstart.md): Install the firebolt-instance Helm chart on a local kind cluster with an in-cluster S3 emulator and run your first query through the gateway.
+- [Single engine](https://docs.firebolt.io/self-managed/helm-chart/usage/single-engine.md): Default install of the firebolt-instance Helm chart with one Engine, Gateway, the Metadata Service, and bundled PostgreSQL.
+- [Multi-engine](https://docs.firebolt.io/self-managed/helm-chart/usage/multi-engine.md): Two or more named Firebolt engines under one firebolt-instance Helm release, routed by the X-Firebolt-Engine header.
+- [Amazon S3](https://docs.firebolt.io/self-managed/helm-chart/usage/object-storage/amazon-s3.md): Amazon S3 and S3-compatible object storage for engine managed table data, with AWS workload identity and intermediary roles for external access.
+- [S3-compatible storage](https://docs.firebolt.io/self-managed/helm-chart/usage/object-storage/s3-compatible.md): Back Firebolt engines with a non-AWS S3-compatible object store (Nebius, CoreWeave, MinIO) using firebolt-instance-helm.
+- [Google Cloud Storage](https://docs.firebolt.io/self-managed/helm-chart/usage/object-storage/google-cloud-storage.md): Google Cloud Storage object storage for engine managed table data, with GKE Workload Identity Federation and intermediary service accounts for external access.
+- [Azure Blob Storage](https://docs.firebolt.io/self-managed/helm-chart/usage/object-storage/azure-blob-storage.md): Azure Blob Storage object storage for engine managed table data, with Microsoft Entra Workload ID and intermediary service principals for external access.
+- [External PostgreSQL](https://docs.firebolt.io/self-managed/helm-chart/usage/external-postgres.md): Connecting the Metadata Service to an external managed PostgreSQL instead of the bundled StatefulSet.
+- [Authentication](https://docs.firebolt.io/self-managed/helm-chart/usage/authentication.md): Enabling engine authentication, provisioning JWT signing keys, and rotating them.
+- [TLS](https://docs.firebolt.io/self-managed/helm-chart/usage/tls.md): Enabling TLS on the gateway's client listener and the engine's query listener.
+- [Image overrides](https://docs.firebolt.io/self-managed/helm-chart/usage/image-overrides.md): Engine and metadata image tag overrides for the firebolt-instance Helm chart, including pinning a specific build.
+- [Operator upgrade path](https://docs.firebolt.io/self-managed/helm-chart/operator-upgrade-path.md): Capabilities that warrant graduating from the firebolt-instance Helm chart to the Firebolt Kubernetes Operator, and the migration shape.
+- [Monitoring](https://docs.firebolt.io/self-managed/helm-chart/monitoring.md): Engine and gateway Prometheus metrics endpoints, the gateway stats listener, and optional PodMonitor resources for the Prometheus Operator.
+- [Security model](https://docs.firebolt.io/self-managed/helm-chart/security.md): Pod-hardening defaults the chart applies, plus network policy, resource ceilings, image provenance, and admission controls left to the platform team.
+- [Troubleshooting](https://docs.firebolt.io/self-managed/helm-chart/troubleshooting.md): Common failure modes when installing or upgrading the firebolt-instance Helm chart, with diagnostic and recovery steps.
+- [Run Firebolt from the standalone binaries](https://docs.firebolt.io/self-managed/standalone-binaries/overview.md): Run the Firebolt Engine and metadata service directly from prebuilt binaries, without Kubernetes or Docker, on one or more machines.
+- [Deploy with embedded metadata](https://docs.firebolt.io/self-managed/standalone-binaries/embedded-metadata.md): Run a single-node or multi-node Firebolt Engine with embedded metadata, backed by a local SQLite database, with no separate metadata process and no Postgres.
+- [Deploy with standalone metadata](https://docs.firebolt.io/self-managed/standalone-binaries/standalone-metadata.md): Run one or more Firebolt Engines against a standalone, Postgres-backed metadata service so several Engines can share the same data.
+- [Colocate multiple nodes on one host](https://docs.firebolt.io/self-managed/standalone-binaries/colocation.md): Run several Firebolt nodes or Engines on a single machine for local testing, avoiding the port collisions that a one-node-per-machine layout never hits.
+- [Connecting over HTTP](https://docs.firebolt.io/self-managed/connecting-over-http.md): Submit SQL to a self-managed Firebolt engine over its HTTP endpoint, including output formats, session handling, transactions, and security.
+- [Engine arguments](https://docs.firebolt.io/self-managed/engine-arguments.md): Command-line arguments that control where a self-managed Firebolt engine stores its data and which configuration file it loads.
+- [Engine configuration reference](https://docs.firebolt.io/self-managed/engine-configuration.md): Reference for the YAML configuration file that configures a Firebolt engine.
+- [Web UI](https://docs.firebolt.io/self-managed/web-ui.md): Run the optional web UI for a self-managed Firebolt engine, as a Kubernetes sidecar or as a standalone Docker container pointed at any engine.
+- [Organizations and accounts](https://docs.firebolt.io/managed-service/organizations-accounts.md): Learn about Firebolt organization and account concepts to help you administer and manage your Firebolt account.
+- [Engine Fundamentals](https://docs.firebolt.io/managed-service/engine-fundamentals.md): Learn fundamental concepts about Firebolt Engines.
+- [Engine Consumption](https://docs.firebolt.io/managed-service/engine-consumption.md): Understand Firebolt's consumption metric, Firebolt Unit (FBU), and how to calculate FBU for a given engine configuration.
+- [Pricing and billing](https://docs.firebolt.io/managed-service/billing.md): How Firebolt bills for usage
+- [Available regions](https://docs.firebolt.io/managed-service/available-regions.md): Provides the AWS regions available in Firebolt.
+- [Support](https://docs.firebolt.io/managed-service/support.md): Describes the options of the Firebolt Support menu
+- [Configure SSO](https://docs.firebolt.io/managed-service/security/sso.md): Learn about how to set up SSO authentication for Firebolt.
+- [Auth0](https://docs.firebolt.io/managed-service/security/sso/auth0.md): Learn how to configure Auth0 as your identity provider to work with SSO authentication for Firebolt.
+- [Okta](https://docs.firebolt.io/managed-service/security/sso/okta.md): Learn how to configure Okta as your identity provider to work with SSO authentication for Firebolt.
+- [OneLogin](https://docs.firebolt.io/managed-service/security/sso/onelogin.md): Learn how to configure OneLogin as your identity provider to work with SSO authentication for Firebolt.
+- [PingFederate](https://docs.firebolt.io/managed-service/security/sso/pingfederate.md): Learn how to configure PingFederate as your identity provider to work with SSO authentication for Firebolt.
+- [Salesforce](https://docs.firebolt.io/managed-service/security/sso/salesforce.md): Learn how to configure Salesforce as your identity provider to work with SSO authentication for Firebolt.
+- [Custom Identity Provider](https://docs.firebolt.io/managed-service/security/sso/custom-sso.md): Learn how to configure a custom Identity Provider integration with Firebolt.
+- [Multi-factor authentication](https://docs.firebolt.io/managed-service/security/enabling-mfa.md): Learn about how to enable and disable multi-factor authentication in Firebolt.
+- [Network policies](https://docs.firebolt.io/managed-service/security/network-policies.md): Learn about creating and managing network policies for Firebolt.
+- [AWS PrivateLink](https://docs.firebolt.io/managed-service/security/privatelink.md): Learn how to set up and use AWS PrivateLink to connect securely to Firebolt.
+- [Governing Engines](https://docs.firebolt.io/managed-service/operate-engines/rbac-for-engines.md): Learn how to use Role Based Access Control to govern engines
+- [Work with engines](https://docs.firebolt.io/managed-service/operate-engines/working-with-engines-using-ddl.md): Learn how to create, modify and run Firebolt engines.
+- [Sizing Engines](https://docs.firebolt.io/managed-service/operate-engines/sizing-engines.md): Learn how to size engines initially and use engine observability to monitor and resize engines
+- [Understanding Autoscaling](https://docs.firebolt.io/managed-service/operate-engines/understand-autoscaling.md): Learn how autoscaling works in Firebolt engines.
+- [Warming Up Engines](https://docs.firebolt.io/managed-service/operate-engines/warming-up-engines.md): Learn how to warm up engines for optimal performance
+- [Release settings](https://docs.firebolt.io/managed-service/operate-engines/engines-release-settings.md): Learn how to control the release upgrade cycle for engines.
+- [System Engine](https://docs.firebolt.io/managed-service/operate-engines/system-engine.md): System engine documentation
+- [Engine Warmpools](https://docs.firebolt.io/managed-service/operate-engines/engine-warmpools.md): Learn about engine warmpools and what to expect when starting engines
+- [Manage logins](https://docs.firebolt.io/managed-service/organization/managing-logins.md): Learn about user permissions and how to add and remove logins in a Firebolt account.
+- [Manage programmatic access](https://docs.firebolt.io/managed-service/organization/service-accounts.md): Create and manage programmatic access.
+- [CREATE LOGIN](https://docs.firebolt.io/managed-service/organization/commands/create-login.md): Reference and syntax for the CREATE LOGIN command.
+- [ALTER LOGIN](https://docs.firebolt.io/managed-service/organization/commands/alter-login.md): Reference and syntax for the ALTER LOGIN command.
+- [DROP LOGIN](https://docs.firebolt.io/managed-service/organization/commands/drop-login.md): Reference and syntax for the DROP LOGIN command.
+- [CREATE SERVICE ACCOUNT](https://docs.firebolt.io/managed-service/organization/commands/create-service-account.md): Reference and syntax for the CREATE SERVICE ACCOUNT command.
+- [ALTER SERVICE ACCOUNT](https://docs.firebolt.io/managed-service/organization/commands/alter-service-account.md): Reference and syntax for the ALTER SERVICE ACCOUNT command.
+- [DROP SERVICE ACCOUNT](https://docs.firebolt.io/managed-service/organization/commands/drop-service-account.md): Reference and syntax for the DROP SERVICE ACCOUNT command.
+- [CREATE ORGANIZATION ROLE](https://docs.firebolt.io/managed-service/organization/commands/create-organization-role.md): Reference and syntax for the CREATE ORGANIZATION ROLE command.
+- [ALTER ORGANIZATION ROLE](https://docs.firebolt.io/managed-service/organization/commands/alter-organization-role.md): Reference and syntax for the ALTER ORGANIZATION ROLE command.
+- [DROP ORGANIZATION ROLE](https://docs.firebolt.io/managed-service/organization/commands/drop-organization-role.md): Reference and syntax for the DROP ORGANIZATION ROLE command.
+- [GRANT ORGANIZATION ROLE](https://docs.firebolt.io/managed-service/organization/commands/grant-organization-role.md): Reference and syntax for the GRANT ORGANIZATION ROLE command.
+- [REVOKE ORGANIZATION ROLE](https://docs.firebolt.io/managed-service/organization/commands/revoke-organization-role.md): Reference and syntax for the REVOKE ORGANIZATION ROLE command.
+- [ALTER ORGANIZATION](https://docs.firebolt.io/managed-service/organization/commands/alter-organization.md): Reference and syntax for the ALTER ORGANIZATION command.
+- [Accounts](https://docs.firebolt.io/managed-service/organization/information-schema/accounts.md): Use this reference to learn about the metadata available about accounts using the information schema.
+- [Logins](https://docs.firebolt.io/managed-service/organization/information-schema/logins.md): Use this reference to learn about the metadata available for Firebolt logins using the information schema.
+- [Organization](https://docs.firebolt.io/managed-service/organization/information-schema/organization.md): Use this reference to learn about the metadata available for your Firebolt organization using the information schema.
+- [Service accounts](https://docs.firebolt.io/managed-service/organization/information-schema/service-accounts.md): Use this reference to learn about the metadata available about service accounts using the information schema.
+- [Network policies](https://docs.firebolt.io/managed-service/organization/information-schema/network_policies.md): Use this reference to learn about the metadata available about network policies using the information schema.
+- [Manage organization](https://docs.firebolt.io/guides/managing-your-organization.md): Learn about user permissions and how to add and remove users in a Firebolt account.
+- [Register to Firebolt](https://docs.firebolt.io/guides/managing-your-organization/creating-an-organization.md): Learn how to create an organization.
+- [Manage accounts](https://docs.firebolt.io/guides/managing-your-organization/managing-accounts.md): Learn about how to add and remove accounts in a Firebolt organization.
+- [Manage users and roles](https://docs.firebolt.io/guides/managing-your-organization/managing-users.md): Learn about user permissions and how to add and remove users in a Firebolt account.
+- [Billing](https://docs.firebolt.io/guides/managing-your-organization/billing.md): Understand how Firebolt bills for compute and storage through the AWS Marketplace and your AWS account.
+- [Arrays](https://docs.firebolt.io/guides/sql-dialect/arrays.md): Learn techniques to manipulate and transform arrays in Firebolt.
+- [Collations](https://docs.firebolt.io/guides/sql-dialect/collations.md): Learn how to work with collations in Firebolt.
+- [SQL Pipe syntax](https://docs.firebolt.io/guides/sql-dialect/sql-pipe-syntax.md): Reference and syntax for SQL Pipe syntax.
+- [Parametrized queries](https://docs.firebolt.io/guides/sql-dialect/parametrized-queries.md): Learn how to write parametrized SQL queries in Firebolt using $1, $2 placeholders.
+- [Load data](https://docs.firebolt.io/guides/loading-data.md): Understand options for loading data into Firebolt from your data lake.
+- [Load data using a wizard](https://docs.firebolt.io/guides/loading-data/loading-data-wizard.md): Understand options for loading data using a data load wizard.
+- [Load data using SQL](https://docs.firebolt.io/guides/loading-data/loading-data-sql.md): Understand options for loading data into Firebolt using SQL statements.
+- [Creating Access Key and Secret ID in AWS](https://docs.firebolt.io/guides/loading-data/creating-access-keys-aws.md): Understand how to create security credentials in AWS
+- [Use AWS roles to access S3](https://docs.firebolt.io/guides/loading-data/configuring-aws-role-to-access-amazon-s3.md): Learn how to use AWS IAM roles to allow Firebolt to access your data lake in Amazon S3.
+- [Work with external tables](https://docs.firebolt.io/guides/loading-data/working-with-external-tables.md): Understand the role of external tables when loading data into Firebolt, and learn how to configure them to connect to your data lake.
+- [Incremental loading from Amazon S3](https://docs.firebolt.io/guides/loading-data/incremental-ingestion-from-s3.md): Load every file from an Amazon S3 path into Firebolt exactly once, including files that arrive later, and keep each run cheap as the bucket grows.
+- [Work with semi-structured data](https://docs.firebolt.io/guides/loading-data/working-with-semi-structured-data.md): Learn how to handle semi-structured data in Firebolt.
+- [Load semi-structured JSON data](https://docs.firebolt.io/guides/loading-data/working-with-semi-structured-data/load-json-data.md): Learn how to map semi-structured data from a JSON document to a Firebolt table.
+- [Load semi-structured Parquet data](https://docs.firebolt.io/guides/loading-data/working-with-semi-structured-data/load-parquet-data.md): Learn how to load Parquet data into Firebolt.
+- [Change data capture](https://docs.firebolt.io/guides/change-data-capture.md): Stream changes from Postgres and MongoDB directly into Firebolt tables, with exactly-once ingestion and freshness measured in seconds.
+- [Postgres CDC](https://docs.firebolt.io/guides/change-data-capture/postgres.md): Ingest changes from Postgres into Firebolt through logical replication, from source setup to a continuously updated table.
+- [MongoDB CDC](https://docs.firebolt.io/guides/change-data-capture/mongodb.md): Ingest changes from MongoDB into Firebolt through change streams, with inferred schemas and every document field queryable.
+- [CDC tables](https://docs.firebolt.io/guides/change-data-capture/cdc-tables.md): How CDC tables keep one live row per key, what the two merge modes cost, and how to operate them.
+- [Export data](https://docs.firebolt.io/guides/exporting-data.md): Export query results from Firebolt to Amazon S3 using COPY TO.
+- [Iceberg](https://docs.firebolt.io/guides/iceberg-and-data-lake/iceberg.md): How to query, tune, and export Apache Iceberg tables in Firebolt
+- [Query DuckLake tables with Firebolt](https://docs.firebolt.io/guides/iceberg-and-data-lake/ducklake.md): Set up a DuckLake catalog on PostgreSQL with DuckDB, then read its Parquet data from Firebolt using READ_DUCKLAKE and LIST_DUCKLAKE_FILES.
+- [Firebolt Agent](https://docs.firebolt.io/guides/ai/firebolt-agent.md): Use Firebolt Agent to get answers, generate SQL, and fix queries with AI directly in the Firebolt Workspace.
+- [Getting started with AI](https://docs.firebolt.io/guides/ai/getting-started-with-ai.md): Leverage AI within your SQL queries
+- [Use AWS roles to access Bedrock](https://docs.firebolt.io/guides/ai/use-aws-roles-to-access-bedrock.md): Learn how to use AWS IAM roles to allow Firebolt to invoke Bedrock models in your AWS account.
+- [REST API](https://docs.firebolt.io/guides/developing-with-firebolt/using-the-api.md): Learn about using the Firebolt API to interact with Firebolt.
+- [Node.js](https://docs.firebolt.io/guides/developing-with-firebolt/connecting-with-nodejs.md): Learn about using the Node.js SDK for Firebolt.
+- [Python](https://docs.firebolt.io/guides/developing-with-firebolt/connecting-with-python.md): Learn about using the Python SDK for Firebolt.
+- [JDBC](https://docs.firebolt.io/guides/developing-with-firebolt/connecting-with-jdbc.md): How to use the Firebolt JDBC driver
+- [SQLAlchemy](https://docs.firebolt.io/guides/developing-with-firebolt/connecting-with-sqlalchemy.md): Learn about using the Firebolt adapter for the SQLAlchemy Python SQL toolkit.
+- [.NET SDK](https://docs.firebolt.io/guides/developing-with-firebolt/connecting-with-net-sdk.md): Learn about using the .NET SDK for Firebolt.
+- [Go](https://docs.firebolt.io/guides/developing-with-firebolt/connecting-with-go.md): Learn about using the Go SDK for Firebolt.
+- [Rust](https://docs.firebolt.io/guides/developing-with-firebolt/connecting-with-rust.md): Learn about using the Rust SDK for Firebolt.
+- [Parametrized queries](https://docs.firebolt.io/guides/developing-with-firebolt/parametrized-queries.md): Learn how to use parametrized queries across Firebolt SDKs and drivers to safely execute queries with dynamic values.
+- [Integrate with Firebolt](https://docs.firebolt.io/guides/integrations.md): Connect Firebolt to your favorite tools for data ingestion, transformation, visualization, and AI workflows.
+- [Airbyte](https://docs.firebolt.io/guides/integrations/airbyte.md): Connecting Airbyte and Firebolt.
+- [Airflow](https://docs.firebolt.io/guides/integrations/airflow.md): Learn how to use the Apache Airflow provider package to connect Airflow to Firebolt.
+- [Apache Superset](https://docs.firebolt.io/guides/integrations/connecting-to-apache-superset.md): Learn about connecting Apache Superset to Firebolt.
+- [DataBrain](https://docs.firebolt.io/guides/integrations/connecting-to-databrain.md): Learn about connecting DataBrain to Firebolt.
+- [AWS Glue](https://docs.firebolt.io/guides/integrations/aws-glue.md): Learn how to use AWS Glue with Firebolt to build data pipelines using the JDBC driver.
+- [AWS QuickSight](https://docs.firebolt.io/guides/integrations/quicksight.md): Connecting AWS QuickSight and Firebolt via PostgreSQL interface.
+- [Cube.js](https://docs.firebolt.io/guides/integrations/cube-js.md): Learn how to connect Cube.js to Firebolt.
+- [DBeaver](https://docs.firebolt.io/guides/integrations/dbeaver.md): Configure DBeaver to connect to Firebolt using the JDBC driver.
+- [dbt - Firebolt adapter](https://docs.firebolt.io/guides/integrations/dbt-firebolt-adaptor.md): Learn how to connect dbt to Firebolt using the Firebolt adapter.
+- [dbt - PostgreSQL adapter (cloud and core)](https://docs.firebolt.io/guides/integrations/dbt-postgres-adaptor.md): Learn how to connect dbt to Firebolt using PostgreSQL adapter.
+- [Dot](https://docs.firebolt.io/guides/integrations/dot.md): Connect Dot AI Data Analyst to Firebolt to query your data using natural language.
+- [Embeddable](https://docs.firebolt.io/guides/integrations/embeddable.md): Learn about connecting Embeddable to Firebolt.
+- [Estuary](https://docs.firebolt.io/guides/integrations/estuary.md): Using Estuary to transfer data to Firebolt
+- [Hex](https://docs.firebolt.io/guides/integrations/hex.md): Learn how to connect Hex to Firebolt using the PostgreSQL protocol.
+- [Kafka Sink Connector](https://docs.firebolt.io/guides/integrations/kafka-sink-connector.md): Learn about moving data from Apache Kafka to Firebolt using Kafka Connect framework.
+- [LangChain](https://docs.firebolt.io/guides/integrations/langchain.md): Connect LangChain to Firebolt using the SQLAlchemy connector for natural language interactions with your database.
+- [Lightdash](https://docs.firebolt.io/guides/integrations/lightdash.md): Learn how to connect dbt to Firebolt using PostgreSQL adapter.
+- [Looker Cloud](https://docs.firebolt.io/guides/integrations/looker-cloud.md): Connect Looker Cloud to Firebolt using the PostgreSQL dialect.
+- [Looker On-Prem](https://docs.firebolt.io/guides/integrations/looker-on-prem.md): Connect Looker On-Prem to Firebolt using the PostgreSQL dialect.
+- [MCP Server](https://docs.firebolt.io/guides/integrations/mcp.md): Use Firebolt MCP Server to enable AI-powered workflows with LLMs.
+- [Metabase Cloud](https://docs.firebolt.io/guides/integrations/metabase-cloud.md): Connecting Metabase Cloud and Firebolt.
+- [Metabase On Prem](https://docs.firebolt.io/guides/integrations/metabase-on-prem.md): Connecting Metabase and Firebolt.
+- [OpenTelemetry Exporter](https://docs.firebolt.io/guides/integrations/otel-exporter.md): Learn how to enable Firebolt OpenTelemetry Exporter.
+- [Omni](https://docs.firebolt.io/guides/integrations/omni.md): Learn how to connect Omni to Firebolt using the PostgreSQL protocol.
+- [Pandas](https://docs.firebolt.io/guides/integrations/pandas.md): Use Pandas to analyze data in Firebolt.
+- [Paradime](https://docs.firebolt.io/guides/integrations/connecting-to-paradime.md): Connect Paradime to Firebolt.
+- [Power BI](https://docs.firebolt.io/guides/integrations/power-bi.md): Connecting Power BI and Firebolt.
+- [Preset](https://docs.firebolt.io/guides/integrations/connecting-to-preset.md): Learn about connecting Preset to Firebolt.
+- [Tableau](https://docs.firebolt.io/guides/integrations/tableau.md): Connecting Tableau and Firebolt.
+- [TextQL](https://docs.firebolt.io/guides/integrations/textql.md): Use TextQL to query Firebolt with natural language powered by AI.
+- [ThoughtSpot](https://docs.firebolt.io/guides/integrations/thoughtspot.md): Connecting ThoughtSpot and Firebolt.
+- [Wirekite](https://docs.firebolt.io/guides/integrations/wirekite.md): Use Wirekite to migrate databases or stream CDC changes into Firebolt.
+- [Migrate to Firebolt](https://docs.firebolt.io/guides/migration-guides.md): Learn how to migrate your workflow into Firebol
+- [Migrate from Amazon Redshift](https://docs.firebolt.io/guides/migration-guides/redshift.md): Learn how to migrate your workflow from Redshift
+- [Lexical structure](https://docs.firebolt.io/reference-sql/lexical-structure.md): Describes the lexical structure of SQL in Firebolt, including identifiers, literals, operators, comments, and query parameters.
+- [Object identifiers](https://docs.firebolt.io/reference-sql/lexical-structure/object-identifiers.md): Provides requirements and guidance for using SQL identifiers with Firebolt.
+- [Reserved words](https://docs.firebolt.io/reference-sql/lexical-structure/reserved-words.md): Provides a list of reserved SQL  words in Firebolt.
+- [Operators](https://docs.firebolt.io/reference-sql/lexical-structure/operators.md): Reference for SQL operators available in Firebolt.
+- [ANY/ALL (array)](https://docs.firebolt.io/reference-sql/lexical-structure/any-all-array.md): Reference for ANY(array) and ALL(array) quantified comparison operators in Firebolt.
+- [ANY/ALL (subquery)](https://docs.firebolt.io/reference-sql/lexical-structure/any-all-subquery.md): Reference for ANY(subquery) and ALL(subquery) quantified comparison operators in Firebolt.
+- [Explicit Transactions](https://docs.firebolt.io/reference-sql/explicit-transactions.md): Reference for Explicit Transactions and syntax for the BEGIN/COMMIT/ROLLBACK statements.
+- [Data types](https://docs.firebolt.io/reference-sql/data-types.md): Provides the SQL data types available in Firebolt.
+- [BYTEA data type](https://docs.firebolt.io/reference-sql/data-types/bytea.md): Describes the Firebolt implementation of the `BYTEA` data type
+- [DATE data type](https://docs.firebolt.io/reference-sql/data-types/date.md): Describes the Firebolt implementation of the `DATE` data type
+- [GEOGRAPHY data type](https://docs.firebolt.io/reference-sql/data-types/geography.md): Describes the Firebolt implementation of the `GEOGRAPHY` data type
+- [JSON Data Type](https://docs.firebolt.io/reference-sql/data-types/json.md): Describes Firebolt's implementation of the `JSON` data type.
+- [NUMERIC data type](https://docs.firebolt.io/reference-sql/data-types/numeric.md): Describes the Firebolt implementation of the `NUMERIC` data type
+- [STRUCT data type](https://docs.firebolt.io/reference-sql/data-types/struct.md): Describes the Firebolt implementation of the `STRUCT` data type
+- [TIMESTAMP data type](https://docs.firebolt.io/reference-sql/data-types/timestampntz.md): Describes the Firebolt implementation of the `TIMESTAMP` data type
+- [TIMESTAMPTZ data type](https://docs.firebolt.io/reference-sql/data-types/timestamptz.md): Describes the Firebolt implementation of the `TIMESTAMPTZ` data type
+- [Information Schema](https://docs.firebolt.io/reference-sql/information-schema.md): Reference for Information Schema views
+- [Account info](https://docs.firebolt.io/reference-sql/information-schema/account_info.md): Use this reference to learn about account-level settings and flags available through the information schema.
+- [Applicable roles](https://docs.firebolt.io/reference-sql/information-schema/applicable-roles.md): Use this reference to learn about the metadata available about roles using the information schema.
+- [Catalogs](https://docs.firebolt.io/reference-sql/information-schema/catalogs.md): Use this reference to learn about the metadata available for Firebolt databases using the information schema.
+- [Columns](https://docs.firebolt.io/reference-sql/information-schema/columns.md): Use this reference to learn about the metadata available for Firebolt columns using the information schema.
+- [Enabled roles](https://docs.firebolt.io/reference-sql/information-schema/enabled-roles.md): Use this reference to learn about the metadata available about roles using the information schema.
+- [Engine history](https://docs.firebolt.io/reference-sql/information-schema/engine-history.md): Query the information_schema.engine_history view to track engine lifecycle operations like creation, deletion, starts, and stops.
+- [Engine metering history](https://docs.firebolt.io/reference-sql/information-schema/engine-metering-history.md): Query the information_schema.engine_metering_history view to track FBU consumption over time per engine.
+- [Engine metrics history](https://docs.firebolt.io/reference-sql/information-schema/engine-metrics-history.md): Use this reference to learn about the resource consumption of your engine
+- [Engine caches](https://docs.firebolt.io/reference-sql/information-schema/engine-caches.md): Query the information_schema.engine_caches view to inspect cache usage across engine nodes.
+- [Engine query history](https://docs.firebolt.io/reference-sql/information-schema/engine-query-history.md): Use this reference to learn about the metadata available for historical queries in Firebolt.
+- [Engine running queries](https://docs.firebolt.io/reference-sql/information-schema/engine-running-queries.md): Use this reference to learn about the metadata available for running queries in Firebolt using the information schema.
+- [Engine user query history](https://docs.firebolt.io/reference-sql/information-schema/engine-user-query-history.md): Use this reference to learn about the metadata available for historical queries in Firebolt.
+- [Engines](https://docs.firebolt.io/reference-sql/information-schema/engines.md): Query the information_schema.engines view to return configuration and status information for each engine in an account.
+- [Indexes](https://docs.firebolt.io/reference-sql/information-schema/indexes.md): Use this reference to learn about the metadata available for Firebolt indexes using the information schema.
+- [Locations](https://docs.firebolt.io/reference-sql/information-schema/locations.md): Use this reference to learn about the metadata available for Firebolt locations using the information schema.
+- [Object default privileges](https://docs.firebolt.io/reference-sql/information-schema/object-default-privileges.md): Reference for the information_schema.object_default_privileges view
+- [Object privileges](https://docs.firebolt.io/reference-sql/information-schema/object-privileges.md): Use this reference to learn about the metadata available about privileges using the information schema.
+- [Quotas](https://docs.firebolt.io/reference-sql/information-schema/quotas.md): Use this reference to learn about account-level quotas exposed via the account_db information schema.
+- [Routines](https://docs.firebolt.io/reference-sql/information-schema/routines.md): Use this reference to learn about the metadata available about SQL functions using the information schema.
+- [CDC ingests](https://docs.firebolt.io/reference-sql/information-schema/cdc-ingests.md): Use this reference to monitor the state, progress, and errors of CDC table ingestion through the information schema.
+- [Schemata](https://docs.firebolt.io/reference-sql/information-schema/schemata.md): Use this reference to learn about the metadata available about schemas using the information schema.
+- [Streams](https://docs.firebolt.io/reference-sql/information-schema/streams.md): Use this reference to learn about the metadata available for Firebolt streams using the information schema.
+- [Tables](https://docs.firebolt.io/reference-sql/information-schema/tables.md): Use this reference to learn about the metadata available for Firebolt tables using the information schema.
+- [Transactions](https://docs.firebolt.io/reference-sql/information-schema/transactions.md): Use this reference to learn about the fireblt currnetly running or recently finished transaction using the information schema.
+- [Transitive applicable roles](https://docs.firebolt.io/reference-sql/information-schema/transitive-applicable-roles.md): Use this reference to learn about the metadata available about roles using the information schema.
+- [Users](https://docs.firebolt.io/reference-sql/information-schema/users.md): Use this reference to learn about the metadata available for Firebolt users using the information schema.
+- [Views](https://docs.firebolt.io/reference-sql/information-schema/views.md): Use this reference to learn about the metadata available for Firebolt views using the information schema.
+- [SQL commands](https://docs.firebolt.io/reference-sql/commands.md): Reference for SQL commands and operators in Firebolt.
+- [ALTER DEFAULT PRIVILEGES](https://docs.firebolt.io/reference-sql/commands/access-control/alter-default-privileges.md): Reference and syntax for the ALTER DEFAULT PRIVILEGES command.
+- [ALTER NETWORK POLICY](https://docs.firebolt.io/reference-sql/commands/access-control/alter-network-policy.md): Reference and syntax for the ALTER NETWORK POLICY command.
+- [ALTER ROLE](https://docs.firebolt.io/reference-sql/commands/access-control/alter-role.md): Reference and syntax for the ALTER ROLE command.
+- [ALTER USER](https://docs.firebolt.io/reference-sql/commands/access-control/alter-user.md): Reference and syntax for the ALTER USER command.
+- [CREATE NETWORK POLICY](https://docs.firebolt.io/reference-sql/commands/access-control/create-network-policy.md): Reference and syntax for the CREATE NETWORK POLICY command.
+- [CREATE ROLE](https://docs.firebolt.io/reference-sql/commands/access-control/create-role.md): Reference and syntax for the CREATE ROLE command.
+- [CREATE USER](https://docs.firebolt.io/reference-sql/commands/access-control/create-user.md): Reference and syntax for the CREATE USER command.
+- [DROP NETWORK POLICY](https://docs.firebolt.io/reference-sql/commands/access-control/drop-network-policy.md): Reference and syntax for the DROP NETWORK POLICY command.
+- [DROP ROLE](https://docs.firebolt.io/reference-sql/commands/access-control/drop-role.md): Reference and syntax for the DROP ROLE command.
+- [DROP USER](https://docs.firebolt.io/reference-sql/commands/access-control/drop-user.md): Reference and syntax for the DROP USER command.
+- [GRANT](https://docs.firebolt.io/reference-sql/commands/access-control/grant.md): Reference and syntax for the GRANT command.
+- [REVOKE](https://docs.firebolt.io/reference-sql/commands/access-control/revoke.md): Reference and syntax for the REVOKE command.
+- [ALTER ACCOUNT](https://docs.firebolt.io/reference-sql/commands/data-definition/alter-account.md): Reference and syntax for the ALTER ACCOUNT command.
+- [ALTER DATABASE](https://docs.firebolt.io/reference-sql/commands/data-definition/alter-database.md): Reference and syntax for the ALTER DATABASE command.
+- [ALTER LOCATION](https://docs.firebolt.io/reference-sql/commands/data-definition/alter-location.md): Reference and syntax for the ALTER LOCATION statement.
+- [ALTER SCHEMA](https://docs.firebolt.io/reference-sql/commands/data-definition/alter-schema.md): Reference and syntax for the ALTER SCHEMA command.
+- [ALTER TABLE](https://docs.firebolt.io/reference-sql/commands/data-definition/alter-table.md): Reference and syntax for the ALTER TABLE command.
+- [ALTER VIEW](https://docs.firebolt.io/reference-sql/commands/data-definition/alter-view.md): Reference and syntax for the ALTER VIEW command.
+- [COMMENT ON](https://docs.firebolt.io/reference-sql/commands/data-definition/comment-on.md): Reference and syntax for the COMMENT ON statement.
+- [CREATE ACCOUNT](https://docs.firebolt.io/reference-sql/commands/data-definition/create-account.md): Reference and syntax for the CREATE ACCOUNT command.
+- [CREATE AGGREGATING INDEX](https://docs.firebolt.io/reference-sql/commands/data-definition/create-aggregating-index.md): Syntax for the CREATE AGGREGATING INDEX command in Firebolt.
+- [CREATE INDEX](https://docs.firebolt.io/reference-sql/commands/data-definition/create-index.md): Syntax for CREATE INDEX ... USING, covering data skipping, inverted, full-text search, and vector indexes.
+- [CREATE VECTOR SEARCH INDEX](https://docs.firebolt.io/reference-sql/commands/data-definition/create-vector-search-index.md): Learn how to create and optimize vector search indexes in Firebolt for faster query performance.
+- [CREATE DATABASE](https://docs.firebolt.io/reference-sql/commands/data-definition/create-database.md): Reference and syntax for the CREATE DATABASE command.
+- [CREATE EXTERNAL TABLE](https://docs.firebolt.io/reference-sql/commands/data-definition/create-external-table.md): Reference and syntax for the CREATE EXTERNAL TABLE command.
+- [CREATE TABLE AS SELECT (CTAS)](https://docs.firebolt.io/reference-sql/commands/data-definition/create-fact-dimension-table-as-select.md): Reference and syntax for the CTAS SQL command.
+- [CREATE FUNCTION](https://docs.firebolt.io/reference-sql/commands/data-definition/create-function.md): Reference and syntax for the CREATE FUNCTION command to create user-defined functions (UDFs).
+- [CREATE TABLE](https://docs.firebolt.io/reference-sql/commands/data-definition/create-fact-dimension-table.md): Reference and syntax for the CREATE TABLE statement.
+- [CREATE ICEBERG DATABASE](https://docs.firebolt.io/reference-sql/commands/data-definition/create-iceberg-database.md): Reference and syntax for the CREATE ICEBERG DATABASE command.
+- [CREATE ICEBERG TABLE](https://docs.firebolt.io/reference-sql/commands/data-definition/create-iceberg-table.md): Reference and syntax for the CREATE ICEBERG TABLE SQL command.
+- [CREATE ICEBERG TABLE AS SELECT](https://docs.firebolt.io/reference-sql/commands/data-definition/create-iceberg-table-as-select.md): Reference and syntax for the CREATE ICEBERG TABLE AS SELECT SQL command.
+- [CREATE CDC TABLE](https://docs.firebolt.io/reference-sql/commands/data-definition/create-cdc-table.md): Reference and syntax for the CREATE CDC TABLE and ALTER CDC TABLE commands.
+- [CREATE LOCATION (Amazon Bedrock)](https://docs.firebolt.io/reference-sql/commands/data-definition/create-location-bedrock.md): Reference and syntax for creating Amazon Bedrock locations.
+- [CREATE LOCATION (DuckLake)](https://docs.firebolt.io/reference-sql/commands/data-definition/create-location-ducklake.md): Create a reusable location object that stores a DuckLake catalog connection string and storage credentials for READ_DUCKLAKE and LIST_DUCKLAKE_FILES.
+- [CREATE LOCATION (Iceberg)](https://docs.firebolt.io/reference-sql/commands/data-definition/create-location-iceberg.md): Reference and syntax for creating Iceberg locations.
+- [CREATE LOCATION (MongoDB)](https://docs.firebolt.io/reference-sql/commands/data-definition/create-location-mongodb.md): Reference and syntax for CREATE LOCATION with a MongoDB source.
+- [CREATE LOCATION (Postgres)](https://docs.firebolt.io/reference-sql/commands/data-definition/create-location-postgres.md): Reference and syntax for CREATE LOCATION with a Postgres source.
+- [CREATE LOCATION (Amazon S3)](https://docs.firebolt.io/reference-sql/commands/data-definition/create-location-s3.md): Reference and syntax for creating Amazon S3 locations.
+- [CREATE LOCATION](https://docs.firebolt.io/reference-sql/commands/data-definition/create-location.md): Reference and syntax for the CREATE LOCATION statement.
+- [CREATE SCHEMA](https://docs.firebolt.io/reference-sql/commands/data-definition/create-schema.md): Reference and syntax for the CREATE SCHEMA command.
+- [CREATE STREAM](https://docs.firebolt.io/reference-sql/commands/data-definition/create-stream.md): Reference and syntax for the CREATE STREAM command for Kafka, Postgres, and MongoDB sources.
+- [CREATE TABLE CLONE](https://docs.firebolt.io/reference-sql/commands/data-definition/create-table-clone.md): Reference and syntax for the CLONE SQL command.
+- [CREATE VIEW](https://docs.firebolt.io/reference-sql/commands/data-definition/create-view.md): Reference and syntax for the CREATE VIEW command.
+- [DROP ACCOUNT](https://docs.firebolt.io/reference-sql/commands/data-definition/drop-account.md): Reference and syntax for the DROP ACCOUNT command.
+- [DROP DATABASE](https://docs.firebolt.io/reference-sql/commands/data-definition/drop-database.md): Reference and syntax for the DROP DATABASE command.
+- [DROP FUNCTION](https://docs.firebolt.io/reference-sql/commands/data-definition/drop-function.md): Reference and syntax for the DROP FUNCTION command to remove user-defined functions.
+- [DROP INDEX](https://docs.firebolt.io/reference-sql/commands/data-definition/drop-index.md): Reference and syntax for the DROP INDEX command.
+- [DROP LOCATION](https://docs.firebolt.io/reference-sql/commands/data-definition/drop-location.md): Reference and syntax for the DROP LOCATION statement.
+- [DROP SCHEMA](https://docs.firebolt.io/reference-sql/commands/data-definition/drop-schema.md): Reference and syntax for the DROP SCHEMA command.
+- [DROP TABLE](https://docs.firebolt.io/reference-sql/commands/data-definition/drop-table.md): Reference and syntax for the DROP TABLE command.
+- [DROP VIEW](https://docs.firebolt.io/reference-sql/commands/data-definition/drop-view.md): Reference and syntax for the DROP VIEW command.
+- [USE DATABASE](https://docs.firebolt.io/reference-sql/commands/data-definition/use-database.md): Reference and syntax for the USE DATABASE command.
+- [COPY FROM](https://docs.firebolt.io/reference-sql/commands/data-management/copy-from.md): Reference and syntax for the COPY command that copies data from S3 files into a Firebolt table.
+- [COPY TO](https://docs.firebolt.io/reference-sql/commands/data-management/copy-to.md): Reference and syntax for the COPY TO command that exports or unloads data from Firebolt to Amazon S3.
+- [DELETE](https://docs.firebolt.io/reference-sql/commands/data-management/delete.md): Reference and syntax for the DELETE command.
+- [INSERT](https://docs.firebolt.io/reference-sql/commands/data-management/insert.md): Reference and syntax for the INSERT command.
+- [MERGE](https://docs.firebolt.io/reference-sql/commands/data-management/merge.md): Reference and syntax for the MERGE command.
+- [TRUNCATE TABLE](https://docs.firebolt.io/reference-sql/commands/data-management/truncate-table.md): Reference and syntax for the TRUNCATE TABLE command.
+- [UPDATE](https://docs.firebolt.io/reference-sql/commands/data-management/update.md): Reference and syntax for the UPDATE command.
+- [VACUUM](https://docs.firebolt.io/reference-sql/commands/data-management/vacuum.md): Reference and syntax for the VACUUM command.
+- [Engine commands](https://docs.firebolt.io/reference-sql/commands/engines.md): Reference for engine commands
+- [ALTER ENGINE](https://docs.firebolt.io/reference-sql/commands/engines/alter-engine.md): Reference and syntax for the ALTER ENGINE command.
+- [CREATE ENGINE](https://docs.firebolt.io/reference-sql/commands/engines/create-engine.md): Reference and syntax for the CREATE ENGINE command.
+- [DROP ENGINE](https://docs.firebolt.io/reference-sql/commands/engines/drop-engine.md): Reference and syntax for the DROP ENGINE command.
+- [START ENGINE](https://docs.firebolt.io/reference-sql/commands/engines/start-engine.md): Reference and syntax for the START ENGINE command.
+- [STOP ENGINE](https://docs.firebolt.io/reference-sql/commands/engines/stop-engine.md): Reference and syntax for the STOP ENGINE command.
+- [USE ENGINE](https://docs.firebolt.io/reference-sql/commands/engines/use-engine.md): Reference and syntax for the USE ENGINE command.
+- [CLEAR CACHE](https://docs.firebolt.io/reference-sql/commands/engines/clear-cache.md): Reference and syntax for the CLEAR CACHE command.
+- [CANCEL QUERY](https://docs.firebolt.io/reference-sql/commands/queries/cancel.md): Cancel a running query within the Firebolt engine using its query ID.
+- [EXPLAIN](https://docs.firebolt.io/reference-sql/commands/queries/explain.md): Analyze and display query execution plans with optional runtime metrics using EXPLAIN and EXPLAIN ANALYZE.
+- [SELECT](https://docs.firebolt.io/reference-sql/commands/queries/select.md): Reference and syntax for SELECT queries.
+- [Cross-database queries](https://docs.firebolt.io/reference-sql/commands/queries/cross-database-queries.md): Query across multiple databases within a single Firebolt account using three-part identifiers.
+- [DESCRIBE](https://docs.firebolt.io/reference-sql/commands/metadata/describe.md): Reference and syntax for the DESCRIBE table command.
+- [SHOW CACHE](https://docs.firebolt.io/reference-sql/commands/metadata/show-cache.md): Reference and syntax for the SHOW CACHE command.
+- [SHOW CATALOGS](https://docs.firebolt.io/reference-sql/commands/metadata/show-catalogs.md): Reference and syntax for the SHOW CATALOGS command.
+- [SHOW COLUMNS](https://docs.firebolt.io/reference-sql/commands/metadata/show-columns.md): Reference and syntax for the SHOW COLUMNS command.
+- [SHOW ENGINES](https://docs.firebolt.io/reference-sql/commands/metadata/show-engines.md): Reference and syntax for the SHOW ENGINES command.
+- [SHOW INDEXES](https://docs.firebolt.io/reference-sql/commands/metadata/show-indexes.md): Reference and syntax for the SHOW INDEXES command.
+- [SHOW TABLES](https://docs.firebolt.io/reference-sql/commands/metadata/show-tables.md): Reference and syntax for the SHOW TABLES command.
+- [SHOW VIEWS](https://docs.firebolt.io/reference-sql/commands/metadata/show-views.md): Reference and syntax for the SHOW VIEWS command.
+- [SQL functions](https://docs.firebolt.io/reference-sql/functions-reference.md): Reference for SQL functions available in Firebolt.
+- [Functions glossary](https://docs.firebolt.io/reference-sql/functions-reference/functions-glossary.md): Reference for SQL functions available in Firebolt.
+- [ANY_VALUE](https://docs.firebolt.io/reference-sql/functions-reference/aggregation/any_value.md): Reference material for ANY_VALUE
+- [APPROX_COUNT_DISTINCT](https://docs.firebolt.io/reference-sql/functions-reference/aggregation/approx-count-distinct.md): Reference material for APPROX_COUNT_DISTINCT
+- [ARRAY_AGG](https://docs.firebolt.io/reference-sql/functions-reference/aggregation/array-agg.md): Reference material for ARRAY_AGG function
+- [AVG](https://docs.firebolt.io/reference-sql/functions-reference/aggregation/avg.md): Reference material for AVG
+- [BIT_AND](https://docs.firebolt.io/reference-sql/functions-reference/aggregation/bit_and.md): Reference material for BIT_AND
+- [BIT_OR](https://docs.firebolt.io/reference-sql/functions-reference/aggregation/bit_or.md): Reference material for BIT_OR
+- [BIT_XOR](https://docs.firebolt.io/reference-sql/functions-reference/aggregation/bit_xor.md): Reference material for BIT_XOR
+- [BOOL_AND](https://docs.firebolt.io/reference-sql/functions-reference/aggregation/bool_and.md): Reference material for BOOL_AND
+- [BOOL_OR](https://docs.firebolt.io/reference-sql/functions-reference/aggregation/bool_or.md): Reference material for BOOL_OR
+- [CORR](https://docs.firebolt.io/reference-sql/functions-reference/aggregation/corr.md): Reference material for CORR
+- [COUNT](https://docs.firebolt.io/reference-sql/functions-reference/aggregation/count.md): Reference material for COUNT
+- [COUNTING_HLL_COUNT_DISTINCT](https://docs.firebolt.io/reference-sql/functions-reference/aggregation/counting-hll-count-distinct.md): Reference material for COUNTING_HLL_COUNT_DISTINCT
+- [COVAR_POP](https://docs.firebolt.io/reference-sql/functions-reference/aggregation/covar-pop.md): Reference material for COVAR_POP
+- [COVAR_SAMP](https://docs.firebolt.io/reference-sql/functions-reference/aggregation/covar-samp.md): Reference material for COVAR_SAMP
+- [GROUPING](https://docs.firebolt.io/reference-sql/functions-reference/aggregation/grouping.md): Reference material for GROUPING
+- [HASH_AGG](https://docs.firebolt.io/reference-sql/functions-reference/aggregation/hash-agg.md): Reference material for HASH_AGG
+- [HLL_COUNT_BUILD](https://docs.firebolt.io/reference-sql/functions-reference/aggregation/hll-count-build.md): Reference material for HLL_COUNT_BUILD
+- [HLL_COUNT_DISTINCT](https://docs.firebolt.io/reference-sql/functions-reference/aggregation/hll-count-distinct.md): Reference material for HLL_COUNT_DISTINCT
+- [HLL_COUNT_MERGE](https://docs.firebolt.io/reference-sql/functions-reference/aggregation/hll-count-merge.md): Reference material for HLL_COUNT_MERGE
+- [MAX_BY](https://docs.firebolt.io/reference-sql/functions-reference/aggregation/max-by.md): Reference material for MAX_BY
+- [MAX](https://docs.firebolt.io/reference-sql/functions-reference/aggregation/max.md): Reference material for MAX
+- [MEDIAN](https://docs.firebolt.io/reference-sql/functions-reference/aggregation/median.md): Reference material for MEDIAN
+- [MIN_BY](https://docs.firebolt.io/reference-sql/functions-reference/aggregation/min-by.md): Reference material for MIN_BY
+- [MIN](https://docs.firebolt.io/reference-sql/functions-reference/aggregation/min.md): Reference material for MIN
+- [PERCENTILE_CONT](https://docs.firebolt.io/reference-sql/functions-reference/aggregation/percentile-cont.md): Reference material for PERCENTILE_CONT aggregate function
+- [STDDEV_POP](https://docs.firebolt.io/reference-sql/functions-reference/aggregation/stddev-pop.md): Reference material for STDDEV_POP
+- [STDDEV_SAMP](https://docs.firebolt.io/reference-sql/functions-reference/aggregation/stddev-samp.md): Reference material for STDDEV_SAMP
+- [STRING_AGG](https://docs.firebolt.io/reference-sql/functions-reference/aggregation/string-agg.md): Reference material for STRING_AGG function
+- [SUM](https://docs.firebolt.io/reference-sql/functions-reference/aggregation/sum.md): Reference material for SUM
+- [VAR_POP](https://docs.firebolt.io/reference-sql/functions-reference/aggregation/variance-pop.md): Reference material for VAR_POP
+- [VAR_SAMP](https://docs.firebolt.io/reference-sql/functions-reference/aggregation/variance-samp.md): Reference material for VAR_SAMP
+- [AI functions](https://docs.firebolt.io/reference-sql/functions-reference/ai.md): Reference for AI functions
+- [AI_EMBED_TEXT](https://docs.firebolt.io/reference-sql/functions-reference/ai/ai-embed-text.md): Generate a text embedding with an Amazon Bedrock model and return a numeric vector.
+- [AI_QUERY](https://docs.firebolt.io/reference-sql/functions-reference/ai/ai-query.md): Invoke an LLM endpoint and return the generated text.
+- [AWS_BEDROCK_AI_QUERY](https://docs.firebolt.io/reference-sql/functions-reference/ai/aws-bedrock-ai-query.md): Invoke an Amazon Bedrock model and return the raw response as JSON text.
+- [ARRAY_CONCAT](https://docs.firebolt.io/reference-sql/functions-reference/array/array-concat.md): Reference material for ARRAY_CONCAT function
+- [ARRAY_CONTAINS](https://docs.firebolt.io/reference-sql/functions-reference/array/array-contains.md): Reference material for ARRAY_CONTAINS function
+- [ARRAY_COUNT_DISTINCT](https://docs.firebolt.io/reference-sql/functions-reference/array/array-count-distinct.md): Reference material for ARRAY_COUNT_DISTINCT function
+- [ARRAY_COUNT](https://docs.firebolt.io/reference-sql/functions-reference/array/array-count.md): Reference material for ARRAY_COUNT function
+- [ARRAY_DISTINCT](https://docs.firebolt.io/reference-sql/functions-reference/array/array-distinct.md): Reference material for ARRAY_DISTINCT function
+- [ARRAY_INTERSECT](https://docs.firebolt.io/reference-sql/functions-reference/array/array-intersect.md): Reference material for ARRAY_INTERSECT function
+- [ARRAY_LENGTH](https://docs.firebolt.io/reference-sql/functions-reference/array/array-length.md): Reference material for ARRAY_LENGTH function
+- [ARRAY_MAX](https://docs.firebolt.io/reference-sql/functions-reference/array/array-max.md): Reference material for ARRAY_MAX function
+- [ARRAY_MIN](https://docs.firebolt.io/reference-sql/functions-reference/array/array-min.md): Reference material for ARRAY_MIN function
+- [ARRAY_REVERSE_SORT](https://docs.firebolt.io/reference-sql/functions-reference/array/array-reverse-sort.md): Reference material for ARRAY_REVERSE_SORT function
+- [ARRAY_REVERSE](https://docs.firebolt.io/reference-sql/functions-reference/array/array-reverse.md): Reference material for ARRAY_REVERSE function
+- [ARRAY_SLICE](https://docs.firebolt.io/reference-sql/functions-reference/array/array-slice.md): Reference material for ARRAY_SLICE function
+- [ARRAY_SORT](https://docs.firebolt.io/reference-sql/functions-reference/array/array-sort.md): Reference material for ARRAY_SORT function
+- [ARRAY_SUM](https://docs.firebolt.io/reference-sql/functions-reference/array/array-sum.md): Reference material for ARRAY_SUM function
+- [ARRAY_TO_STRING](https://docs.firebolt.io/reference-sql/functions-reference/array/array-to-string.md): Reference material for ARRAY_TO_STRING function
+- [ARRAY_UPPER](https://docs.firebolt.io/reference-sql/functions-reference/array/array-upper.md): Reference material for ARRAY_UPPER function
+- [ARRAYS_OVERLAP](https://docs.firebolt.io/reference-sql/functions-reference/array/arrays-overlap.md): Reference material for ARRAYS_OVERLAP function
+- [ARRAY_FLATTEN](https://docs.firebolt.io/reference-sql/functions-reference/array/flatten.md): Reference material for ARRAY_FLATTEN function
+- [INDEX_OF](https://docs.firebolt.io/reference-sql/functions-reference/array/index-of.md): Reference material for INDEX_OF function
+- [CONVERT_FROM](https://docs.firebolt.io/reference-sql/functions-reference/bytea/convert-from.md): Reference material for CONVERT_FROM function
+- [DECODE](https://docs.firebolt.io/reference-sql/functions-reference/bytea/decode.md): Reference material for DECODE function
+- [ENCODE](https://docs.firebolt.io/reference-sql/functions-reference/bytea/encode.md): Reference material for ENCODE function
+- [CASE](https://docs.firebolt.io/reference-sql/functions-reference/conditional-and-miscellaneous/case.md): Reference material for CASE function
+- [CAST](https://docs.firebolt.io/reference-sql/functions-reference/conditional-and-miscellaneous/cast.md): Reference material for CAST function
+- [CITY_HASH](https://docs.firebolt.io/reference-sql/functions-reference/conditional-and-miscellaneous/city-hash.md): Reference material for CITY_HASH function
+- [COALESCE](https://docs.firebolt.io/reference-sql/functions-reference/conditional-and-miscellaneous/coalesce.md): Reference material for COALESCE function
+- [GREATEST](https://docs.firebolt.io/reference-sql/functions-reference/conditional-and-miscellaneous/greatest.md): Reference material for GREATEST function
+- [HASH](https://docs.firebolt.io/reference-sql/functions-reference/conditional-and-miscellaneous/hash.md): Reference material for HASH function
+- [IF](https://docs.firebolt.io/reference-sql/functions-reference/conditional-and-miscellaneous/if.md): Reference material for IF function
+- [IFNULL](https://docs.firebolt.io/reference-sql/functions-reference/conditional-and-miscellaneous/ifnull.md): Reference material for IFNULL function
+- [LEAST](https://docs.firebolt.io/reference-sql/functions-reference/conditional-and-miscellaneous/least.md): Reference material for LEAST function
+- [NULLIF](https://docs.firebolt.io/reference-sql/functions-reference/conditional-and-miscellaneous/nullif.md): Reference material for NULLIF function
+- [TRY_CAST](https://docs.firebolt.io/reference-sql/functions-reference/conditional-and-miscellaneous/try-cast.md): Reference material for TRY_CAST function
+- [TYPEOF](https://docs.firebolt.io/reference-sql/functions-reference/conditional-and-miscellaneous/typeof.md): Reference material for TYPEOF function
+- [VERSION](https://docs.firebolt.io/reference-sql/functions-reference/conditional-and-miscellaneous/version.md): Reference material for VERSION function
+- [DataSketches functions](https://docs.firebolt.io/reference-sql/functions-reference/datasketches.md): Reference for datasketches functions
+- [APACHE_DATASKETCHES_HLL_BUILD](https://docs.firebolt.io/reference-sql/functions-reference/datasketches/apache-datasketches-hll-build.md): Reference material for APACHE_DATASKETCHES_HLL_BUILD
+- [APACHE_DATASKETCHES_HLL_ESTIMATE](https://docs.firebolt.io/reference-sql/functions-reference/datasketches/apache-datasketches-hll-estimate.md): Reference material for APACHE_DATASKETCHES_HLL_ESTIMATE
+- [APACHE_DATASKETCHES_HLL_MERGE](https://docs.firebolt.io/reference-sql/functions-reference/datasketches/apache-datasketches-hll-merge.md): Reference material for APACHE_DATASKETCHES_HLL_MERGE
+- [AGO](https://docs.firebolt.io/reference-sql/functions-reference/date-and-time/ago.md): Reference material for AGO function
+- [CURRENT_DATE](https://docs.firebolt.io/reference-sql/functions-reference/date-and-time/current-date.md): Reference material for CURRENT_DATE function
+- [CURRENT_TIMESTAMP](https://docs.firebolt.io/reference-sql/functions-reference/date-and-time/current-timestamptz.md): Reference material for CURRENT_TIMESTAMP function
+- [DATE_ADD](https://docs.firebolt.io/reference-sql/functions-reference/date-and-time/date-add.md): Reference material for DATE_ADD function
+- [DATE_DIFF](https://docs.firebolt.io/reference-sql/functions-reference/date-and-time/date-diff.md): Reference material for DATE_DIFF function
+- [DATE_TRUNC](https://docs.firebolt.io/reference-sql/functions-reference/date-and-time/date-trunc.md): Reference material for the DATE_TRUNC function
+- [DATE](https://docs.firebolt.io/reference-sql/functions-reference/date-and-time/date.md): Reference material for DATE function
+- [EXTRACT](https://docs.firebolt.io/reference-sql/functions-reference/date-and-time/extract.md): Reference material for the EXTRACT function
+- [LOCALTIMESTAMP](https://docs.firebolt.io/reference-sql/functions-reference/date-and-time/localtimestamp.md): Reference material for LOCALTIMESTAMP function
+- [TO_CHAR](https://docs.firebolt.io/reference-sql/functions-reference/date-and-time/to-char.md): Reference material for TO_CHAR function
+- [TO_DATE](https://docs.firebolt.io/reference-sql/functions-reference/date-and-time/to-date.md): Reference material for TO_DATE function
+- [TO_TIMESTAMP](https://docs.firebolt.io/reference-sql/functions-reference/date-and-time/to-timestamp.md): Reference material for TO_TIMESTAMP function
+- [TO_YYYYMM](https://docs.firebolt.io/reference-sql/functions-reference/date-and-time/to-yyyymm.md): Reference material for the TO_YYYYMM function
+- [TO_YYYYMMDD](https://docs.firebolt.io/reference-sql/functions-reference/date-and-time/to-yyyymmdd.md): Reference material for the TO_YYYYMMDD function
+- [ST_ASBINARY](https://docs.firebolt.io/reference-sql/functions-reference/geospatial/st_asbinary.md): Reference material for ST_ASBINARY function
+- [ST_ASEWKB](https://docs.firebolt.io/reference-sql/functions-reference/geospatial/st_asewkb.md): Reference material for ST_ASEWKB function
+- [ST_ASGEOJSON](https://docs.firebolt.io/reference-sql/functions-reference/geospatial/st_asgeojson.md): Reference material for ST_ASGEOJSON function
+- [ST_ASTEXT](https://docs.firebolt.io/reference-sql/functions-reference/geospatial/st_astext.md): Reference material for ST_ASTEXT function
+- [ST_CONTAINS](https://docs.firebolt.io/reference-sql/functions-reference/geospatial/st_contains.md): Reference material for ST_CONTAINS function
+- [ST_COVERS](https://docs.firebolt.io/reference-sql/functions-reference/geospatial/st_covers.md): Reference material for ST_COVERS function
+- [ST_DISTANCE](https://docs.firebolt.io/reference-sql/functions-reference/geospatial/st_distance.md): Reference material for ST_DISTANCE function
+- [ST_GEOGFROMGEOJSON](https://docs.firebolt.io/reference-sql/functions-reference/geospatial/st_geogfromgeojson.md): Reference material for ST_GEOGFROMGEOJSON function
+- [ST_GEOGFROMTEXT](https://docs.firebolt.io/reference-sql/functions-reference/geospatial/st_geogfromtext.md): Reference material for ST_GEOGFROMTEXT function
+- [ST_GEOGFROMWKB](https://docs.firebolt.io/reference-sql/functions-reference/geospatial/st_geogfromwkb.md): Reference material for ST_GEOGFROMWKB function
+- [ST_GEOGPOINT](https://docs.firebolt.io/reference-sql/functions-reference/geospatial/st_geogpoint.md): Reference material for ST_GEOGPOINT function
+- [ST_INTERSECTS](https://docs.firebolt.io/reference-sql/functions-reference/geospatial/st_intersects.md): Reference material for ST_INTERSECTS function
+- [ST_S2CELLIDFROMPOINT](https://docs.firebolt.io/reference-sql/functions-reference/geospatial/st_s2cellidfrompoint.md): Reference material for ST_S2CELLIDFROMPOINT function
+- [ST_X](https://docs.firebolt.io/reference-sql/functions-reference/geospatial/st_x.md): Reference material for ST_X function
+- [ST_Y](https://docs.firebolt.io/reference-sql/functions-reference/geospatial/st_y.md): Reference material for ST_Y function
+- [Iceberg functions](https://docs.firebolt.io/reference-sql/functions-reference/iceberg.md): Reference for Iceberg functions
+- [READ_ICEBERG](https://docs.firebolt.io/reference-sql/functions-reference/iceberg/read_iceberg.md): Reference material for READ_ICEBERG function
+- [LIST_ICEBERG_FILES](https://docs.firebolt.io/reference-sql/functions-reference/iceberg/list_iceberg_files.md): Lists the data files of an Iceberg table with per-file metadata, statistics, and deletes.
+- [ICEBERG_YEAR](https://docs.firebolt.io/reference-sql/functions-reference/iceberg/partitioning/iceberg_year.md): Extract year as years from 1970 according to Iceberg partition transforms
+- [ICEBERG_MONTH](https://docs.firebolt.io/reference-sql/functions-reference/iceberg/partitioning/iceberg_month.md): Extract month as months from 1970-01-01 according to Iceberg partition transforms
+- [ICEBERG_DAY](https://docs.firebolt.io/reference-sql/functions-reference/iceberg/partitioning/iceberg_day.md): Extract day as days from 1970-01-01 according to Iceberg partition transforms
+- [ICEBERG_HOUR](https://docs.firebolt.io/reference-sql/functions-reference/iceberg/partitioning/iceberg_hour.md): Extract hour as hours from 1970-01-01 00:00:00 according to Iceberg partition transforms
+- [ICEBERG_BUCKET](https://docs.firebolt.io/reference-sql/functions-reference/iceberg/partitioning/iceberg_bucket.md): Hash value into a bucket according to Iceberg partition transforms
+- [ICEBERG_TRUNCATE](https://docs.firebolt.io/reference-sql/functions-reference/iceberg/partitioning/iceberg_truncate.md): Truncate value to a width according to Iceberg partition transforms
+- [DuckLake functions](https://docs.firebolt.io/reference-sql/functions-reference/ducklake/ducklake.md): Overview of the Firebolt table-valued functions for reading DuckLake tables backed by a PostgreSQL catalog and Parquet data files.
+- [READ_DUCKLAKE](https://docs.firebolt.io/reference-sql/functions-reference/ducklake/read_ducklake.md): Read rows from a DuckLake table backed by a PostgreSQL catalog and Parquet data files, optionally pinning a snapshot or reading from S3-compatible object storage.
+- [LIST_DUCKLAKE_FILES](https://docs.firebolt.io/reference-sql/functions-reference/ducklake/list_ducklake_files.md): List the Parquet data files and per-file statistics that make up a DuckLake table, for inspecting physical layout, pruning, and partitioning.
+- [JSON functions](https://docs.firebolt.io/reference-sql/functions-reference/json.md): Reference for JSON functions
+- [CHECK_JSON](https://docs.firebolt.io/reference-sql/functions-reference/json/check-json.md): Reference material for CHECK_JSON function
+- [JSON_ARRAY_LENGTH](https://docs.firebolt.io/reference-sql/functions-reference/json/json-array-length.md): Reference material for JSON_ARRAY_LENGTH function
+- [JSON_EXTRACT_ARRAY](https://docs.firebolt.io/reference-sql/functions-reference/json/json-extract-array.md): Reference material for JSON_EXTRACT_ARRAY function
+- [JSON_EXTRACT](https://docs.firebolt.io/reference-sql/functions-reference/json/json-extract.md): Reference material for JSON_EXTRACT function
+- [JSON_POINTER_EXTRACT_KEYS](https://docs.firebolt.io/reference-sql/functions-reference/json/json-pointer-extract-keys.md): Reference material for JSON_POINTER_EXTRACT_KEYS function
+- [JSON_POINTER_EXTRACT_TEXT](https://docs.firebolt.io/reference-sql/functions-reference/json/json-pointer-extract-text.md): Reference material for JSON_POINTER_EXTRACT_TEXT function
+- [JSON_POINTER_EXTRACT_VALUES](https://docs.firebolt.io/reference-sql/functions-reference/json/json-pointer-extract-values.md): Reference material for JSON_POINTER_EXTRACT_VALUES function
+- [JSON_VALUE_ARRAY](https://docs.firebolt.io/reference-sql/functions-reference/json/json-value-array.md): Reference material for JSON_VALUE_ARRAY function
+- [JSON_VALUE](https://docs.firebolt.io/reference-sql/functions-reference/json/json-value.md): Reference material for JSON_VALUE function
+- [JSON_FORMAT](https://docs.firebolt.io/reference-sql/functions-reference/json/json-format.md): Reference for JSON_FORMAT function family
+- [JSON_IS_VALID](https://docs.firebolt.io/reference-sql/functions-reference/json/json-is-valid.md): Reference material for JSON_IS_VALID function
+- [JSON_TYPEOF](https://docs.firebolt.io/reference-sql/functions-reference/json/json-typeof.md): Reference material for JSON_TYPEOF function
+- [JSON Operators](https://docs.firebolt.io/reference-sql/functions-reference/json/json-operators.md): Reference material for JSON operators
+- [TO_JSON](https://docs.firebolt.io/reference-sql/functions-reference/json/to-json.md): Reference material for the TO_JSON function
+- [TO_JSON_STRING](https://docs.firebolt.io/reference-sql/functions-reference/json/to-json-string.md): Reference material for TO_JSON_STRING function
+- [Lambda functions](https://docs.firebolt.io/reference-sql/functions-reference/lambda.md): Reference for lambda functions
+- [ARRAY_ALL_MATCH](https://docs.firebolt.io/reference-sql/functions-reference/lambda/array-all-match.md): Reference material for ARRAY_ALL_MATCH function
+- [ARRAY_ANY_MATCH](https://docs.firebolt.io/reference-sql/functions-reference/lambda/array-any-match.md): Reference material for ARRAY_ANY_MATCH function
+- [ARRAY_FIRST](https://docs.firebolt.io/reference-sql/functions-reference/lambda/array-first.md): Reference material for ARRAY_FIRST function
+- [ARRAY_FILTER](https://docs.firebolt.io/reference-sql/functions-reference/lambda/filter.md): Reference material for ARRAY_FILTER function
+- [ARRAY_TRANSFORM](https://docs.firebolt.io/reference-sql/functions-reference/lambda/transform.md): Reference material for ARRAY_TRANSFORM function
+- [ABS](https://docs.firebolt.io/reference-sql/functions-reference/numeric/abs.md): Reference material for ABS function
+- [ACOS](https://docs.firebolt.io/reference-sql/functions-reference/numeric/acos.md): Reference material for ACOS function
+- [ARRAY_ENUMERATE](https://docs.firebolt.io/reference-sql/functions-reference/numeric/array-enumerate.md): Reference material for ARRAY_ENUMERATE function
+- [ASIN](https://docs.firebolt.io/reference-sql/functions-reference/numeric/asin.md): Reference material for ASIN function
+- [ATAN](https://docs.firebolt.io/reference-sql/functions-reference/numeric/atan.md): Reference material for ATAN function
+- [ATAN2](https://docs.firebolt.io/reference-sql/functions-reference/numeric/atan2.md): Reference material for ATAN2 function
+- [BIT_SHIFT_LEFT](https://docs.firebolt.io/reference-sql/functions-reference/numeric/bit_shift_left.md): Reference material for BIT_SHIFT_LEFT
+- [BIT_SHIFT_RIGHT](https://docs.firebolt.io/reference-sql/functions-reference/numeric/bit_shift_right.md): Reference material for BIT_SHIFT_RIGHT
+- [CBRT](https://docs.firebolt.io/reference-sql/functions-reference/numeric/cbrt.md): Reference material for CBRT function
+- [CEIL](https://docs.firebolt.io/reference-sql/functions-reference/numeric/ceil.md): Reference material for CEIL, CEILING functions
+- [COS](https://docs.firebolt.io/reference-sql/functions-reference/numeric/cos.md): Reference material for COS function
+- [COT](https://docs.firebolt.io/reference-sql/functions-reference/numeric/cot.md): Reference material for COT function
+- [DEGREES](https://docs.firebolt.io/reference-sql/functions-reference/numeric/degrees.md): Reference material for DEGREES function
+- [EXP](https://docs.firebolt.io/reference-sql/functions-reference/numeric/exp.md): Reference material for EXP function
+- [FLOOR](https://docs.firebolt.io/reference-sql/functions-reference/numeric/floor.md): Reference material for FLOOR function
+- [HLL_COUNT_ESTIMATE](https://docs.firebolt.io/reference-sql/functions-reference/numeric/hll-count-estimate.md): Reference material for HLL_COUNT_ESTIMATE
+- [IS_FINITE](https://docs.firebolt.io/reference-sql/functions-reference/numeric/is_finite.md): Reference material for the IS_FINITE function
+- [IS_INFINITE](https://docs.firebolt.io/reference-sql/functions-reference/numeric/is_infinite.md): Reference material for the IS_INFINITE function
+- [LN](https://docs.firebolt.io/reference-sql/functions-reference/numeric/ln.md): Reference material for LN function
+- [LOG](https://docs.firebolt.io/reference-sql/functions-reference/numeric/log.md): Reference material for LOG function
+- [MOD](https://docs.firebolt.io/reference-sql/functions-reference/numeric/mod.md): Reference material for MOD function
+- [PARAM](https://docs.firebolt.io/reference-sql/functions-reference/numeric/param.md): Reference material for PARAM function
+- [PI](https://docs.firebolt.io/reference-sql/functions-reference/numeric/pi.md): Reference material for PI function
+- [POW](https://docs.firebolt.io/reference-sql/functions-reference/numeric/pow.md): Reference material for POW, POWER functions
+- [RADIANS](https://docs.firebolt.io/reference-sql/functions-reference/numeric/radians.md): Reference material for RADIANS function
+- [RANDOM](https://docs.firebolt.io/reference-sql/functions-reference/numeric/random.md): Reference material for RANDOM function
+- [ROUND](https://docs.firebolt.io/reference-sql/functions-reference/numeric/round.md): Reference material for ROUND function
+- [SIGN](https://docs.firebolt.io/reference-sql/functions-reference/numeric/sign.md): Reference material for SIGN function
+- [SIN](https://docs.firebolt.io/reference-sql/functions-reference/numeric/sin.md): Reference material for SIN function
+- [SQRT](https://docs.firebolt.io/reference-sql/functions-reference/numeric/sqrt.md): Reference material for SQRT function
+- [TAN](https://docs.firebolt.io/reference-sql/functions-reference/numeric/tan.md): Reference material for TAN function
+- [TRUNC](https://docs.firebolt.io/reference-sql/functions-reference/numeric/trunc.md): Reference material for TRUNC function
+- [CURRENT_ACCOUNT](https://docs.firebolt.io/reference-sql/functions-reference/session/current-account.md): Reference material for CURRENT_ACCOUNT function
+- [CURRENT_DATABASE](https://docs.firebolt.io/reference-sql/functions-reference/session/current-database.md): Reference material for CURRENT_DATABASE function
+- [SESSION_USER](https://docs.firebolt.io/reference-sql/functions-reference/session/session-user.md): Reference material for SESSION_USER function
+- [BTRIM](https://docs.firebolt.io/reference-sql/functions-reference/string/btrim.md): Reference material for BTRIM function.
+- [CONCAT](https://docs.firebolt.io/reference-sql/functions-reference/string/concat.md): Reference material for CONCAT function
+- [GEN_RANDOM_UUID_TEXT](https://docs.firebolt.io/reference-sql/functions-reference/string/gen-random-uuid-text.md): Reference material for GEN_RANDOM_UUID_TEXT function
+- [ICU_NORMALIZE](https://docs.firebolt.io/reference-sql/functions-reference/string/icu_normalize.md): Reference material for ICU_NORMALIZE function
+- [ILIKE](https://docs.firebolt.io/reference-sql/functions-reference/string/ilike.md): Reference material for ILIKE function
+- [LENGTH](https://docs.firebolt.io/reference-sql/functions-reference/string/length.md): Reference material for LENGTH function
+- [LIKE](https://docs.firebolt.io/reference-sql/functions-reference/string/like.md): Reference material for LIKE function
+- [LOWER](https://docs.firebolt.io/reference-sql/functions-reference/string/lower.md): Reference material for LOWER function
+- [LPAD](https://docs.firebolt.io/reference-sql/functions-reference/string/lpad.md): Reference material for LPAD function
+- [LTRIM](https://docs.firebolt.io/reference-sql/functions-reference/string/ltrim.md): Reference material for LTRIM function
+- [MD5](https://docs.firebolt.io/reference-sql/functions-reference/string/md5.md): Reference material for MD5 function
+- [MD5_NUMBER_LOWER64](https://docs.firebolt.io/reference-sql/functions-reference/string/md5-number-lower64.md): Reference material for MD5_NUMBER_LOWER64 function
+- [MD5_NUMBER_UPPER64](https://docs.firebolt.io/reference-sql/functions-reference/string/md5-number-upper64.md): Reference material for MD5_NUMBER_UPPER64 function
+- [NGRAM](https://docs.firebolt.io/reference-sql/functions-reference/string/ngram.md): Reference material for NGRAM function
+- [OCTET_LENGTH](https://docs.firebolt.io/reference-sql/functions-reference/string/octet_length.md): Reference material for OCTET_LENGTH function
+- [POSITION](https://docs.firebolt.io/reference-sql/functions-reference/string/position.md): Reference material for POSITION function
+- [REGEXP_EXTRACT_ALL](https://docs.firebolt.io/reference-sql/functions-reference/string/regexp-extract-all.md): Reference material for REGEXP_EXTRACT_ALL function
+- [REGEXP_EXTRACT](https://docs.firebolt.io/reference-sql/functions-reference/string/regexp-extract.md): Reference material for REGEXP_EXTRACT function
+- [REGEXP_LIKE_ANY](https://docs.firebolt.io/reference-sql/functions-reference/string/regexp-like-any.md): Reference material for REGEXP_LIKE_ANY function
+- [REGEXP_LIKE](https://docs.firebolt.io/reference-sql/functions-reference/string/regexp-like.md): Reference material for REGEXP_LIKE function
+- [REGEXP_REPLACE](https://docs.firebolt.io/reference-sql/functions-reference/string/regexp-replace.md): Reference material for REGEXP_REPLACE functions
+- [REPEAT](https://docs.firebolt.io/reference-sql/functions-reference/string/repeat.md): Reference material for REPEAT function
+- [REPLACE](https://docs.firebolt.io/reference-sql/functions-reference/string/replace.md): Reference material for REPLACE function
+- [REVERSE](https://docs.firebolt.io/reference-sql/functions-reference/string/reverse.md): Reference material for REVERSE function
+- [RPAD](https://docs.firebolt.io/reference-sql/functions-reference/string/rpad.md): Reference material for RPAD function
+- [RTRIM](https://docs.firebolt.io/reference-sql/functions-reference/string/rtrim.md): Reference material for RTRIM function
+- [SPLIT_PART](https://docs.firebolt.io/reference-sql/functions-reference/string/split-part.md): Reference material for SPLIT_PART function
+- [SOUNDEX](https://docs.firebolt.io/reference-sql/functions-reference/string/soundex.md): Reference material for SOUNDEX function
+- [STRING_TO_ARRAY](https://docs.firebolt.io/reference-sql/functions-reference/string/string-to-array.md): Reference material for STRING_TO_ARRAY function
+- [STRPOS](https://docs.firebolt.io/reference-sql/functions-reference/string/strpos.md): Reference material for STRPOSR function
+- [SUBSTRING, SUBSTR](https://docs.firebolt.io/reference-sql/functions-reference/string/substring.md): Reference material for SUBSTRING function
+- [TO_BIN](https://docs.firebolt.io/reference-sql/functions-reference/string/to_bin.md): Reference material for the TO_BIN function
+- [TO_OCT](https://docs.firebolt.io/reference-sql/functions-reference/string/to_oct.md): Reference material for the TO_OCT function
+- [TRIM](https://docs.firebolt.io/reference-sql/functions-reference/string/trim.md): Reference material for TRIM function
+- [UPPER](https://docs.firebolt.io/reference-sql/functions-reference/string/upper.md): Reference material for UPPER function
+- [URL_DECODE](https://docs.firebolt.io/reference-sql/functions-reference/string/url_decode.md): Reference material for URL_DECODE function
+- [URL_ENCODE](https://docs.firebolt.io/reference-sql/functions-reference/string/url_encode.md): Reference material for URL_ENCODE function
+- [Table-valued functions](https://docs.firebolt.io/reference-sql/functions-reference/table-valued.md): Reference for table-valued functions
+- [GENERATE_SERIES](https://docs.firebolt.io/reference-sql/functions-reference/table-valued/generate-series.md): Reference material for GENERATE_SERIES function
+- [LIST_OBJECTS](https://docs.firebolt.io/reference-sql/functions-reference/table-valued/list-objects.md): Reference material for LIST_OBJECTS function
+- [READ_AVRO](https://docs.firebolt.io/reference-sql/functions-reference/table-valued/read_avro.md): Reference material for READ_AVRO function
+- [READ_CSV](https://docs.firebolt.io/reference-sql/functions-reference/table-valued/read_csv.md): Reference material for READ_CSV function
+- [READ_FILES](https://docs.firebolt.io/reference-sql/functions-reference/table-valued/read_files.md): Reference material for READ_FILES function
+- [READ_JSON](https://docs.firebolt.io/reference-sql/functions-reference/table-valued/read_json.md): Reference material for READ_JSON function
+- [READ_PARQUET](https://docs.firebolt.io/reference-sql/functions-reference/table-valued/read_parquet.md): Reference material for READ_PARQUET function
+- [PARQUET_METADATA](https://docs.firebolt.io/reference-sql/functions-reference/table-valued/parquet_metadata.md): Returns the row-group and column-chunk metadata of Parquet files without reading their data.
+- [READ_STREAM](https://docs.firebolt.io/reference-sql/functions-reference/table-valued/read_stream.md): Reference material for READ_STREAM function
+- [READ_TEXT](https://docs.firebolt.io/reference-sql/functions-reference/table-valued/read_text.md): Reference material for READ_TEXT function
+- [Vector functions](https://docs.firebolt.io/reference-sql/functions-reference/vector.md): Reference for vector functions
+- [VECTOR_ADD](https://docs.firebolt.io/reference-sql/functions-reference/vector/vector-add.md): Reference material for VECTOR_ADD function
+- [VECTOR_COSINE_DISTANCE](https://docs.firebolt.io/reference-sql/functions-reference/vector/vector-cosine-distance.md): Reference material for VECTOR_COSINE_DISTANCE function
+- [VECTOR_COSINE_SIMILARITY](https://docs.firebolt.io/reference-sql/functions-reference/vector/vector-cosine-similarity.md): Reference material for VECTOR_COSINE_SIMILARITY function
+- [VECTOR_EUCLIDEAN_DISTANCE](https://docs.firebolt.io/reference-sql/functions-reference/vector/vector-euclidean-distance.md): Reference material for VECTOR_EUCLIDEAN_DISTANCE function
+- [VECTOR_INNER_PRODUCT](https://docs.firebolt.io/reference-sql/functions-reference/vector/vector-inner-product.md): Reference material for VECTOR_INNER_PRODUCT function
+- [VECTOR_MANHATTAN_DISTANCE](https://docs.firebolt.io/reference-sql/functions-reference/vector/vector-manhattan-distance.md): Reference material for VECTOR_MANHATTAN_DISTANCE function
+- [VECTOR_SEARCH](https://docs.firebolt.io/reference-sql/functions-reference/vector/vector-search.md): Reference material for VECTOR_SEARCH table-valued function
+- [VECTOR_SQUARED_EUCLIDEAN_DISTANCE](https://docs.firebolt.io/reference-sql/functions-reference/vector/vector-squared-euclidean-distance.md): Reference material for VECTOR_SQUARED_EUCLIDEAN_DISTANCE function
+- [VECTOR_SUBTRACT](https://docs.firebolt.io/reference-sql/functions-reference/vector/vector-subtract.md): Reference material for VECTOR_SUBTRACT function
+- [Window functions](https://docs.firebolt.io/reference-sql/functions-reference/window.md): Reference for window functions
+- [AVG OVER](https://docs.firebolt.io/reference-sql/functions-reference/window/avg-window.md): Reference material for AVG function
+- [COUNT OVER](https://docs.firebolt.io/reference-sql/functions-reference/window/count-window.md): Reference material for COUNT function
+- [CUME_DIST OVER](https://docs.firebolt.io/reference-sql/functions-reference/window/cume-dist.md): Reference material for CUME_DIST window function
+- [DENSE_RANK OVER](https://docs.firebolt.io/reference-sql/functions-reference/window/dense-rank.md): Reference material for DENSE_RANK function
+- [FIRST_VALUE](https://docs.firebolt.io/reference-sql/functions-reference/window/first-value.md): Reference material for FIRST_VALUE function
+- [LAG OVER](https://docs.firebolt.io/reference-sql/functions-reference/window/lag.md): Reference material for LAG function
+- [LEAD OVER](https://docs.firebolt.io/reference-sql/functions-reference/window/lead.md): Reference material for LEAD function
+- [MAX OVER](https://docs.firebolt.io/reference-sql/functions-reference/window/max-window.md): Reference material for MAX function
+- [MIN OVER](https://docs.firebolt.io/reference-sql/functions-reference/window/min-window.md): Reference material for MIN function
+- [NTH_VALUE OVER](https://docs.firebolt.io/reference-sql/functions-reference/window/nth-value.md): Reference material for NTH_VALUE window function
+- [NTILE OVER](https://docs.firebolt.io/reference-sql/functions-reference/window/ntile.md): Reference material for NTILE function
+- [PERCENT_RANK OVER](https://docs.firebolt.io/reference-sql/functions-reference/window/percent-rank.md): Reference material for PERCENT_RANK window function
+- [RANK OVER](https://docs.firebolt.io/reference-sql/functions-reference/window/rank.md): Reference material for RANK function
+- [ROW_NUMBER OVER](https://docs.firebolt.io/reference-sql/functions-reference/window/row-number.md): Reference material for ROW_NUMBER function
+- [SUM OVER](https://docs.firebolt.io/reference-sql/functions-reference/window/sum-window.md): Reference material for SUM function
+- [System settings](https://docs.firebolt.io/reference-sql/system-settings.md): Lists Firebolt system settings that you can configure using SQL.
+- [Release notes](https://docs.firebolt.io/release-notes.md): Latest release notes for the Firebolt data warehouse.
+- [Release notes archive](https://docs.firebolt.io/release-notes/release-notes-archive.md): Release notes archive for the Firebolt data warehouse.
+- [API reference](https://docs.firebolt.io/reference-api.md): Learn how to use Firebolt programmatically
+- [Synchronous queries](https://docs.firebolt.io/reference-api/using-sync-queries.md): Learn how to submit sync queries and get their status.
+- [Asynchronous queries](https://docs.firebolt.io/reference-api/using-async-queries.md): Learn how to submit async queries and get their status.
+- [Upload and query local files](https://docs.firebolt.io/reference-api/uploading-files.md): Send local files with a SQL statement in one HTTP request and query them with the upload:// URL scheme.
+- [Submit a sql statement for execution](https://docs.firebolt.io/api-reference/submit-a-sql-statement-for-execution.md)
+- [Firebolt Data Portability & Switching Specifications](https://docs.firebolt.io/legal/data-portability-and-export.md): Technical reference regarding data portability and interoperability for EU Data Act compliance.
+
+## OpenAPI Specs
+
+- [firebolt_query_v2.3](https://raw.githubusercontent.com/firebolt-db/openapi/main/specification/yaml/firebolt_query_v2.3.yaml)

@@ -1,0 +1,39 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Firebolt REST Firebolt REST API Oauth API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Oauth",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Obtain an access token (OAuth 2.0 client credentials)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.app.firebolt.io/oauth/token",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Obtain an access token (OAuth 2.0 client credentials)"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

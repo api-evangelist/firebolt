@@ -1,0 +1,47 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Firebolt REST Firebolt REST API API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Firebolt REST API",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Execute SQL on the system or user engine (plain-text body)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.app.firebolt.io/",
+            "params": [
+              {
+                "name": "database",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "output_format",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Submit a SQL statement as plain text. Send this request to the engine URL returned by /web/v3/account/{account_name}/engineUrl. Use the `database` query parameter when targeting a user engine."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,35 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Firebolt REST Firebolt REST API Query API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Query",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Query information_schema on the system engine",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.app.firebolt.io/query"
+          },
+          "docs": "Query information_schema on the system engine"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

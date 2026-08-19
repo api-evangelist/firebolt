@@ -1,0 +1,42 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Firebolt REST Firebolt REST API Web API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Web",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get system engine URL for an account",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.app.firebolt.io/web/v3/account/:account_name/engineUrl",
+            "params": [
+              {
+                "name": "account_name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get system engine URL for an account"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
