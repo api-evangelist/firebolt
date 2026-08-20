@@ -66,6 +66,8 @@ apis:
   humanURL: https://docs.firebolt.io/guides/run-queries/using-the-api
   baseURL: https://api.app.firebolt.io
   tags:
+  - Authentication
+  tags_raw:
   - Oauth
   properties:
   - type: OpenAPI
