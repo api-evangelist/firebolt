@@ -2,10 +2,9 @@ aid: firebolt
 url: https://raw.githubusercontent.com/api-evangelist/firebolt/refs/heads/main/apis.yml
 name: Firebolt
 kind: company
-description: >-
-  Firebolt is a cloud data warehouse with elastic engines and consumption-based pricing.
-  It exposes a REST API for issuing SQL queries and managing engines/databases, plus
-  language SDKs (Python, Node.js, Java, .NET) and an OAuth service-account flow.
+description: Firebolt is a cloud data warehouse with elastic engines and consumption-based pricing. It
+  exposes a REST API for issuing SQL queries and managing engines/databases, plus language SDKs (Python,
+  Node.js, Java, .NET) and an OAuth service-account flow.
 deliveryModel:
   model: saas
   open_source: false
@@ -34,12 +33,12 @@ accessModel:
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/firebolt.png
 tags:
-  - Data Warehouse
-  - Cloud
-  - SQL
-  - Analytics
+- Data Warehouse
+- Cloud
+- SQL
+- Analytics
 created: '2026-05-08'
-modified: '2026-05-08'
+modified: '2026-09-16'
 specificationVersion: '0.23'
 apis:
 - aid: firebolt:firebolt-rest-api
@@ -50,11 +49,10 @@ apis:
   - SQL
   - Query
   - Engine Management
-  description: >-
-    The Firebolt REST API issues SQL queries against running engines and manages account, engine, and
-    database resources. Authentication is OAuth 2.0 client_credentials against `https://id.app.firebolt.io/oauth/token`
+  description: 'The Firebolt REST API issues SQL queries against running engines and manages account,
+    engine, and database resources. Authentication is OAuth 2.0 client_credentials against `https://id.app.firebolt.io/oauth/token`
     with audience `https://api.firebolt.io`, using a service account ID and secret. Tokens are sent as
-    `Authorization: Bearer <access_token>`.
+    `Authorization: Bearer <access_token>`.'
   properties:
   - type: Documentation
     url: https://docs.firebolt.io/guides/run-queries/using-the-api
@@ -64,7 +62,7 @@ apis:
     title: Python SDK
     url: https://python-sdk.docs.firebolt.io/
 - aid: firebolt:firebolt-firebolt-rest-api-api
-  name: Firebolt Firebolt REST API API
+  name: Firebolt REST API
   description: The Firebolt REST API API from Firebolt — 1 operation(s) for firebolt rest api.
   humanURL: https://docs.firebolt.io/guides/run-queries/using-the-api
   baseURL: https://api.app.firebolt.io
@@ -106,55 +104,55 @@ apis:
   - type: OpenAPI
     url: openapi/firebolt-web-api-openapi.yml
 common:
-  - type: AgenticAccess
-    url: agentic-access/firebolt-agentic-access.yml
-  - type: TrustCenter
-    url: security/firebolt-trust-center.yml
-  - type: VulnerabilityDisclosure
-    url: security/firebolt-vulnerability-disclosure.yml
-  - type: DomainSecurity
-    url: security/firebolt-domain-security.yml
-  - type: Authentication
-    url: authentication/firebolt-authentication.yml
-  - type: GitHubOrganization
-    url: https://github.com/firebolt-db
-  - type: LinkedIn
-    url: https://www.linkedin.com/company/firebolt
-  - type: Website
-    url: https://www.firebolt.io/
-  - type: Portal
-    url: https://docs.firebolt.io/
-  - type: Pricing
-    url: https://www.firebolt.io/pricing
-  - type: Plans
-    url: plans/firebolt-plans-pricing.yml
-  - type: RateLimits
-    url: rate-limits/firebolt-rate-limits.yml
-  - type: FinOps
-    url: finops/firebolt-finops.yml
-  - type: Integrations
-    url: https://www.firebolt.io/integrations
-  - type: LlmsText
-    url: https://docs.firebolt.io/llms.txt
-  - type: Blog
-    url: https://www.firebolt.io/blog
+- type: AgenticAccess
+  url: agentic-access/firebolt-agentic-access.yml
+- type: TrustCenter
+  url: security/firebolt-trust-center.yml
+- type: VulnerabilityDisclosure
+  url: security/firebolt-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/firebolt-domain-security.yml
+- type: Authentication
+  url: authentication/firebolt-authentication.yml
+- type: GitHubOrganization
+  url: https://github.com/firebolt-db
+- type: LinkedIn
+  url: https://www.linkedin.com/company/firebolt
+- type: Website
+  url: https://www.firebolt.io/
+- type: Portal
+  url: https://docs.firebolt.io/
+- type: Pricing
+  url: https://www.firebolt.io/pricing
+- type: Plans
+  url: plans/firebolt-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/firebolt-rate-limits.yml
+- type: FinOps
+  url: finops/firebolt-finops.yml
+- type: Integrations
+  url: https://www.firebolt.io/integrations
+- type: LlmsText
+  url: https://docs.firebolt.io/llms.txt
+- type: Blog
+  url: https://www.firebolt.io/blog
 integrations:
-  - name: Close Menu Button
-  - name: Dropdown menu
-  - name: Dropdown menu 2
-  - name: Firebolt.io Brand
-  - name: Menu Hamburger - Open
-  - name: Firebolt Brand
-  - name: Amazon AWS
-  - name: Amazon AWS - Technology Partner
-  - name: Follow us on Linkedin
-  - name: Follow us on Facebook
-  - name: Follow us on Youtube
-  - name: Follow us on Twitter
-  - name: The data engineering show
-  - name: Listen on Apple Podcasts
-  - name: Listen on Spotify
-  - name: Listen on Youtube
+- name: Close Menu Button
+- name: Dropdown menu
+- name: Dropdown menu 2
+- name: Firebolt.io Brand
+- name: Menu Hamburger - Open
+- name: Firebolt Brand
+- name: Amazon AWS
+- name: Amazon AWS - Technology Partner
+- name: Follow us on Linkedin
+- name: Follow us on Facebook
+- name: Follow us on Youtube
+- name: Follow us on Twitter
+- name: The data engineering show
+- name: Listen on Apple Podcasts
+- name: Listen on Spotify
+- name: Listen on Youtube
 maintainers:
-  - FN: Kin Lane
-    email: kin@apievangelist.com
+- FN: Kin Lane
+  email: kin@apievangelist.com
