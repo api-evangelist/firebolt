@@ -49,10 +49,11 @@ apis:
   - SQL
   - Query
   - Engine Management
-  description: 'The Firebolt REST API issues SQL queries against running engines and manages account,
-    engine, and database resources. Authentication is OAuth 2.0 client_credentials against `https://id.app.firebolt.io/oauth/token`
+  description: >-
+    The Firebolt REST API issues SQL queries against running engines and manages account, engine, and
+    database resources. Authentication is OAuth 2.0 client_credentials against `https://id.app.firebolt.io/oauth/token`
     with audience `https://api.firebolt.io`, using a service account ID and secret. Tokens are sent as
-    `Authorization: Bearer <access_token>`.'
+    `Authorization: Bearer <access_token>`.
   properties:
   - type: Documentation
     url: https://docs.firebolt.io/guides/run-queries/using-the-api
@@ -71,18 +72,6 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/firebolt-firebolt-rest-api-api-openapi.yml
-- aid: firebolt:firebolt-oauth-api
-  name: Firebolt Oauth API
-  description: The Oauth API from Firebolt — 1 operation(s) for oauth.
-  humanURL: https://docs.firebolt.io/guides/run-queries/using-the-api
-  baseURL: https://api.app.firebolt.io
-  tags:
-  - Authentication
-  tags_raw:
-  - Oauth
-  properties:
-  - type: OpenAPI
-    url: openapi/firebolt-oauth-api-openapi.yml
 - aid: firebolt:firebolt-query-api
   name: Firebolt Query API
   description: The Query API from Firebolt — 1 operation(s) for query.
@@ -103,6 +92,16 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/firebolt-web-api-openapi.yml
+- aid: firebolt:firebolt-oauth-api
+  name: Firebolt OAUTH API
+  description: The Oauth API from Firebolt — 1 operation(s) for oauth.
+  humanURL: https://docs.firebolt.io/guides/run-queries/using-the-api
+  baseURL: https://api.app.firebolt.io
+  tags:
+  - Oauth
+  properties:
+  - type: OpenAPI
+    url: openapi/firebolt-oauth-api-openapi.yml
 common:
 - type: AgenticAccess
   url: agentic-access/firebolt-agentic-access.yml
