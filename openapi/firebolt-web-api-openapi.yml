@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Firebolt REST Firebolt REST API Web API
+  title: Firebolt REST Web API
   description: Issue SQL queries against Firebolt engines and manage account/engine resources. Authentication is OAuth 2.0 client_credentials against https://id.app.firebolt.io/oauth/token (audience https://api.firebolt.io). The returned bearer token is used on subsequent requests against api.app.firebolt.io and individual engine URLs.
   version: '1.0'
   contact:
