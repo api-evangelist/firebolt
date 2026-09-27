@@ -9,9 +9,7 @@
     "firebolt-query-api-openapi.yml",
     "firebolt-web-api-openapi.yml"
   ],
-  "archived": [
-    "deleted 1 superseded output(s) from the previous generation"
-  ],
+  "archived": [],
   "errors": [],
   "warnings": [],
   "notes": [
@@ -25,12 +23,11 @@
     "firebolt-openapi.yml: declared missing tag: Oauth",
     "firebolt-openapi.yml: declared missing tag: Query",
     "firebolt-openapi.yml: declared missing tag: Web",
-    "superseded outputs removed: firebolt-o-auth-api-openapi.yml",
-    "apis.yml register: written (+1 apis, 5 total)"
+    "apis.yml register: already-registered"
   ],
   "skipped": [
     "firebolt-firebolt-rest-api-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "firebolt-o-auth-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "firebolt-oauth-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "firebolt-query-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "firebolt-web-api-openapi.yml: previously refined output, superseded by openapi/_original/"
   ]
