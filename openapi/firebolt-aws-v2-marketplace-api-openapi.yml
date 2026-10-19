@@ -1,0 +1,550 @@
+openapi: 3.2.0
+info:
+  title: Firebolt Aws.v2.marketplace API
+  version: 1.0.0
+  x-logo:
+    altText: Firebolt
+    backgroundColor: '#FFFFFF'
+    url: https://assets.website-files.com/5e8a264ceaf4870394477fc7/5e8a264ceaf4879f75477fdd_logo_website.svg
+tags:
+- name: aws.v2.marketplace
+  x-displayName: AWS Marketplace
+paths:
+  /aws/v2/account/marketplaceCosts:
+    get:
+      tags:
+      - aws.v2.marketplace
+      summary: Retrieves related to account costs in month to date
+      operationId: awsV2ListMarketplaceCosts
+      parameters:
+      - description: Collection ordering.
+        name: order_by
+        in: query
+        schema:
+          type: string
+          enum:
+          - MARKETPLACE_COST_ORDER_UNSPECIFIED
+          - MARKETPLACE_COST_ORDER_REPORT_TIME_ASC
+          - MARKETPLACE_COST_ORDER_REPORT_TIME_DESC
+          default: MARKETPLACE_COST_ORDER_UNSPECIFIED
+      - description: 'The `first` parameter indicates the number of results that the client would like to see in the response when
+
+          `after` is set or neither `after` or `before` is set.
+
+
+          Default: 25.'
+        name: page.first
+        in: query
+        schema:
+          type: integer
+          format: int32
+      - description: 'When `after` is provided, the returned paginated data will have as its first item the item that is
+
+          immediately after the cursor in the results list. (An exception is that, if there are no items in the results list
+
+          that fall after the cursor, the returned paginated data will be an empty array.).'
+        name: page.after
+        in: query
+        schema:
+          type: string
+      - description: 'The `last` parameter indicates the number of results that the client would like to see in the response
+
+          when `before` is set.
+
+
+          Default: 25.'
+        name: page.last
+        in: query
+        schema:
+          type: integer
+          format: int32
+      - description: 'When `before` is provided, the last item returned in the paginated data will be the item that is closest to,
+
+          but still before, the cursor in the unpaginated results list. (Analogous to the above, if there are no items in the
+
+          results list that fall before the cursor, the returned paginated data will be an empty array.).'
+        name: page.before
+        in: query
+        schema:
+          type: string
+      - description: Value should be equal.
+        name: filter.account_id_eq
+        in: query
+        schema:
+          type: string
+      - description: Value should be equal.
+        name: filter.is_credit_eq
+        in: query
+        schema:
+          type: boolean
+          format: boolean
+      - description: Value should be greater than or equal.
+        name: filter.report_time_gte
+        in: query
+        schema:
+          type: string
+          format: date-time
+      - description: Value should be less than or equal.
+        name: filter.report_time_lte
+        in: query
+        schema:
+          type: string
+          format: date-time
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/firebolt.aws.v2.ListMarketplaceCostsResponse'
+        default:
+          description: An unexpected error response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/grpc.gateway.runtime.Error'
+  /aws/v2/account/marketplaceCosts:getMonthToDate:
+    post:
+      tags:
+      - aws.v2.marketplace
+      summary: Retrieves related to account costs in month to date
+      operationId: awsV2GetMonthToDateMarketplaceCosts
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/firebolt.aws.v2.GetMonthToDateMarketplaceCostsResponse'
+        default:
+          description: An unexpected error response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/grpc.gateway.runtime.Error'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/firebolt.aws.v2.GetMonthToDateMarketplaceCostsRequest'
+        required: true
+  /aws/v2/account/marketplaceSubscriptions:getActive:
+    post:
+      tags:
+      - aws.v2.marketplace
+      summary: Retrieves related to account subscription
+      operationId: awsV2GetActiveMarketplaceSubscription
+      responses:
+        '200':
+          description: (empty)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/firebolt.aws.v2.Subscription'
+        default:
+          description: An unexpected error response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/grpc.gateway.runtime.Error'
+  /aws/v2/account/metrics/compute:
+    get:
+      tags:
+      - aws.v2.marketplace
+      summary: Retrieves related to account compute metrics
+      operationId: awsV2ListComputeMetrics
+      parameters:
+      - description: Collection ordering.
+        name: order_by
+        in: query
+        schema:
+          type: string
+          enum:
+          - COMPUTE_METRIC_ORDER_UNSPECIFIED
+          - COMPUTE_METRIC_ORDER_START_TIME_ASC
+          default: COMPUTE_METRIC_ORDER_UNSPECIFIED
+      - description: 'The `first` parameter indicates the number of results that the client would like to see in the response when
+
+          `after` is set or neither `after` or `before` is set.
+
+
+          Default: 25.'
+        name: page.first
+        in: query
+        schema:
+          type: integer
+          format: int32
+      - description: 'When `after` is provided, the returned paginated data will have as its first item the item that is
+
+          immediately after the cursor in the results list. (An exception is that, if there are no items in the results list
+
+          that fall after the cursor, the returned paginated data will be an empty array.).'
+        name: page.after
+        in: query
+        schema:
+          type: string
+      - description: 'The `last` parameter indicates the number of results that the client would like to see in the response
+
+          when `before` is set.
+
+
+          Default: 25.'
+        name: page.last
+        in: query
+        schema:
+          type: integer
+          format: int32
+      - description: 'When `before` is provided, the last item returned in the paginated data will be the item that is closest to,
+
+          but still before, the cursor in the unpaginated results list. (Analogous to the above, if there are no items in the
+
+          results list that fall before the cursor, the returned paginated data will be an empty array.).'
+        name: page.before
+        in: query
+        schema:
+          type: string
+      - description: Start of a period.
+        name: filter.timeframe.start_time
+        in: query
+        schema:
+          type: string
+          format: date-time
+      - description: End of a period.
+        name: filter.timeframe.end_time
+        in: query
+        schema:
+          type: string
+          format: date-time
+      - description: Value should be equal.
+        name: filter.engine_id_in
+        in: query
+        style: form
+        explode: true
+        schema:
+          type: array
+          items:
+            type: string
+      - description: Value should be equal.
+        name: filter.engine_name_in
+        in: query
+        style: form
+        explode: true
+        schema:
+          type: array
+          items:
+            type: string
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/firebolt.aws.v2.ListComputeMetricsResponse'
+        default:
+          description: An unexpected error response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/grpc.gateway.runtime.Error'
+components:
+  schemas:
+    grpc.gateway.runtime.Error:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/google.protobuf.Any'
+        error:
+          type: string
+        message:
+          type: string
+    firebolt.shared.v1.PageDescriptor:
+      description: PageDescriptor represents pagination information in collection response.
+      type: object
+      properties:
+        has_next_page:
+          description: Whether next page is available.
+          type: boolean
+          format: boolean
+        has_previous_page:
+          description: Whether previous page is available.
+          type: boolean
+          format: boolean
+        page_size:
+          description: Number of items returned at this page.
+          type: integer
+          format: int64
+        total_size:
+          description: Total number of items matching the query.
+          type: integer
+          format: int64
+    firebolt.aws.v2.SubscriptionTier:
+      description: "SubscriptionTier specifies the current tier of subscription.\n\n - SUBSCRIPTION_TIER_UNSPECIFIED: Tier info still not received from AWS"
+      type: string
+      default: SUBSCRIPTION_TIER_UNSPECIFIED
+      enum:
+      - SUBSCRIPTION_TIER_UNSPECIFIED
+      - SUBSCRIPTION_TIER_BASIC
+      - SUBSCRIPTION_TIER_TRIAL
+      - SUBSCRIPTION_TIER_PRO
+    firebolt.aws.v2.SubscriptionType:
+      description: SubscriptionType specifies the current type of subscription.
+      type: string
+      default: SUBSCRIPTION_TYPE_UNSPECIFIED
+      enum:
+      - SUBSCRIPTION_TYPE_UNSPECIFIED
+      - SUBSCRIPTION_TYPE_ANNUAL
+      - SUBSCRIPTION_TYPE_PAY_PER_USE
+    firebolt.aws.v2.ListMarketplaceCostsResponse:
+      type: object
+      properties:
+        edges:
+          description: List of found records.
+          type: array
+          items:
+            $ref: '#/components/schemas/firebolt.aws.v2.MarketplaceCostEdge'
+        page:
+          description: Page descriptor.
+          $ref: '#/components/schemas/firebolt.shared.v1.PageDescriptor'
+    firebolt.aws.v2.Subscription:
+      description: Member represents a user that has access to the account.
+      type: object
+      properties:
+        create_time:
+          type: string
+          format: date-time
+          title: Output only. Timestamp when subscription was created
+          readOnly: true
+        customer_id:
+          description: Output only. ID of the corresponding account.
+          type: string
+          readOnly: true
+        expires_time:
+          type: string
+          format: date-time
+          title: Output only. Timestamp when subscription will expire
+          readOnly: true
+        id:
+          description: Output only. Record ID.
+          $ref: '#/components/schemas/firebolt.aws.v2.SubscriptionID'
+          readOnly: true
+        status:
+          description: Output only. Status of this subscription.
+          $ref: '#/components/schemas/firebolt.aws.v2.SubscriptionStatus'
+          readOnly: true
+        tier:
+          description: Output only. Tier of this subscription.
+          $ref: '#/components/schemas/firebolt.aws.v2.SubscriptionTier'
+          readOnly: true
+        type:
+          description: Output only. Type of this subscription.
+          $ref: '#/components/schemas/firebolt.aws.v2.SubscriptionType'
+          readOnly: true
+    firebolt.aws.v2.TimeInterval:
+      description: 'TimeInterval represent a time boundary.
+
+        Only entries, which start and end time intersects with interval, will be returned.'
+      type: object
+      properties:
+        end_time:
+          description: End of a period.
+          type: string
+          format: date-time
+        start_time:
+          description: Start of a period.
+          type: string
+          format: date-time
+    firebolt.aws.v2.ListComputeMetricsResponse:
+      type: object
+      properties:
+        edges:
+          description: List of found records.
+          type: array
+          items:
+            $ref: '#/components/schemas/firebolt.aws.v2.ComputeMetricEdge'
+        page:
+          description: Page descriptor.
+          $ref: '#/components/schemas/firebolt.shared.v1.PageDescriptor'
+    firebolt.aws.v2.ComputeMetric:
+      description: ComputeMetric represents a type of the marketplace cost that used by Firebolt to reflect costs spent by customers.
+      type: object
+      properties:
+        account_id:
+          description: Output only. Account this record belongs to.
+          type: string
+          readOnly: true
+        costs:
+          description: Output only. Cost considering discounts for current uptime.
+          type: number
+          format: double
+          readOnly: true
+        engine_id:
+          description: Output only. Engine this record belongs to.
+          type: string
+          readOnly: true
+        engine_name:
+          description: Output only. Name of engine metric is related to.
+          type: string
+          readOnly: true
+        timeframe:
+          description: 'Output only. Period metric belongs to.
+
+            Time frame of an entry is within requested timeframe, but reflects actual metric boundaries.'
+          $ref: '#/components/schemas/firebolt.aws.v2.TimeInterval'
+          readOnly: true
+    firebolt.aws.v2.MarketplaceCostEdge:
+      description: MarketplaceCostEdge represents a single record in paginated list.
+      type: object
+      properties:
+        cursor:
+          description: Pagination cursor for this node.
+          type: string
+        node:
+          description: Node instance.
+          $ref: '#/components/schemas/firebolt.aws.v2.MarketplaceCost'
+    firebolt.aws.v2.SubscriptionID:
+      description: SubscriptionID represents unique identifier of the record.
+      type: object
+      properties:
+        account_id:
+          description: Required. ID of the account this record belongs to.
+          type: string
+        subscription_id:
+          description: Required. Unique record ID.
+          type: string
+    firebolt.aws.v2.GetMonthToDateMarketplaceCostsResponse:
+      type: object
+      properties:
+        additional_usage_fees:
+          type: number
+          format: float
+          title: AWS costs related to cloud resources
+        ec2_costs:
+          type: number
+          format: float
+          title: AWS costs related to EC2 cloud resources
+        s3_costs:
+          type: number
+          format: float
+          title: AWS costs related to S3 cloud resources
+        storage_in_tb:
+          type: number
+          format: float
+          title: sum of s3 buckets size related to account
+    firebolt.aws.v2.ComputeMetricEdge:
+      description: ComputeMetricEdge represents a single record in paginated list.
+      type: object
+      properties:
+        cursor:
+          description: Pagination cursor for this node.
+          type: string
+        node:
+          description: Node instance.
+          $ref: '#/components/schemas/firebolt.aws.v2.ComputeMetric'
+    firebolt.aws.v2.MarketplaceCost:
+      description: MarketplaceCost represents a type of the marketplace cost that used by Firebolt to reflect costs spent by customers.
+      type: object
+      properties:
+        accepted_costs:
+          description: Output only. Cost value that was accepted by AWS Marketplace.
+          type: number
+          format: float
+          readOnly: true
+        compute_costs:
+          description: Output only. Compute cost value.
+          type: number
+          format: float
+          readOnly: true
+        id:
+          description: Output only. Unique record ID.
+          $ref: '#/components/schemas/firebolt.aws.v2.MarketplaceCostID'
+          readOnly: true
+        is_credit:
+          description: Output only. Whether this cost was related to granted credit and not reported to AWS Marketplace.
+          type: boolean
+          format: boolean
+          readOnly: true
+        other_costs:
+          description: Output only. Cost value not related to compute or storage.
+          type: number
+          format: float
+          readOnly: true
+        report_time:
+          description: Output only. Time to which this cost is related.
+          type: string
+          format: date-time
+          readOnly: true
+        storage_costs:
+          description: Output only. Storage cost value.
+          type: number
+          format: float
+          readOnly: true
+    google.protobuf.Any:
+      description: "`Any` contains an arbitrary serialized protocol buffer message along with a\nURL that describes the type of the serialized message.\n\nProtobuf library provides support to pack/unpack Any values in the form\nof utility functions or additional generated methods of the Any type.\n\nExample 1: Pack and unpack a message in C++.\n\n    Foo foo = ...;\n    Any any;\n    any.PackFrom(foo);\n    ...\n    if (any.UnpackTo(&foo)) {\n      ...\n    }\n\nExample 2: Pack and unpack a message in Java.\n\n    Foo foo = ...;\n    Any any = Any.pack(foo);\n    ...\n    if (any.is(Foo.class)) {\n      foo = any.unpack(Foo.class);\n    }\n\n Example 3: Pack and unpack a message in Python.\n\n    foo = Foo(...)\n    any = Any()\n    any.Pack(foo)\n    ...\n    if any.Is(Foo.DESCRIPTOR):\n      any.Unpack(foo)\n      ...\n\n Example 4: Pack and unpack a message in Go\n\n     foo := &pb.Foo{...}\n     any, err := ptypes.MarshalAny(foo)\n     ...\n     foo := &pb.Foo{}\n     if err := ptypes.UnmarshalAny(any, foo); err != nil {\n       ...\n     }\n\nThe pack methods provided by protobuf library will by default use\n'type.googleapis.com/full.type.name' as the type URL and the unpack\nmethods only use the fully qualified type name after the last '/'\nin the type URL, for example \"foo.bar.com/x/y.z\" will yield type\nname \"y.z\".\n\n\nJSON\n====\nThe JSON representation of an `Any` value uses the regular\nrepresentation of the deserialized, embedded message, with an\nadditional field `@type` which contains the type URL. Example:\n\n    package google.profile;\n    message Person {\n      string first_name = 1;\n      string last_name = 2;\n    }\n\n    {\n      \"@type\": \"type.googleapis.com/google.profile.Person\",\n      \"firstName\": <string>,\n      \"lastName\": <string>\n    }\n\nIf the embedded message type is well-known and has a custom JSON\nrepresentation, that representation will be embedded adding a field\n`value` which holds the custom JSON in addition to the `@type`\nfield. Example (for message [google.protobuf.Duration][]):\n\n    {\n      \"@type\": \"type.googleapis.com/google.protobuf.Duration\",\n      \"value\": \"1.212s\"\n    }"
+      type: object
+      properties:
+        type_url:
+          description: "A URL/resource name that uniquely identifies the type of the serialized\nprotocol buffer message. This string must contain at least\none \"/\" character. The last segment of the URL's path must represent\nthe fully qualified name of the type (as in\n`path/google.protobuf.Duration`). The name should be in a canonical form\n(e.g., leading \".\" is not accepted).\n\nIn practice, teams usually precompile into the binary all types that they\nexpect it to use in the context of Any. However, for URLs which use the\nscheme `http`, `https`, or no scheme, one can optionally set up a type\nserver that maps type URLs to message definitions as follows:\n\n* If no scheme is provided, `https` is assumed.\n* An HTTP GET on the URL must yield a [google.protobuf.Type][]\n  value in binary format, or produce an error.\n* Applications are allowed to cache lookup results based on the\n  URL, or have them precompiled into a binary to avoid any\n  lookup. Therefore, binary compatibility needs to be preserved\n  on changes to types. (Use versioned type names to manage\n  breaking changes.)\n\nNote: this functionality is not currently available in the official\nprotobuf release, and it is not used for type URLs beginning with\ntype.googleapis.com.\n\nSchemes other than `http`, `https` (or the empty scheme) might be\nused with implementation specific semantics."
+          type: string
+        value:
+          description: Must be a valid serialized protocol buffer of the above specified type.
+          type: string
+          format: byte
+    firebolt.aws.v2.GetMonthToDateMarketplaceCostsRequest:
+      type: object
+    firebolt.aws.v2.SubscriptionStatus:
+      description: "SubscriptionStatus specifies the current status of subscription.\n\n - SUBSCRIPTION_STATUS_UNSPECIFIED: Subscription record created, pending marketplace notifications.\n - SUBSCRIPTION_STATUS_ACTIVE: Subscription record created, marketplace subscribe success received.\n - SUBSCRIPTION_STATUS_UNSUBSCRIBE_PENDING: Subscription is in cancellation process now\n - SUBSCRIPTION_STATUS_STOPPED: Subscription cancelled, currently not renewed\n - SUBSCRIPTION_STATUS_FAILED: Subscription failed, marketplace related issue that won't allow user to be charged."
+      type: string
+      default: SUBSCRIPTION_STATUS_UNSPECIFIED
+      enum:
+      - SUBSCRIPTION_STATUS_UNSPECIFIED
+      - SUBSCRIPTION_STATUS_ACTIVE
+      - SUBSCRIPTION_STATUS_UNSUBSCRIBE_PENDING
+      - SUBSCRIPTION_STATUS_STOPPED
+      - SUBSCRIPTION_STATUS_FAILED
+    firebolt.aws.v2.MarketplaceCostID:
+      description: MarketplaceCostID represents unique identifier of the record.
+      type: object
+      properties:
+        account_id:
+          description: Account this record belongs to.
+          type: string
+        marketplace_cost_id:
+          description: Record ID.
+          type: string
+x-tagGroups:
+- name: Getting Started
+  tags:
+  - auth.v1
+- name: Identity & Access Management
+  tags:
+  - iam.v2.roles
+  - iam.v2.permissions
+  - iam.v2.policies
+  - iam.v2.databaseGrants
+  - iam.v2.accounts
+  - iam.v2.users
+  - iam.v2.accountMembers
+  - iam.v2.serviceAccounts
+  - iam.v2.actors
+- name: Cloud Providers
+  tags:
+  - aws.v2.marketplace
+- name: Compute Resources
+  tags:
+  - compute.v1.instanceTypes
+  - compute.v1.regions
+  - compute.v1.providers
+- name: Databases & Engines
+  tags:
+  - core.v1.databases
+  - core.v1.engines
+  - core.v1.engineRevisions
+  - core.v1.bindings
+- name: SQL Editor
+  tags:
+  - editor.v1.scripts

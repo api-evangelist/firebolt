@@ -65,48 +65,240 @@ apis:
   - type: SDKs
     title: Python SDK
     url: https://python-sdk.docs.firebolt.io/
-- aid: firebolt:firebolt-firebolt-rest-api-api
-  name: Firebolt REST API
-  description: The Firebolt REST API API from Firebolt — 1 operation(s) for firebolt rest api.
+- aid: firebolt:firebolt-auth-v1-api
+  name: Firebolt Auth.v1 API
+  description: The auth.v1 API from Firebolt — 3 operation(s) for auth.v1.
   humanURL: https://docs.firebolt.io/guides/run-queries/using-the-api
   baseURL: https://api.app.firebolt.io
   tags:
-  - Firebolt REST API
+  - auth.v1
   properties:
   - type: OpenAPI
-    url: openapi/firebolt-firebolt-rest-api-api-openapi.yml
-- aid: firebolt:firebolt-query-api
-  name: Firebolt Query API
-  description: The Query API from Firebolt — 1 operation(s) for query.
+    url: openapi/firebolt-auth-v1-api-openapi.yml
+- aid: firebolt:firebolt-aws-v2-credits-api
+  name: Firebolt Aws.v2.credits API
+  description: The aws.v2.credits API from Firebolt — 1 operation(s) for aws.v2.credits.
   humanURL: https://docs.firebolt.io/guides/run-queries/using-the-api
   baseURL: https://api.app.firebolt.io
   tags:
-  - Query
+  - aws.v2.credits
   properties:
   - type: OpenAPI
-    url: openapi/firebolt-query-api-openapi.yml
-- aid: firebolt:firebolt-web-api
-  name: Firebolt Web API
-  description: The Web API from Firebolt — 1 operation(s) for web.
+    url: openapi/firebolt-aws-v2-credits-api-openapi.yml
+- aid: firebolt:firebolt-aws-v2-instancetypes-api
+  name: Firebolt Aws.v2.instance Types API
+  description: The aws.v2.instanceTypes API from Firebolt — 2 operation(s) for aws.v2.instancetypes.
   humanURL: https://docs.firebolt.io/guides/run-queries/using-the-api
   baseURL: https://api.app.firebolt.io
   tags:
-  - Web
+  - aws.v2.instanceTypes
   properties:
   - type: OpenAPI
-    url: openapi/firebolt-web-api-openapi.yml
-- aid: firebolt:firebolt-oauth-api
-  name: Firebolt OAUTH API
-  description: The Oauth API from Firebolt — 1 operation(s) for oauth.
+    url: openapi/firebolt-aws-v2-instancetypes-api-openapi.yml
+- aid: firebolt:firebolt-aws-v2-marketplace-api
+  name: Firebolt Aws.v2.marketplace API
+  description: The aws.v2.marketplace API from Firebolt — 4 operation(s) for aws.v2.marketplace.
   humanURL: https://docs.firebolt.io/guides/run-queries/using-the-api
   baseURL: https://api.app.firebolt.io
   tags:
-  - Authentication
-  tags_raw:
-  - Oauth
+  - aws.v2.marketplace
   properties:
   - type: OpenAPI
-    url: openapi/firebolt-oauth-api-openapi.yml
+    url: openapi/firebolt-aws-v2-marketplace-api-openapi.yml
+- aid: firebolt:firebolt-aws-v2-tenants-api
+  name: Firebolt Aws.v2.tenants API
+  description: The aws.v2.tenants API from Firebolt — 1 operation(s) for aws.v2.tenants.
+  humanURL: https://docs.firebolt.io/guides/run-queries/using-the-api
+  baseURL: https://api.app.firebolt.io
+  tags:
+  - aws.v2.tenants
+  properties:
+  - type: OpenAPI
+    url: openapi/firebolt-aws-v2-tenants-api-openapi.yml
+- aid: firebolt:firebolt-compute-v1-instancetypes-api
+  name: Firebolt Compute.v1.instance Types API
+  description: >-
+    The compute.v1.instanceTypes API from Firebolt — 2 operation(s) for compute.v1.instancetypes.
+  humanURL: https://docs.firebolt.io/guides/run-queries/using-the-api
+  baseURL: https://api.app.firebolt.io
+  tags:
+  - compute.v1.instanceTypes
+  properties:
+  - type: OpenAPI
+    url: openapi/firebolt-compute-v1-instancetypes-api-openapi.yml
+- aid: firebolt:firebolt-compute-v1-providers-api
+  name: Firebolt Compute.v1.providers API
+  description: The compute.v1.providers API from Firebolt — 2 operation(s) for compute.v1.providers.
+  humanURL: https://docs.firebolt.io/guides/run-queries/using-the-api
+  baseURL: https://api.app.firebolt.io
+  tags:
+  - compute.v1.providers
+  properties:
+  - type: OpenAPI
+    url: openapi/firebolt-compute-v1-providers-api-openapi.yml
+- aid: firebolt:firebolt-compute-v1-regions-api
+  name: Firebolt Compute.v1.regions API
+  description: The compute.v1.regions API from Firebolt — 3 operation(s) for compute.v1.regions.
+  humanURL: https://docs.firebolt.io/guides/run-queries/using-the-api
+  baseURL: https://api.app.firebolt.io
+  tags:
+  - compute.v1.regions
+  properties:
+  - type: OpenAPI
+    url: openapi/firebolt-compute-v1-regions-api-openapi.yml
+- aid: firebolt:firebolt-core-v1-bindings-api
+  name: Firebolt Core.v1.bindings API
+  description: The core.v1.bindings API from Firebolt — 2 operation(s) for core.v1.bindings.
+  humanURL: https://docs.firebolt.io/guides/run-queries/using-the-api
+  baseURL: https://api.app.firebolt.io
+  tags:
+  - core.v1.bindings
+  properties:
+  - type: OpenAPI
+    url: openapi/firebolt-core-v1-bindings-api-openapi.yml
+- aid: firebolt:firebolt-core-v1-databases-api
+  name: Firebolt Core.v1.databases API
+  description: The core.v1.databases API from Firebolt — 3 operation(s) for core.v1.databases.
+  humanURL: https://docs.firebolt.io/guides/run-queries/using-the-api
+  baseURL: https://api.app.firebolt.io
+  tags:
+  - core.v1.databases
+  properties:
+  - type: OpenAPI
+    url: openapi/firebolt-core-v1-databases-api-openapi.yml
+- aid: firebolt:firebolt-core-v1-enginerevisions-api
+  name: Firebolt Core.v1.engine Revisions API
+  description: >-
+    The core.v1.engineRevisions API from Firebolt — 2 operation(s) for core.v1.enginerevisions.
+  humanURL: https://docs.firebolt.io/guides/run-queries/using-the-api
+  baseURL: https://api.app.firebolt.io
+  tags:
+  - core.v1.engineRevisions
+  properties:
+  - type: OpenAPI
+    url: openapi/firebolt-core-v1-enginerevisions-api-openapi.yml
+- aid: firebolt:firebolt-core-v1-engines-api
+  name: Firebolt Core.v1.engines API
+  description: The core.v1.engines API from Firebolt — 7 operation(s) for core.v1.engines.
+  humanURL: https://docs.firebolt.io/guides/run-queries/using-the-api
+  baseURL: https://api.app.firebolt.io
+  tags:
+  - core.v1.engines
+  properties:
+  - type: OpenAPI
+    url: openapi/firebolt-core-v1-engines-api-openapi.yml
+- aid: firebolt:firebolt-editor-v1-scripts-api
+  name: Firebolt Editor.v1.scripts API
+  description: The editor.v1.scripts API from Firebolt — 2 operation(s) for editor.v1.scripts.
+  humanURL: https://docs.firebolt.io/guides/run-queries/using-the-api
+  baseURL: https://api.app.firebolt.io
+  tags:
+  - editor.v1.scripts
+  properties:
+  - type: OpenAPI
+    url: openapi/firebolt-editor-v1-scripts-api-openapi.yml
+- aid: firebolt:firebolt-iam-v2-account-members-api
+  name: Firebolt Iam.v2.account Members API
+  description: >-
+    The iam.v2.account_members API from Firebolt — 3 operation(s) for iam.v2.account_members.
+  humanURL: https://docs.firebolt.io/guides/run-queries/using-the-api
+  baseURL: https://api.app.firebolt.io
+  tags:
+  - iam.v2.account_members
+  properties:
+  - type: OpenAPI
+    url: openapi/firebolt-iam-v2-account-members-api-openapi.yml
+- aid: firebolt:firebolt-iam-v2-accountmembers-api
+  name: Firebolt Iam.v2.account Members API
+  description: The iam.v2.accountMembers API from Firebolt — 8 operation(s) for iam.v2.accountmembers.
+  humanURL: https://docs.firebolt.io/guides/run-queries/using-the-api
+  baseURL: https://api.app.firebolt.io
+  tags:
+  - iam.v2.accountMembers
+  properties:
+  - type: OpenAPI
+    url: openapi/firebolt-iam-v2-accountmembers-api-openapi.yml
+- aid: firebolt:firebolt-iam-v2-accounts-api
+  name: Firebolt Iam.v2.accounts API
+  description: The iam.v2.accounts API from Firebolt — 2 operation(s) for iam.v2.accounts.
+  humanURL: https://docs.firebolt.io/guides/run-queries/using-the-api
+  baseURL: https://api.app.firebolt.io
+  tags:
+  - iam.v2.accounts
+  properties:
+  - type: OpenAPI
+    url: openapi/firebolt-iam-v2-accounts-api-openapi.yml
+- aid: firebolt:firebolt-iam-v2-actors-api
+  name: Firebolt Iam.v2.actors API
+  description: The iam.v2.actors API from Firebolt — 2 operation(s) for iam.v2.actors.
+  humanURL: https://docs.firebolt.io/guides/run-queries/using-the-api
+  baseURL: https://api.app.firebolt.io
+  tags:
+  - iam.v2.actors
+  properties:
+  - type: OpenAPI
+    url: openapi/firebolt-iam-v2-actors-api-openapi.yml
+- aid: firebolt:firebolt-iam-v2-databasegrants-api
+  name: Firebolt Iam.v2.database Grants API
+  description: The iam.v2.databaseGrants API from Firebolt — 3 operation(s) for iam.v2.databasegrants.
+  humanURL: https://docs.firebolt.io/guides/run-queries/using-the-api
+  baseURL: https://api.app.firebolt.io
+  tags:
+  - iam.v2.databaseGrants
+  properties:
+  - type: OpenAPI
+    url: openapi/firebolt-iam-v2-databasegrants-api-openapi.yml
+- aid: firebolt:firebolt-iam-v2-permissions-api
+  name: Firebolt Iam.v2.permissions API
+  description: The iam.v2.permissions API from Firebolt — 2 operation(s) for iam.v2.permissions.
+  humanURL: https://docs.firebolt.io/guides/run-queries/using-the-api
+  baseURL: https://api.app.firebolt.io
+  tags:
+  - iam.v2.permissions
+  properties:
+  - type: OpenAPI
+    url: openapi/firebolt-iam-v2-permissions-api-openapi.yml
+- aid: firebolt:firebolt-iam-v2-policies-api
+  name: Firebolt Iam.v2.policies API
+  description: The iam.v2.policies API from Firebolt — 3 operation(s) for iam.v2.policies.
+  humanURL: https://docs.firebolt.io/guides/run-queries/using-the-api
+  baseURL: https://api.app.firebolt.io
+  tags:
+  - iam.v2.policies
+  properties:
+  - type: OpenAPI
+    url: openapi/firebolt-iam-v2-policies-api-openapi.yml
+- aid: firebolt:firebolt-iam-v2-roles-api
+  name: Firebolt Iam.v2.roles API
+  description: The iam.v2.roles API from Firebolt — 3 operation(s) for iam.v2.roles.
+  humanURL: https://docs.firebolt.io/guides/run-queries/using-the-api
+  baseURL: https://api.app.firebolt.io
+  tags:
+  - iam.v2.roles
+  properties:
+  - type: OpenAPI
+    url: openapi/firebolt-iam-v2-roles-api-openapi.yml
+- aid: firebolt:firebolt-iam-v2-serviceaccounts-api
+  name: Firebolt Iam.v2.service Accounts API
+  description: >-
+    The iam.v2.serviceAccounts API from Firebolt — 4 operation(s) for iam.v2.serviceaccounts.
+  humanURL: https://docs.firebolt.io/guides/run-queries/using-the-api
+  baseURL: https://api.app.firebolt.io
+  tags:
+  - iam.v2.serviceAccounts
+  properties:
+  - type: OpenAPI
+    url: openapi/firebolt-iam-v2-serviceaccounts-api-openapi.yml
+- aid: firebolt:firebolt-iam-v2-users-api
+  name: Firebolt Iam.v2.users API
+  description: The iam.v2.users API from Firebolt — 8 operation(s) for iam.v2.users.
+  humanURL: https://docs.firebolt.io/guides/run-queries/using-the-api
+  baseURL: https://api.app.firebolt.io
+  tags:
+  - iam.v2.users
+  properties:
+  - type: OpenAPI
+    url: openapi/firebolt-iam-v2-users-api-openapi.yml
 common:
 - type: AgenticAccess
   url: agentic-access/firebolt-agentic-access.yml

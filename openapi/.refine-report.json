@@ -1,34 +1,43 @@
 {
   "provider": "firebolt",
   "sources": [
-    "_original/firebolt-openapi.yml"
+    "_original/firebolt-openapi.json"
   ],
   "outputs": [
-    "firebolt-firebolt-rest-api-api-openapi.yml",
-    "firebolt-oauth-api-openapi.yml",
-    "firebolt-query-api-openapi.yml",
-    "firebolt-web-api-openapi.yml"
+    "firebolt-auth-v1-api-openapi.yml",
+    "firebolt-aws-v2-credits-api-openapi.yml",
+    "firebolt-aws-v2-instancetypes-api-openapi.yml",
+    "firebolt-aws-v2-marketplace-api-openapi.yml",
+    "firebolt-aws-v2-tenants-api-openapi.yml",
+    "firebolt-compute-v1-instancetypes-api-openapi.yml",
+    "firebolt-compute-v1-providers-api-openapi.yml",
+    "firebolt-compute-v1-regions-api-openapi.yml",
+    "firebolt-core-v1-bindings-api-openapi.yml",
+    "firebolt-core-v1-databases-api-openapi.yml",
+    "firebolt-core-v1-enginerevisions-api-openapi.yml",
+    "firebolt-core-v1-engines-api-openapi.yml",
+    "firebolt-editor-v1-scripts-api-openapi.yml",
+    "firebolt-iam-v2-accountmembers-api-openapi.yml",
+    "firebolt-iam-v2-account-members-api-openapi.yml",
+    "firebolt-iam-v2-accounts-api-openapi.yml",
+    "firebolt-iam-v2-actors-api-openapi.yml",
+    "firebolt-iam-v2-databasegrants-api-openapi.yml",
+    "firebolt-iam-v2-permissions-api-openapi.yml",
+    "firebolt-iam-v2-policies-api-openapi.yml",
+    "firebolt-iam-v2-roles-api-openapi.yml",
+    "firebolt-iam-v2-serviceaccounts-api-openapi.yml",
+    "firebolt-iam-v2-users-api-openapi.yml"
   ],
   "archived": [],
   "errors": [],
   "warnings": [],
   "notes": [
     "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
-    "firebolt-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "firebolt-openapi.yml: tagged paths POST /oauth/token -> Oauth",
-    "firebolt-openapi.yml: tagged paths GET /web/v3/account/{account_name}/engineUrl -> Web",
-    "firebolt-openapi.yml: tagged paths POST / -> Firebolt REST API",
-    "firebolt-openapi.yml: tagged paths POST /query -> Query",
-    "firebolt-openapi.yml: declared missing tag: Firebolt REST API",
-    "firebolt-openapi.yml: declared missing tag: Oauth",
-    "firebolt-openapi.yml: declared missing tag: Query",
-    "firebolt-openapi.yml: declared missing tag: Web",
-    "apis.yml register: already-registered"
+    "firebolt-openapi.json: upgraded swagger 2.0 -> OpenAPI 3.2.0",
+    "firebolt-openapi.json: declared missing tag: aws.v2.credits",
+    "firebolt-openapi.json: declared missing tag: aws.v2.instanceTypes",
+    "firebolt-openapi.json: declared missing tag: iam.v2.account_members",
+    "apis.yml register: written (+23 apis, 24 total)"
   ],
-  "skipped": [
-    "firebolt-firebolt-rest-api-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "firebolt-oauth-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "firebolt-query-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "firebolt-web-api-openapi.yml: previously refined output, superseded by openapi/_original/"
-  ]
+  "skipped": []
 }

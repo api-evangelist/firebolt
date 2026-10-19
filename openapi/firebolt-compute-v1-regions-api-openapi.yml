@@ -1,0 +1,296 @@
+openapi: 3.2.0
+info:
+  title: Firebolt Compute.v1.regions API
+  version: 1.0.0
+  x-logo:
+    altText: Firebolt
+    backgroundColor: '#FFFFFF'
+    url: https://assets.website-files.com/5e8a264ceaf4870394477fc7/5e8a264ceaf4879f75477fdd_logo_website.svg
+tags:
+- name: compute.v1.regions
+  x-displayName: Regions
+paths:
+  /compute/v1/account/regions:getDefault:
+    get:
+      tags:
+      - compute.v1.regions
+      summary: GetDefaultAccountRegion returns the default region for the asking member's…
+      operationId: computeV1GetDefaultAccountRegion
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/firebolt.compute.v1.GetDefaultAccountRegionResponse'
+        default:
+          description: An unexpected error response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/grpc.gateway.runtime.Error'
+  /compute/v1/providers/{provider_id}/regions/{region_id}:
+    get:
+      tags:
+      - compute.v1.regions
+      summary: GetRegion returns a region by it's ID
+      operationId: computeV1GetRegion
+      parameters:
+      - description: Required. ID of the parent provider.
+        name: provider_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - description: Required. ID of the region.
+        name: region_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/firebolt.compute.v1.GetRegionResponse'
+        default:
+          description: An unexpected error response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/grpc.gateway.runtime.Error'
+  /compute/v1/regions:
+    get:
+      tags:
+      - compute.v1.regions
+      summary: Returns a list of supported cloud provider regions
+      operationId: computeV1ListRegions
+      parameters:
+      - description: 'The `first` parameter indicates the number of results that the client would like to see in the response when
+
+          `after` is set or neither `after` or `before` is set.
+
+
+          Default: 25.'
+        name: page.first
+        in: query
+        schema:
+          type: integer
+          format: int32
+      - description: 'When `after` is provided, the returned paginated data will have as its first item the item that is
+
+          immediately after the cursor in the results list. (An exception is that, if there are no items in the results list
+
+          that fall after the cursor, the returned paginated data will be an empty array.).'
+        name: page.after
+        in: query
+        schema:
+          type: string
+      - description: 'The `last` parameter indicates the number of results that the client would like to see in the response
+
+          when `before` is set.
+
+
+          Default: 25.'
+        name: page.last
+        in: query
+        schema:
+          type: integer
+          format: int32
+      - description: 'When `before` is provided, the last item returned in the paginated data will be the item that is closest to,
+
+          but still before, the cursor in the unpaginated results list. (Analogous to the above, if there are no items in the
+
+          results list that fall before the cursor, the returned paginated data will be an empty array.).'
+        name: page.before
+        in: query
+        schema:
+          type: string
+      - description: Value should be equal.
+        name: filter.id_provider_id_eq
+        in: query
+        schema:
+          type: string
+      - description: Value should be equal.
+        name: filter.name_eq
+        in: query
+        schema:
+          type: string
+      - description: Only show regions that are enabled for account with ID given.
+        name: filter.enabled_for_account_id
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/firebolt.compute.v1.ListRegionsResponse'
+        default:
+          description: An unexpected error response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/grpc.gateway.runtime.Error'
+components:
+  schemas:
+    grpc.gateway.runtime.Error:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/google.protobuf.Any'
+        error:
+          type: string
+        message:
+          type: string
+    firebolt.shared.v1.PageDescriptor:
+      description: PageDescriptor represents pagination information in collection response.
+      type: object
+      properties:
+        has_next_page:
+          description: Whether next page is available.
+          type: boolean
+          format: boolean
+        has_previous_page:
+          description: Whether previous page is available.
+          type: boolean
+          format: boolean
+        page_size:
+          description: Number of items returned at this page.
+          type: integer
+          format: int64
+        total_size:
+          description: Total number of items matching the query.
+          type: integer
+          format: int64
+    firebolt.compute.v1.Region:
+      description: Region represents a region in the cloud provider that can be used by Firebolt.
+      type: object
+      properties:
+        create_time:
+          description: Output only. Time when this record was created.
+          type: string
+          format: date-time
+          readOnly: true
+        display_name:
+          description: 'Required. Name that should be displayed to the user.
+
+
+            Length: 1-255.'
+          type: string
+          maxLength: 255
+          minLength: 1
+        id:
+          description: Output only. Unique record ID.
+          $ref: '#/components/schemas/firebolt.compute.v1.RegionID'
+          readOnly: true
+        last_update_time:
+          description: Output only. Time when this record was last updated.
+          type: string
+          format: date-time
+          readOnly: true
+        name:
+          description: 'Required. Name of the region as used by cloud provider.
+
+
+            Unique within provider.
+
+            Length: 1-255.'
+          type: string
+          maxLength: 255
+          minLength: 1
+    firebolt.compute.v1.ListRegionsResponse:
+      type: object
+      properties:
+        edges:
+          description: List of found records.
+          type: array
+          items:
+            $ref: '#/components/schemas/firebolt.compute.v1.RegionEdge'
+        page:
+          description: Page descriptor.
+          $ref: '#/components/schemas/firebolt.shared.v1.PageDescriptor'
+    firebolt.compute.v1.GetRegionResponse:
+      type: object
+      properties:
+        region:
+          description: Retrieved record.
+          $ref: '#/components/schemas/firebolt.compute.v1.Region'
+    firebolt.compute.v1.RegionEdge:
+      description: RegionEdge represents a single record in paginated list.
+      type: object
+      properties:
+        cursor:
+          description: Pagination cursor for this node.
+          type: string
+        node:
+          description: Node instance.
+          $ref: '#/components/schemas/firebolt.compute.v1.Region'
+    google.protobuf.Any:
+      description: "`Any` contains an arbitrary serialized protocol buffer message along with a\nURL that describes the type of the serialized message.\n\nProtobuf library provides support to pack/unpack Any values in the form\nof utility functions or additional generated methods of the Any type.\n\nExample 1: Pack and unpack a message in C++.\n\n    Foo foo = ...;\n    Any any;\n    any.PackFrom(foo);\n    ...\n    if (any.UnpackTo(&foo)) {\n      ...\n    }\n\nExample 2: Pack and unpack a message in Java.\n\n    Foo foo = ...;\n    Any any = Any.pack(foo);\n    ...\n    if (any.is(Foo.class)) {\n      foo = any.unpack(Foo.class);\n    }\n\n Example 3: Pack and unpack a message in Python.\n\n    foo = Foo(...)\n    any = Any()\n    any.Pack(foo)\n    ...\n    if any.Is(Foo.DESCRIPTOR):\n      any.Unpack(foo)\n      ...\n\n Example 4: Pack and unpack a message in Go\n\n     foo := &pb.Foo{...}\n     any, err := ptypes.MarshalAny(foo)\n     ...\n     foo := &pb.Foo{}\n     if err := ptypes.UnmarshalAny(any, foo); err != nil {\n       ...\n     }\n\nThe pack methods provided by protobuf library will by default use\n'type.googleapis.com/full.type.name' as the type URL and the unpack\nmethods only use the fully qualified type name after the last '/'\nin the type URL, for example \"foo.bar.com/x/y.z\" will yield type\nname \"y.z\".\n\n\nJSON\n====\nThe JSON representation of an `Any` value uses the regular\nrepresentation of the deserialized, embedded message, with an\nadditional field `@type` which contains the type URL. Example:\n\n    package google.profile;\n    message Person {\n      string first_name = 1;\n      string last_name = 2;\n    }\n\n    {\n      \"@type\": \"type.googleapis.com/google.profile.Person\",\n      \"firstName\": <string>,\n      \"lastName\": <string>\n    }\n\nIf the embedded message type is well-known and has a custom JSON\nrepresentation, that representation will be embedded adding a field\n`value` which holds the custom JSON in addition to the `@type`\nfield. Example (for message [google.protobuf.Duration][]):\n\n    {\n      \"@type\": \"type.googleapis.com/google.protobuf.Duration\",\n      \"value\": \"1.212s\"\n    }"
+      type: object
+      properties:
+        type_url:
+          description: "A URL/resource name that uniquely identifies the type of the serialized\nprotocol buffer message. This string must contain at least\none \"/\" character. The last segment of the URL's path must represent\nthe fully qualified name of the type (as in\n`path/google.protobuf.Duration`). The name should be in a canonical form\n(e.g., leading \".\" is not accepted).\n\nIn practice, teams usually precompile into the binary all types that they\nexpect it to use in the context of Any. However, for URLs which use the\nscheme `http`, `https`, or no scheme, one can optionally set up a type\nserver that maps type URLs to message definitions as follows:\n\n* If no scheme is provided, `https` is assumed.\n* An HTTP GET on the URL must yield a [google.protobuf.Type][]\n  value in binary format, or produce an error.\n* Applications are allowed to cache lookup results based on the\n  URL, or have them precompiled into a binary to avoid any\n  lookup. Therefore, binary compatibility needs to be preserved\n  on changes to types. (Use versioned type names to manage\n  breaking changes.)\n\nNote: this functionality is not currently available in the official\nprotobuf release, and it is not used for type URLs beginning with\ntype.googleapis.com.\n\nSchemes other than `http`, `https` (or the empty scheme) might be\nused with implementation specific semantics."
+          type: string
+        value:
+          description: Must be a valid serialized protocol buffer of the above specified type.
+          type: string
+          format: byte
+    firebolt.compute.v1.RegionID:
+      description: RegionID represents unique identifier of the record.
+      type: object
+      properties:
+        provider_id:
+          description: Required. ID of the provider this record belongs to.
+          type: string
+        region_id:
+          description: Required. Record ID.
+          type: string
+    firebolt.compute.v1.GetDefaultAccountRegionResponse:
+      type: object
+      properties:
+        region:
+          description: Retrieved record.
+          $ref: '#/components/schemas/firebolt.compute.v1.Region'
+x-tagGroups:
+- name: Getting Started
+  tags:
+  - auth.v1
+- name: Identity & Access Management
+  tags:
+  - iam.v2.roles
+  - iam.v2.permissions
+  - iam.v2.policies
+  - iam.v2.databaseGrants
+  - iam.v2.accounts
+  - iam.v2.users
+  - iam.v2.accountMembers
+  - iam.v2.serviceAccounts
+  - iam.v2.actors
+- name: Cloud Providers
+  tags:
+  - aws.v2.marketplace
+- name: Compute Resources
+  tags:
+  - compute.v1.instanceTypes
+  - compute.v1.regions
+  - compute.v1.providers
+- name: Databases & Engines
+  tags:
+  - core.v1.databases
+  - core.v1.engines
+  - core.v1.engineRevisions
+  - core.v1.bindings
+- name: SQL Editor
+  tags:
+  - editor.v1.scripts

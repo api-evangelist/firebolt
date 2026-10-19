@@ -1,0 +1,492 @@
+openapi: 3.2.0
+info:
+  title: Firebolt Iam.v2.users API
+  version: 1.0.0
+  x-logo:
+    altText: Firebolt
+    backgroundColor: '#FFFFFF'
+    url: https://assets.website-files.com/5e8a264ceaf4870394477fc7/5e8a264ceaf4879f75477fdd_logo_website.svg
+tags:
+- name: iam.v2.users
+  x-displayName: Users
+paths:
+  /iam/v2/user:
+    get:
+      tags:
+      - iam.v2.users
+      summary: Retrieves user by it's ID
+      operationId: iamV2GetUser
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/firebolt.iam.v2.GetUserResponse'
+        default:
+          description: An unexpected error response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/grpc.gateway.runtime.Error'
+    patch:
+      tags:
+      - iam.v2.users
+      summary: Updates user by it's ID
+      operationId: iamV2UpdateUser
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/firebolt.iam.v2.UpdateUserResponse'
+        default:
+          description: An unexpected error response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/grpc.gateway.runtime.Error'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/firebolt.iam.v2.UpdateUserRequest'
+        required: true
+  /iam/v2/user:getUiState:
+    get:
+      tags:
+      - iam.v2.users
+      summary: Retrieves user state by it's ID
+      operationId: iamV2GetUserUiState
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/firebolt.iam.v2.GetUserUiStateResponse'
+        default:
+          description: An unexpected error response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/grpc.gateway.runtime.Error'
+  /iam/v2/user:setUiState:
+    post:
+      tags:
+      - iam.v2.users
+      summary: Updates user state by it's ID
+      operationId: iamV2SetUserUiState
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/firebolt.iam.v2.SetUserUiStateResponse'
+        default:
+          description: An unexpected error response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/grpc.gateway.runtime.Error'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: string
+        description: Data to set.
+        required: true
+  /iam/v2/users:
+    post:
+      security: []
+      tags:
+      - iam.v2.users
+      summary: Creates a new user record (aka user registration). No authentication required
+      operationId: iamV2CreateUser
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/firebolt.iam.v2.CreateUserResponse'
+        default:
+          description: An unexpected error response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/grpc.gateway.runtime.Error'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/firebolt.iam.v2.User'
+        description: Record to create.
+        required: true
+  /iam/v2/users:createFromInvite:
+    post:
+      security: []
+      tags:
+      - iam.v2.users
+      summary: Updates user record that was invited, adds him to Auth0 and changes membership…
+      operationId: iamV2CreateUserFromInvite
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/firebolt.iam.v2.CreateUserFromInviteResponse'
+        default:
+          description: An unexpected error response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/grpc.gateway.runtime.Error'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/firebolt.iam.v2.CreateUserFromInviteRequest'
+        required: true
+  /iam/v2/users:finishPasswordReset:
+    post:
+      tags:
+      - iam.v2.users
+      summary: Resets user password with a help of previously retrieved confirmation token
+      operationId: iamV2FinishUserPasswordReset
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/firebolt.iam.v2.FinishUserPasswordResetResponse'
+        default:
+          description: An unexpected error response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/grpc.gateway.runtime.Error'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/firebolt.iam.v2.FinishUserPasswordResetRequest'
+        required: true
+  /iam/v2/users:reSendVerificationEmail:
+    post:
+      tags:
+      - iam.v2.users
+      summary: Re sends verification email sent upon registration
+      operationId: iamV2ReSendVerificationEmail
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/firebolt.iam.v2.ReSendVerificationEmailResponse'
+        default:
+          description: An unexpected error response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/grpc.gateway.runtime.Error'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/firebolt.iam.v2.ReSendVerificationEmailRequest'
+        required: true
+  /iam/v2/users:startPasswordReset:
+    post:
+      tags:
+      - iam.v2.users
+      summary: Sends an email with password reset instructions
+      operationId: iamV2StartUserPasswordReset
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/firebolt.iam.v2.StartUserPasswordResetResponse'
+        default:
+          description: An unexpected error response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/grpc.gateway.runtime.Error'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/firebolt.iam.v2.StartUserPasswordResetRequest'
+        required: true
+components:
+  schemas:
+    firebolt.iam.v2.FinishUserPasswordResetResponse:
+      type: object
+    grpc.gateway.runtime.Error:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/google.protobuf.Any'
+        error:
+          type: string
+        message:
+          type: string
+    firebolt.iam.v2.SetUserUiStateResponse:
+      type: object
+      properties:
+        user_ui_state:
+          description: Retrieved record.
+          $ref: '#/components/schemas/firebolt.iam.v2.UserUIState'
+    firebolt.iam.v2.UpdateUserRequest:
+      type: object
+      properties:
+        update_mask:
+          description: The update mask applies to the resource.
+          $ref: '#/components/schemas/google.protobuf.FieldMask'
+        user:
+          description: Data to update.
+          $ref: '#/components/schemas/firebolt.iam.v2.User'
+    firebolt.iam.v2.User:
+      description: User represents an individual user that can authenticate to Firebolt.
+      type: object
+      properties:
+        auth0_id:
+          description: Output only. ID of the user in Auth0.
+          type: string
+          readOnly: true
+        company_name:
+          description: Optional. Name of the company this user works for.
+          type: string
+          maxLength: 255
+        create_time:
+          description: Output only. Time when this record was created.
+          type: string
+          format: date-time
+          readOnly: true
+        display_name:
+          description: Optional. Short name of the person.
+          type: string
+          maxLength: 64
+        email:
+          description: Email address. Will be used as a login credential for userCreate. Not used in userUpdate.
+          type: string
+        first_name:
+          description: Required. First name of the person.
+          type: string
+          maxLength: 64
+          minLength: 1
+        id:
+          description: Output only. Unique record ID.
+          type: string
+          readOnly: true
+        iid:
+          description: 'Output only. Record ID (integer).
+
+
+            Note. This field will be removed when we will finish migration to the new APIs.
+
+            Use `id` instead if possible.'
+          type: string
+          format: uint64
+          readOnly: true
+        ip_allow_list:
+          description: Optional. IP allow list (Auth0).
+          type: array
+          items:
+            type: string
+        ip_deny_list:
+          description: Optional. IP deny list (Auth0).
+          type: array
+          items:
+            type: string
+        job_title:
+          description: Optional. Job position title.
+          type: string
+          maxLength: 255
+        last_name:
+          description: Required. Last name of the person.
+          type: string
+          maxLength: 64
+          minLength: 1
+        last_update_time:
+          description: Output only. Time when this record was last updated.
+          type: string
+          format: date-time
+          readOnly: true
+        mfa_enabled:
+          description: Output only. Is MFA enabled for this user (Auth0).
+          type: boolean
+          format: boolean
+          readOnly: true
+        password:
+          description: Required. Input Only. Password.
+          type: string
+          maxLength: 64
+          minLength: 6
+        phone_number:
+          description: Optional. Contact phone number.
+          type: string
+          maxLength: 64
+        status:
+          description: Output only. Current user status.
+          $ref: '#/components/schemas/firebolt.iam.v2.UserStatus'
+          readOnly: true
+    firebolt.iam.v2.CreateUserFromInviteRequest:
+      type: object
+      properties:
+        token:
+          description: Token value for validation.
+          type: string
+          minLength: 1
+        user:
+          description: Record to create.
+          $ref: '#/components/schemas/firebolt.iam.v2.User'
+    firebolt.iam.v2.FinishUserPasswordResetRequest:
+      type: object
+      properties:
+        new_password:
+          description: Required. New password.
+          type: string
+          maxLength: 64
+          minLength: 6
+        token:
+          description: Required. Confirmation token.
+          type: string
+          minLength: 1
+    firebolt.iam.v2.UpdateUserResponse:
+      type: object
+      properties:
+        user:
+          description: Updated record.
+          $ref: '#/components/schemas/firebolt.iam.v2.User'
+    firebolt.iam.v2.StartUserPasswordResetResponse:
+      type: object
+    firebolt.iam.v2.CreateUserResponse:
+      type: object
+      properties:
+        user:
+          description: Created record.
+          $ref: '#/components/schemas/firebolt.iam.v2.User'
+    google.protobuf.FieldMask:
+      description: "paths: \"f.a\"\n    paths: \"f.b.d\"\n\nHere `f` represents a field in some root message, `a` and `b`\nfields in the message found in `f`, and `d` a field found in the\nmessage in `f.b`.\n\nField masks are used to specify a subset of fields that should be\nreturned by a get operation or modified by an update operation.\nField masks also have a custom JSON encoding (see below).\n\n# Field Masks in Projections\n\nWhen used in the context of a projection, a response message or\nsub-message is filtered by the API to only contain those fields as\nspecified in the mask. For example, if the mask in the previous\nexample is applied to a response message as follows:\n\n    f {\n      a : 22\n      b {\n        d : 1\n        x : 2\n      }\n      y : 13\n    }\n    z: 8\n\nThe result will not contain specific values for fields x,y and z\n(their value will be set to the default, and omitted in proto text\noutput):\n\n\n    f {\n      a : 22\n      b {\n        d : 1\n      }\n    }\n\nA repeated field is not allowed except at the last position of a\npaths string.\n\nIf a FieldMask object is not present in a get operation, the\noperation applies to all fields (as if a FieldMask of all fields\nhad been specified).\n\nNote that a field mask does not necessarily apply to the\ntop-level response message. In case of a REST get operation, the\nfield mask applies directly to the response, but in case of a REST\nlist operation, the mask instead applies to each individual message\nin the returned resource list. In case of a REST custom method,\nother definitions may be used. Where the mask applies will be\nclearly documented together with its declaration in the API.  In\nany case, the effect on the returned resource/resources is required\nbehavior for APIs.\n\n# Field Masks in Update Operations\n\nA field mask in update operations specifies which fields of the\ntargeted resource are going to be updated. The API is required\nto only change the values of the fields as specified in the mask\nand leave the others untouched. If a resource is passed in to\ndescribe the updated values, the API ignores the values of all\nfields not covered by the mask.\n\nIf a repeated field is specified for an update operation, new values will\nbe appended to the existing repeated field in the target resource. Note that\na repeated field is only allowed in the last position of a `paths` string.\n\nIf a sub-message is specified in the last position of the field mask for an\nupdate operation, then new value will be merged into the existing sub-message\nin the target resource.\n\nFor example, given the target message:\n\n    f {\n      b {\n        d: 1\n        x: 2\n      }\n      c: [1]\n    }\n\nAnd an update message:\n\n    f {\n      b {\n        d: 10\n      }\n      c: [2]\n    }\n\nthen if the field mask is:\n\n paths: [\"f.b\", \"f.c\"]\n\nthen the result will be:\n\n    f {\n      b {\n        d: 10\n        x: 2\n      }\n      c: [1, 2]\n    }\n\nAn implementation may provide options to override this default behavior for\nrepeated and message fields.\n\nIn order to reset a field's value to the default, the field must\nbe in the mask and set to the default value in the provided resource.\nHence, in order to reset all fields of a resource, provide a default\ninstance of the resource and set all fields in the mask, or do\nnot provide a mask as described below.\n\nIf a field mask is not present on update, the operation applies to\nall fields (as if a field mask of all fields has been specified).\nNote that in the presence of schema evolution, this may mean that\nfields the client does not know and has therefore not filled into\nthe request will be reset to their default. If this is unwanted\nbehavior, a specific service may require a client to always specify\na field mask, producing an error if not.\n\nAs with get operations, the location of the resource which\ndescribes the updated values in the request message depends on the\noperation kind. In any case, the effect of the field mask is\nrequired to be honored by the API.\n\n## Considerations for HTTP REST\n\nThe HTTP kind of an update operation which uses a field mask must\nbe set to PATCH instead of PUT in order to satisfy HTTP semantics\n(PUT must only be used for full updates).\n\n# JSON Encoding of Field Masks\n\nIn JSON, a field mask is encoded as a single string where paths are\nseparated by a comma. Fields name in each path are converted\nto/from lower-camel naming conventions.\n\nAs an example, consider the following message declarations:\n\n    message Profile {\n      User user = 1;\n      Photo photo = 2;\n    }\n    message User {\n      string display_name = 1;\n      string address = 2;\n    }\n\nIn proto a field mask for `Profile` may look as such:\n\n    mask {\n      paths: \"user.display_name\"\n      paths: \"photo\"\n    }\n\nIn JSON, the same mask is represented as below:\n\n    {\n      mask: \"user.displayName,photo\"\n    }\n\n# Field Masks and Oneof Fields\n\nField masks treat fields in oneofs just as regular fields. Consider the\nfollowing message:\n\n    message SampleMessage {\n      oneof test_oneof {\n        string name = 4;\n        SubMessage sub_message = 9;\n      }\n    }\n\nThe field mask can be:\n\n    mask {\n      paths: \"name\"\n    }\n\nOr:\n\n    mask {\n      paths: \"sub_message\"\n    }\n\nNote that oneof type names (\"test_oneof\" in this case) cannot be used in\npaths.\n\n## Field Mask Verification\n\nThe implementation of any API method which has a FieldMask type field in the\nrequest should verify the included field paths, and return an\n`INVALID_ARGUMENT` error if any path is unmappable."
+      type: object
+      title: '`FieldMask` represents a set of symbolic field paths, for example:'
+      properties:
+        paths:
+          description: The set of field mask paths.
+          type: array
+          items:
+            type: string
+    firebolt.iam.v2.CreateUserFromInviteResponse:
+      type: object
+      properties:
+        user:
+          description: Updated record.
+          $ref: '#/components/schemas/firebolt.iam.v2.User'
+    firebolt.iam.v2.ReSendVerificationEmailResponse:
+      type: object
+    firebolt.iam.v2.UserUIState:
+      description: UserUIState represents an arbitrary information that stores the latest UI state for the user.
+      type: object
+      properties:
+        data:
+          description: Required. UI state data.
+          type: string
+          minLength: 1
+        id:
+          description: Required. Unique record ID. Equals to user ID.
+          type: string
+        last_update_time:
+          description: Output only. Time when this record was last updated.
+          type: string
+          format: date-time
+          readOnly: true
+    firebolt.iam.v2.GetUserResponse:
+      type: object
+      properties:
+        user:
+          description: Retrieved record.
+          $ref: '#/components/schemas/firebolt.iam.v2.User'
+    firebolt.iam.v2.GetUserUiStateResponse:
+      type: object
+      properties:
+        user_ui_state:
+          description: Retrieved record.
+          $ref: '#/components/schemas/firebolt.iam.v2.UserUIState'
+    firebolt.iam.v2.UserStatus:
+      description: "UserStatus represents an activity status of the user.\n\n - USER_STATUS_ACTIVE: User is allowed to authenticate.\n - USER_STATUS_BLOCKED: User is not allowed to authenticate.\n - USER_STATUS_DELETED: User is removed. No further activities are allowed."
+      type: string
+      default: USER_STATUS_UNSPECIFIED
+      enum:
+      - USER_STATUS_UNSPECIFIED
+      - USER_STATUS_ACTIVE
+      - USER_STATUS_BLOCKED
+      - USER_STATUS_DELETED
+    google.protobuf.Any:
+      description: "`Any` contains an arbitrary serialized protocol buffer message along with a\nURL that describes the type of the serialized message.\n\nProtobuf library provides support to pack/unpack Any values in the form\nof utility functions or additional generated methods of the Any type.\n\nExample 1: Pack and unpack a message in C++.\n\n    Foo foo = ...;\n    Any any;\n    any.PackFrom(foo);\n    ...\n    if (any.UnpackTo(&foo)) {\n      ...\n    }\n\nExample 2: Pack and unpack a message in Java.\n\n    Foo foo = ...;\n    Any any = Any.pack(foo);\n    ...\n    if (any.is(Foo.class)) {\n      foo = any.unpack(Foo.class);\n    }\n\n Example 3: Pack and unpack a message in Python.\n\n    foo = Foo(...)\n    any = Any()\n    any.Pack(foo)\n    ...\n    if any.Is(Foo.DESCRIPTOR):\n      any.Unpack(foo)\n      ...\n\n Example 4: Pack and unpack a message in Go\n\n     foo := &pb.Foo{...}\n     any, err := ptypes.MarshalAny(foo)\n     ...\n     foo := &pb.Foo{}\n     if err := ptypes.UnmarshalAny(any, foo); err != nil {\n       ...\n     }\n\nThe pack methods provided by protobuf library will by default use\n'type.googleapis.com/full.type.name' as the type URL and the unpack\nmethods only use the fully qualified type name after the last '/'\nin the type URL, for example \"foo.bar.com/x/y.z\" will yield type\nname \"y.z\".\n\n\nJSON\n====\nThe JSON representation of an `Any` value uses the regular\nrepresentation of the deserialized, embedded message, with an\nadditional field `@type` which contains the type URL. Example:\n\n    package google.profile;\n    message Person {\n      string first_name = 1;\n      string last_name = 2;\n    }\n\n    {\n      \"@type\": \"type.googleapis.com/google.profile.Person\",\n      \"firstName\": <string>,\n      \"lastName\": <string>\n    }\n\nIf the embedded message type is well-known and has a custom JSON\nrepresentation, that representation will be embedded adding a field\n`value` which holds the custom JSON in addition to the `@type`\nfield. Example (for message [google.protobuf.Duration][]):\n\n    {\n      \"@type\": \"type.googleapis.com/google.protobuf.Duration\",\n      \"value\": \"1.212s\"\n    }"
+      type: object
+      properties:
+        type_url:
+          description: "A URL/resource name that uniquely identifies the type of the serialized\nprotocol buffer message. This string must contain at least\none \"/\" character. The last segment of the URL's path must represent\nthe fully qualified name of the type (as in\n`path/google.protobuf.Duration`). The name should be in a canonical form\n(e.g., leading \".\" is not accepted).\n\nIn practice, teams usually precompile into the binary all types that they\nexpect it to use in the context of Any. However, for URLs which use the\nscheme `http`, `https`, or no scheme, one can optionally set up a type\nserver that maps type URLs to message definitions as follows:\n\n* If no scheme is provided, `https` is assumed.\n* An HTTP GET on the URL must yield a [google.protobuf.Type][]\n  value in binary format, or produce an error.\n* Applications are allowed to cache lookup results based on the\n  URL, or have them precompiled into a binary to avoid any\n  lookup. Therefore, binary compatibility needs to be preserved\n  on changes to types. (Use versioned type names to manage\n  breaking changes.)\n\nNote: this functionality is not currently available in the official\nprotobuf release, and it is not used for type URLs beginning with\ntype.googleapis.com.\n\nSchemes other than `http`, `https` (or the empty scheme) might be\nused with implementation specific semantics."
+          type: string
+        value:
+          description: Must be a valid serialized protocol buffer of the above specified type.
+          type: string
+          format: byte
+    firebolt.iam.v2.ReSendVerificationEmailRequest:
+      type: object
+      properties:
+        email:
+          description: Required. User email.
+          type: string
+    firebolt.iam.v2.StartUserPasswordResetRequest:
+      type: object
+      properties:
+        email:
+          description: Required. User email.
+          type: string
+x-tagGroups:
+- name: Getting Started
+  tags:
+  - auth.v1
+- name: Identity & Access Management
+  tags:
+  - iam.v2.roles
+  - iam.v2.permissions
+  - iam.v2.policies
+  - iam.v2.databaseGrants
+  - iam.v2.accounts
+  - iam.v2.users
+  - iam.v2.accountMembers
+  - iam.v2.serviceAccounts
+  - iam.v2.actors
+- name: Cloud Providers
+  tags:
+  - aws.v2.marketplace
+- name: Compute Resources
+  tags:
+  - compute.v1.instanceTypes
+  - compute.v1.regions
+  - compute.v1.providers
+- name: Databases & Engines
+  tags:
+  - core.v1.databases
+  - core.v1.engines
+  - core.v1.engineRevisions
+  - core.v1.bindings
+- name: SQL Editor
+  tags:
+  - editor.v1.scripts
