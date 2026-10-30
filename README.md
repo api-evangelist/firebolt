@@ -1,4 +1,4 @@
-# Firebolt (firebolt)
+# Firebolt
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,57 +66,133 @@
 
 Firebolt is a cloud data warehouse with elastic engines and consumption-based pricing. It exposes a REST API for issuing SQL queries and managing engines/databases, plus language SDKs (Python, Node.js, Java, .NET) and an OAuth service-account flow.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/firebolt/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/firebolt/refs/heads/main/apis.yml)
+**Areas:** Data Warehouse · Cloud · SQL · Analytics
 
-## Tags
+## Firebolt on APIs.io
 
-- Data Warehouse
-- Cloud
-- SQL
-- Analytics
+Everything profiled for Firebolt is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/firebolt/](https://apis.io/providers/firebolt/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (5)
 
-- **Created:** 2026-05-08
-- **Modified:** 2026-05-08
+- [Firebolt REST API](https://apis.io/apis/firebolt/firebolt-rest-api/) — The Firebolt REST API issues SQL queries against running engines and manages account, engine, and database resources. Authentication is OAuth 2.0…
+- [Firebolt REST API](https://apis.io/apis/firebolt/firebolt-firebolt-rest-api-api/) — The Firebolt REST API API from Firebolt — 1 operation(s) for firebolt rest api.
+- [Firebolt Query API](https://apis.io/apis/firebolt/firebolt-query-api/) — The Query API from Firebolt — 1 operation(s) for query.
+- [Firebolt Web API](https://apis.io/apis/firebolt/firebolt-web-api/) — The Web API from Firebolt — 1 operation(s) for web.
+- [Firebolt OAUTH API](https://apis.io/apis/firebolt/firebolt-oauth-api/) — The Oauth API from Firebolt — 1 operation(s) for oauth.
 
-## APIs
+### Published properties
 
-### Firebolt REST API
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-The Firebolt REST API issues SQL queries against running engines and manages account, engine, and database resources. Authentication is OAuth 2.0 client_credentials against `https://id.app.firebolt.io/oauth/token` with audience `https://api.firebolt.io`, using a service account ID and secret. Tokens are sent as `Authorization: Bearer <access_token>`.
+#### MCP servers (1)
 
-- **Human URL:** [https://docs.firebolt.io/guides/run-queries/using-the-api](https://docs.firebolt.io/guides/run-queries/using-the-api)
-- **Base URL:** `https://api.app.firebolt.io`
+Model Context Protocol servers that expose the API to agents.
 
-#### Tags
+- [Moved to /providers/firebolt/](https://apis.io/servers/firebolt/firebolt/)
 
-- SQL
-- Query
-- Engine Management
+#### Agentic access (1)
 
-#### Properties
+Which operations an agent can call, which act, and which need a human in the loop.
 
-- [Documentation](https://docs.firebolt.io/guides/run-queries/using-the-api)
-- [Authentication](https://docs.firebolt.io/Guides/managing-your-organization/service-accounts.html)
-- [SDK](https://python-sdk.docs.firebolt.io/)
-- [Postman Collection](collections/firebolt.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/firebolt.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Firebolt Agentic Access](https://apis.io/agentic-access/firebolt/firebolt-agentic-access/)
 
-## Common Properties
+#### Collections (5)
 
-- [GitHub Organization](https://github.com/firebolt-db)
-- [LinkedIn](https://www.linkedin.com/company/firebolt)
+Postman and Open Collection request collections.
+
+- [Firebolt REST API](https://apis.io/collections/firebolt/open-firebolt/)
+- [Firebolt REST Firebolt REST API API](https://apis.io/collections/firebolt/open-firebolt-firebolt-rest-api-api/)
+- [Firebolt REST Firebolt REST API Oauth API](https://apis.io/collections/firebolt/open-firebolt-oauth-api/)
+- [Firebolt REST Firebolt REST API Query API](https://apis.io/collections/firebolt/open-firebolt-query-api/)
+- [Firebolt REST Firebolt REST API Web API](https://apis.io/collections/firebolt/open-firebolt-web-api/)
+
+#### Security (4)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Firebolt Authentication](https://apis.io/security/firebolt/firebolt-authentication/)
+- [Firebolt Domain Security](https://apis.io/security/firebolt/firebolt-domain-security/)
+- [Firebolt Trust Center](https://apis.io/security/firebolt/firebolt-trust-center/)
+- [Firebolt Vulnerability Disclosure](https://apis.io/security/firebolt/firebolt-vulnerability-disclosure/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Firebolt Plans Pricing](https://apis.io/plans/firebolt/firebolt-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Firebolt Rate Limits](https://apis.io/rate-limits/firebolt/firebolt-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Firebolt Finops](https://apis.io/finops/firebolt/firebolt-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
 - [Website](https://www.firebolt.io/)
-- [Portal](https://docs.firebolt.io/)
 - [Pricing](https://www.firebolt.io/pricing)
-- [Plans](plans/firebolt-plans-pricing.yml)
-- [Rate Limits](rate-limits/firebolt-rate-limits.yml)
-- [Fin Ops](finops/firebolt-finops.yml)
-- [Integrations](https://www.firebolt.io/integrations)
-- [L L Ms Txt](https://docs.firebolt.io/llms.txt)
+- [Blog](https://www.firebolt.io/blog)
+- [GitHub](https://github.com/firebolt-db)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 31.4** — thin · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.7 |
+| Contract quality | 32.9 |
+| Contract governance | 0.0 |
+| Operational transparency | 21.1 |
+| Developer ergonomics | 40.5 |
+| Access clarity | 26.3 |
+
+**Agent readiness 27.0** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | verified |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | mostly |
+
+**Regulatory alignment 22.5** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/firebolt/](https://apis.io/providers/firebolt/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Firebolt: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/firebolt/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
